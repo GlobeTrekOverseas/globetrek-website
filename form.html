@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get FREE Counselling</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #023e65;
+      --primary-dark: #0112a6;
+      --secondary-color: #023e65;
+      --success-color: #28a745;
+      --success-dark: #218838;
+      --danger-color: #dc3545;
+      --text-primary: #2d3748;
+      --text-secondary: #4a5568;
+      --bg-light: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+      --border-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      min-height: 100vh;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header p {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .form-container {
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.85);
+      z-index: 1;
+    }
+
+    .form-header,
+    .form-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-header {
+      background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+      padding: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .progress-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .toggle-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toggle-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .progress-stats {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .progress-container {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-color) 0%, var(--success-color) 100%);
+      width: 0%;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .progress-text {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+    }
+
+    .form-content {
+      padding: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      transition: var(--transition);
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: white;
+      color: var(--text-primary);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .form-group input:valid,
+    .form-group select:valid {
+      border-color: var(--success-color);
+    }
+
+    .form-group input::placeholder {
+      color: #a0aec0;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--bg-light);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 0.5rem;
+      border-radius: 6px;
+    }
+
+    .checkbox-item:hover {
+      background: rgba(102, 126, 234, 0.05);
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      cursor: pointer;
+      accent-color: var(--primary-color);
+    }
+
+    .checkbox-item label {
+      margin: 0;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, var(--success-color) 0%, #20c997 100%);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(135deg, var(--success-dark) 0%, #1ea080 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .submit-btn:hover::before {
+      left: 100%;
+    }
+
+    .field-counter {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--bg-light);
+      border-radius: 8px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem 0;
+      }
+
+      .form-header,
+      .form-content {
+        padding: 1.5rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .progress-controls {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+
+      .checkbox-group {
+        padding: 1rem;
+      }
+
+      .submit-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 0.5rem;
+      }
+
+      .header {
+        margin-bottom: 2rem;
+      }
+
+      .form-header,
+      .form-content {
+        padding: 1rem;
+      }
+
+      .form-grid {
+        gap: 0.75rem;
+      }
+
+      .checkbox-item {
+        padding: 0.375rem;
+      }
+
+      .checkbox-item label {
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Animation for form appearance */
+    .form-container {
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Success states */
+    .form-group.completed label {
+      color: var(--success-color);
+    }
+
+    .form-group.completed input,
+    .form-group.completed select {
+      border-color: var(--success-color);
+      background-color: rgba(40, 167, 69, 0.05);
+    }
+
+    /* Loading state for submit button */
+    .submit-btn.loading {
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .submit-btn.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎓 Get FREE Counselling Today!</h1>
+      <p>Enter your details and our expert will reach out to you to discuss your plans. By the way, all our services are completely free!</p>
+    </div>
+    
+    <div class="form-container">
+      <div class="form-header">
+        <div class="progress-controls">
+          <button class="toggle-btn" onclick="toggleProgress()">
+            <span>👁️</span>
+            <span id="toggleText">Hide Progress</span>
+          </button>
+          <div class="progress-stats">
+            <span id="progressStats">0 of 9 fields completed</span>
+          </div>
+        </div>
+        
+        <div class="progress-container" id="progressContainer">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-text" id="progressText">0% Complete - Let's get started! 🚀</div>
+        </div>
+      </div>
+      
+      <div class="form-content">
+        <form id="counsellingForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName">First name*</label>
+              <input type="text" id="firstName" required placeholder="Enter your first name">
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last name*</label>
+              <input type="text" id="lastName" required placeholder="Enter your last name">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email address*</label>
+              <input type="email" id="email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="mobile">Mobile number*</label>
+              <input type="tel" id="mobile" required placeholder="+1 (555) 123-4567">
+            </div>
+
+            <div class="form-group">
+              <label for="studyDestination">Your preferred study destination*</label>
+              <select id="studyDestination" required>
+                <option value="">Choose your destination</option>
+                <option value="United States">🇺🇸 United States</option>
+                <option value="Australia">🇦🇺 Australia</option>
+                <option value="Canada">🇨🇦 Canada</option>
+                <option value="Switzerland">🇨🇭 Switzerland</option>
+                <option value="Germany">🇩🇪 Germany</option>
+                <option value="Netherlands">🇳🇱 Netherlands</option>
+                <option value="United Kingdom">🇬🇧 United Kingdom</option>
+                <option value="Others">🌍 Others</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="startTime">When would you like to start?*</label>
+              <select id="startTime" required>
+                <option value="">Select timeline</option>
+                <option value="Immediately">⚡ Immediately</option>
+                <option value="Within3Months">📅 Within 3 months</option>
+                <option value="Within6Months">🗓️ Within 6 months</option>
+                <option value="Within12Months">📆 Within 12 months</option>
+                <option value="NotSureYet">🤔 Not Sure Yet</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="counsellingMode">Preferred mode of counselling*</label>
+              <select id="counsellingMode" required>
+                <option value="">Select mode</option>
+                <option value="Online">💻 Virtual Counseling</option>
+                <option value="InPerson">🏢 In-person</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="studyLevel">Preferred study level*</label>
+              <select id="studyLevel" required>
+                <option value="">Select level</option>
+                <option value="EnglishLanguage">🗣️ English Language</option>
+                <option value="School">🏫 School</option>
+                <option value="Undergraduate">🎓 Undergraduate</option>
+                <option value="Postgraduate">📚 Postgraduate</option>
+                <option value="Doctorate">👨‍🎓 Doctorate</option>
+                <option value="UniversityPreparation">📖 University Preparation</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="funding">How would you fund your education?*</label>
+              <select id="funding" required>
+                <option value="">Select funding method</option>
+                <option value="SelfFunded">💰 Self-funded</option>
+                <option value="Scholarship">🏆 Scholarship</option>
+                <option value="EducationLoan">🏦 Education loan</option>
+                <option value="Others">📋 Others</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="terms">
+              <label for="terms">I agree to GlobetrekOverseas Terms and privacy policy</label>
+            </div>
+
+            <div class="checkbox-item">
+              <input type="checkbox" id="contact">
+              <label for="contact">Please contact me by phone, email or SMS to assist with my enquiry</label>
+            </div>
+
+            <div class="checkbox-item">
+              <input type="checkbox" id="updates">
+              <label for="updates">I would like to receive updates and offers from GlobetrekOverseas</label>
+            </div>
+          </div>
+
+          <div class="field-counter" id="fieldCounter">
+            Complete all required fields above to unlock your free counselling session! 🔓
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            🚀 Avail FREE Counselling
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('counsellingForm');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const progressStats = document.getElementById('progressStats');
+    const progressContainer = document.getElementById('progressContainer');
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const toggleText = document.getElementById('toggleText');
+    const fieldCounter = document.getElementById('fieldCounter');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    let isProgressVisible = true;
+
+    const requiredFields = [
+      'firstName', 'lastName', 'email', 'mobile',
+      'studyDestination', 'startTime', 'counsellingMode',
+      'studyLevel', 'funding'
+    ];
+
+    const progressMessages = [
+      "Let's get started! 🚀",
+      "Great beginning! 📝",
+      "You're making progress! 👍",
+      "Halfway there! 🏃‍♂️",
+      "Looking good! ✨",
+      "Almost done! 🎯",
+      "Excellent progress! 🌟",
+      "Nearly finished! 🏁",
+      "Final stretch! 💪",
+      "Perfect! Ready to submit! 🎉"
+    ];
+
+    function updateProgress() {
+      const totalFields = requiredFields.length;
+      let filledFields = 0;
+      let completedFields = [];
+
+      requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        const formGroup = field.closest('.form-group');
+        
+        if (field.value.trim() !== '' && !(field.tagName === 'SELECT' && field.value === '')) {
+          filledFields++;
+          completedFields.push(id);
+          formGroup.classList.add('completed');
+        } else {
+          formGroup.classList.remove('completed');
+        }
+      });
+
+      const percentage = Math.round((filledFields / totalFields) * 100);
+      progressFill.style.width = `${percentage}%`;
+      
+      const messageIndex = Math.floor(filledFields);
+      const message = progressMessages[messageIndex] || progressMessages[progressMessages.length - 1];
+      progressText.innerHTML = `${percentage}% Complete - ${message}`;
+      
+      progressStats.textContent = `${filledFields} of ${totalFields} fields completed`;
+      
+      // Update field counter
+      if (filledFields === totalFields) {
+        fieldCounter.innerHTML = '🎉 All fields completed! You\'re ready to submit your form.';
+        fieldCounter.style.background = 'rgba(40, 167, 69, 0.1)';
+        fieldCounter.style.color = '#28a745';
+        submitBtn.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+      } else {
+        const remaining = totalFields - filledFields;
+        fieldCounter.innerHTML = `📋 Please complete ${remaining} more field${remaining === 1 ? '' : 's'} to unlock your free counselling session!`;
+        fieldCounter.style.background = '#f8fafc';
+        fieldCounter.style.color = '#4a5568';
+      }
+    }
+
+    function toggleProgress() {
+      isProgressVisible = !isProgressVisible;
+      progressContainer.style.display = isProgressVisible ? 'block' : 'none';
+      toggleText.textContent = isProgressVisible ? 'Hide Progress' : 'Show Progress';
+      
+      // Animate the toggle button
+      toggleBtn.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        toggleBtn.style.transform = 'scale(1)';
+      }, 150);
+    }
+
+    // Add event listeners to all form fields
+    requiredFields.forEach(id => {
+      const field = document.getElementById(id);
+      field.addEventListener('input', updateProgress);
+      field.addEventListener('change', updateProgress);
+      field.addEventListener('blur', updateProgress);
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Add loading state
+      submitBtn.classList.add('loading');
+      submitBtn.innerHTML = 'Processing...';
+      
+      // Simulate form submission
+      setTimeout(() => {
+        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = '✅ Form Submitted Successfully!';
+        submitBtn.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+        
+        // Show success message
+        alert('🎉 Thank you! Your form has been submitted successfully. Our counsellor will contact you soon!');
+        
+        // Reset button after delay
+        setTimeout(() => {
+          submitBtn.innerHTML = '🚀 Avail FREE Counselling';
+        }, 3000);
+      }, 2000);
+    });
+
+    // Add smooth scrolling for mobile devices
+    function smoothScrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Handle mobile keyboard appearance
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+      input.addEventListener('focus', () => {
+        // Small delay to ensure keyboard is shown
+        setTimeout(() => {
+          input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      });
+    });
+
+    // Initialize progress on page load
+    updateProgress();
+
+    // Add some interactive feedback
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.style.transform = 'translateY(-1px)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Add keyboard navigation support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.tagName !== 'BUTTON' && e.target.type !== 'submit') {
+        e.preventDefault();
+        const currentIndex = Array.from(inputs).indexOf(e.target);
+        const nextInput = inputs[currentIndex + 1];
+        if (nextInput) {
+          nextInput.focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globetrek Overseas - AI Assistant</title>
+    <style>
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            z-index: 1000;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .chatbot-header {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .chatbot-body {
+            background-color: white;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+        }
+        
+        .bot-message {
+            background-color: #e3f2fd;
+            color: #333;
+            align-self: flex-start;
+            border-radius: 0 18px 18px 18px;
+        }
+        
+        .user-message {
+            background-color: #3498db;
+            color: white;
+            align-self: flex-end;
+            border-radius: 18px 0 18px 18px;
+            margin-left: auto;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            background-color: white;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+        
+        .chatbot-input button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+        
+        .chatbot-toggle i {
+            font-size: 24px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .quick-reply {
+            background-color: #e3f2fd;
+            color: #333;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-reply:hover {
+            background-color: #bbdefb;
+        }
+        
+        .typing-indicator {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #e3f2fd;
+            border-radius: 0 18px 18px 18px;
+        }
+        
+        .typing-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #3498db;
+            border-radius: 50%;
+            margin-right: 3px;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+            margin-right: 0;
+        }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- AI Chatbot Toggle Button -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- AI Chatbot Container -->
+    <div class="chatbot-container hidden" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h3>Study Abroad Assistant</h3>
+            <i class="fas fa-times" id="closeChatbot"></i>
+        </div>
+        <div class="chatbot-body">
+            <div class="chatbot-messages" id="chatMessages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="userInput" placeholder="Ask about studying abroad..." autocomplete="off">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            const chatbotContainer = document.getElementById('chatbotContainer');
+            const closeChatbot = document.getElementById('closeChatbot');
+            const chatMessages = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+            const sendMessage = document.getElementById('sendMessage');
+            
+            // Toggle chatbot visibility
+            chatbotToggle.addEventListener('click', function() {
+                chatbotContainer.classList.toggle('hidden');
+            });
+            
+            closeChatbot.addEventListener('click', function() {
+                chatbotContainer.classList.add('hidden');
+            });
+            
+            // Initialize with welcome message
+            setTimeout(() => {
+                addBotMessage("Hello! I'm your Study Abroad Assistant. How can I help you today?");
+                showQuickReplies([
+                    "What are the best countries to study abroad?",
+                    "How do I apply for a student visa?",
+                    "What documents do I need?",
+                    "Tell me about scholarships"
+                ]);
+            }, 1000);
+            
+            // Send message when button is clicked
+            sendMessage.addEventListener('click', sendUserMessage);
+            
+            // Send message when Enter key is pressed
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendUserMessage();
+                }
+            });
+            
+            // Function to send user message
+            function sendUserMessage() {
+                const message = userInput.value.trim();
+                if (message) {
+                    addUserMessage(message);
+                    userInput.value = '';
+                    processUserMessage(message);
+                }
+            }
+            
+            // Function to add user message to chat
+            function addUserMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message user-message';
+                messageDiv.textContent = text;
+                chatMessages.appendChild(messageDiv);
+                scrollToBottom();
+            }
+            
+            // Function to add bot message to chat
+            function addBotMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+                messageDiv.textContent = text;
+                chatMessages.appendChild(messageDiv);
+                scrollToBottom();
+            }
+            
+            // Function to show typing indicator
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'typing-indicator';
+                typingDiv.innerHTML = `
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                `;
+                chatMessages.appendChild(typingDiv);
+                scrollToBottom();
+                return typingDiv;
+            }
+            
+            // Function to hide typing indicator
+            function hideTypingIndicator(typingDiv) {
+                typingDiv.remove();
+            }
+            
+            // Function to show quick reply buttons
+            function showQuickReplies(replies) {
+                const quickRepliesDiv = document.createElement('div');
+                quickRepliesDiv.className = 'quick-replies';
+                
+                replies.forEach(reply => {
+                    const replyButton = document.createElement('div');
+                    replyButton.className = 'quick-reply';
+                    replyButton.textContent = reply;
+                    replyButton.addEventListener('click', function() {
+                        addUserMessage(reply);
+                        processUserMessage(reply);
+                    });
+                    quickRepliesDiv.appendChild(replyButton);
+                });
+                
+                chatMessages.appendChild(quickRepliesDiv);
+                scrollToBottom();
+            }
+            
+            // Function to scroll to bottom of chat
+            function scrollToBottom() {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            // Knowledge base for the chatbot
+            const knowledgeBase = {
+                greetings: {
+                    patterns: ["hi", "hello", "hey", "good morning", "good afternoon", "good evening"],
+                    responses: [
+                        "Hello! How can I assist you with your study abroad journey today?",
+                        "Hi there! What would you like to know about studying abroad?",
+                        "Greetings! I'm here to help with all your study abroad questions."
+                    ]
+                },
+                countries: {
+                    patterns: ["best countries", "where should I study", "study destinations", "top countries"],
+                    responses: [
+                        "The most popular study destinations are:",
+                        "1. 🇨🇦 Canada - Known for quality education and post-study work opportunities",
+                        "2. 🇬🇧 UK - Home to world-renowned universities with shorter degree programs",
+                        "3. 🇺🇸 USA - Offers diverse programs and excellent research facilities",
+                        "4. 🇦🇺 Australia - Great for research and post-study work options",
+                        "5. 🇩🇪 Germany - Offers free/low tuition at public universities",
+                        "Which country are you most interested in? I can provide more details."
+                    ]
+                },
+                visa: {
+                    patterns: ["visa", "student visa", "how to apply for visa", "visa requirements"],
+                    responses: [
+                        "Student visa requirements vary by country, but generally you'll need:",
+                        "1. Letter of acceptance from a recognized institution",
+                        "2. Proof of sufficient funds for tuition and living expenses",
+                        "3. Valid passport",
+                        "4. Medical insurance (for some countries)",
+                        "5. Clean criminal record",
+                        "The processing time can range from 2 weeks to 3 months depending on the country. Would you like specific information for a particular country?"
+                    ]
+                },
+                documents: {
+                    patterns: ["documents", "required documents", "what do I need", "application documents"],
+                    responses: [
+                        "For most study abroad applications, you'll typically need:",
+                        "• Academic transcripts and certificates",
+                        "• English proficiency test scores (IELTS/TOEFL)",
+                        "• Statement of Purpose (SOP)",
+                        "• Letters of Recommendation (LORs)",
+                        "• Passport copy",
+                        "• Financial documents showing sufficient funds",
+                        "• CV/Resume (for some programs)",
+                        "The exact requirements may vary by country and university. Would you like me to check specific requirements for your chosen destination?"
+                    ]
+                },
+                scholarships: {
+                    patterns: ["scholarship", "financial aid", "funding", "how to pay for studies"],
+                    responses: [
+                        "There are several scholarship opportunities for international students:",
+                        "1. University-specific scholarships (check each university's website)",
+                        "2. Government scholarships (like Chevening, Erasmus, Fulbright)",
+                        "3. Country-specific scholarships (like Canada's Vanier Scholarship)",
+                        "4. Private organization scholarships",
+                        "5. Sports or arts scholarships",
+                        "Scholarships are typically based on academic merit, financial need, or specific criteria. Would you like help finding scholarships for your chosen country?"
+                    ]
+                },
+                cost: {
+                    patterns: ["cost", "fees", "how much", "tuition", "living expenses"],
+                    responses: [
+                        "Study abroad costs vary significantly by country and program. Here are approximate annual costs:",
+                        "🇨🇦 Canada: CAD $15,000-$35,000 (tuition) + CAD $10,000-$15,000 (living)",
+                        "🇬🇧 UK: £10,000-£30,000 (tuition) + £12,000-£15,000 (living)",
+                        "🇺🇸 USA: $20,000-$50,000 (tuition) + $10,000-$15,000 (living)",
+                        "🇦🇺 Australia: AUD $20,000-$45,000 (tuition) + AUD $15,000-$20,000 (living)",
+                        "🇩🇪 Germany: €0-€20,000 (tuition) + €10,000-€12,000 (living)",
+                        "Would you like more specific cost information for a particular country or program?"
+                    ]
+                },
+                application: {
+                    patterns: ["how to apply", "application process", "admission process", "steps to apply"],
+                    responses: [
+                        "The typical study abroad application process involves these steps:",
+                        "1. Research and shortlist universities/programs",
+                        "2. Check entry requirements and deadlines",
+                        "3. Prepare required documents (transcripts, test scores, SOP, LORs)",
+                        "4. Take required language tests (IELTS/TOEFL)",
+                        "5. Submit applications before deadlines",
+                        "6. Apply for scholarships if needed",
+                        "7. After acceptance, apply for student visa",
+                        "8. Arrange accommodation and flights",
+                        "The entire process can take 6-12 months. Would you like me to guide you through any specific step?"
+                    ]
+                },
+                fallback: {
+                    responses: [
+                        "I'm sorry, I didn't quite understand that. Could you rephrase your question?",
+                        "I'm still learning! Could you ask that in a different way?",
+                        "I specialize in study abroad information. Could you ask me about countries, visas, applications, or scholarships?",
+                        "I didn't catch that. Here are some things I can help with: best countries to study, visa requirements, application process, or scholarship opportunities."
+                    ]
+                }
+            };
+            
+            // Function to process user message and generate response
+            function processUserMessage(message) {
+                const typingDiv = showTypingIndicator();
+                
+                // Simulate processing delay
+                setTimeout(() => {
+                    hideTypingIndicator(typingDiv);
+                    const response = generateResponse(message.toLowerCase());
+                    addBotMessage(response);
+                    
+                    // Show relevant quick replies based on context
+                    if (message.includes("country") || message.includes("where")) {
+                        showQuickReplies([
+                            "Tell me about Canada",
+                            "What about the UK?",
+                            "How is Australia for students?"
+                        ]);
+                    } else if (message.includes("visa")) {
+                        showQuickReplies([
+                            "Canada visa requirements",
+                            "UK visa process",
+                            "USA student visa"
+                        ]);
+                    } else if (message.includes("document")) {
+                        showQuickReplies([
+                            "Documents for Canada",
+                            "What's an SOP?",
+                            "How many LORs needed?"
+                        ]);
+                    } else if (message.includes("scholarship") || message.includes("funding")) {
+                        showQuickReplies([
+                            "Scholarships in Canada",
+                            "UK scholarships",
+                            "Need-based scholarships"
+                        ]);
+                    } else {
+                        showQuickReplies([
+                            "What are the best countries?",
+                            "How do I apply for a visa?",
+                            "What documents do I need?",
+                            "Tell me about scholarships"
+                        ]);
+                    }
+                }, 1500);
+            }
+            
+            // Function to generate appropriate response
+            function generateResponse(message) {
+                // Check for greeting
+                if (knowledgeBase.greetings.patterns.some(pattern => message.includes(pattern))) {
+                    return getRandomResponse(knowledgeBase.greetings.responses);
+                }
+                
+                // Check for countries
+                if (knowledgeBase.countries.patterns.some(pattern => message.includes(pattern))) {
+                    return knowledgeBase.countries.responses.join('\n');
+                }
+                
+                // Check for visa
+                if (knowledgeBase.visa.patterns.some(pattern => message.includes(pattern))) {
+                    return knowledgeBase.visa.responses.join('\n');
+                }
+                
+                // Check for documents
+                if (knowledgeBase.documents.patterns.some(pattern => message.includes(pattern))) {
+                    return knowledgeBase.documents.responses.join('\n');
+                }
+                
+                // Check for scholarships
+                if (knowledgeBase.scholarships.patterns.some(pattern => message.includes(pattern))) {
+                    return knowledgeBase.scholarships.responses.join('\n');
+                }
+                
+                // Check for cost
+                if (knowledgeBase.cost.patterns.some(pattern => message.includes(pattern))) {
+                    return knowledgeBase.cost.responses.join('\n');
+                }
+                
+                // Check for application process
+                if (knowledgeBase.application.patterns.some(pattern => message.includes(pattern))) {
+                    return knowledgeBase.application.responses.join('\n');
+                }
+                
+                // Check for specific country queries
+                const countryResponses = {
+                    "canada": [
+                        "🇨🇦 Canada is a top study destination known for:",
+                        "• High-quality education at affordable costs",
+                        "• Opportunity to work while studying (20 hrs/week)",
+                        "• Post-graduation work permit (PGWP) for gaining Canadian work experience",
+                        "• Pathway to permanent residency",
+                        "• Safe, multicultural environment",
+                        "Popular institutions: University of Toronto, UBC, McGill University, etc.",
+                        "Average tuition: CAD $15,000-$35,000 per year"
+                    ],
+                    "uk": [
+                        "🇬🇧 The UK offers:",
+                        "• World-renowned universities (Oxford, Cambridge, Imperial, etc.)",
+                        "• Shorter degree programs (3 years for Bachelor's, 1 year for Master's)",
+                        "• Post-study work visa (2-3 years after graduation)",
+                        "• Rich cultural and historical experience",
+                        "• Strong research opportunities",
+                        "Average tuition: £10,000-£30,000 per year"
+                    ],
+                    "usa": [
+                        "🇺🇸 The USA provides:",
+                        "• Largest number of top-ranked universities globally",
+                        "• Flexible education system with diverse programs",
+                        "• Optional Practical Training (OPT) for work after studies",
+                        "• Cutting-edge research facilities",
+                        "• Vibrant campus life",
+                        "Average tuition: $20,000-$50,000 per year"
+                    ],
+                    "australia": [
+                        "🇦🇺 Australia is known for:",
+                        "• High-quality education with strong research focus",
+                        "• Post-study work rights (2-4 years depending on qualification)",
+                        "• Multicultural society with high quality of life",
+                        "• Beautiful landscapes and cities",
+                        "• Strong support for international students",
+                        "Average tuition: AUD $20,000-$45,000 per year"
+                    ],
+                    "germany": [
+                        "🇩🇪 Germany offers:",
+                        "• Free/low tuition at public universities (€0-€20,000/year)",
+                        "• Strong engineering and technical programs",
+                        "• 18-month post-study work visa",
+                        "• Opportunity to learn German",
+                        "• Central location in Europe for travel",
+                        "• High employability after graduation",
+                        "Living costs: €10,000-€12,000 per year"
+                    ]
+                };
+                
+                for (const country in countryResponses) {
+                    if (message.includes(country)) {
+                        return countryResponses[country].join('\n');
+                    }
+                }
+                
+                // Fallback response
+                return getRandomResponse(knowledgeBase.fallback.responses);
+            }
+            
+            // Helper function to get random response from array
+            function getRandomResponse(responses) {
+                return responses[Math.floor(Math.random() * responses.length)];
+            }
+        });
+    </script>
+</body>
+</html>
