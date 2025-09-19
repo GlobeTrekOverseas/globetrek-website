@@ -113,15 +113,93 @@
         color: var(--secondary);
         cursor: pointer;
       }
+
+      @media (max-width: 992px) {
+        .nav-menu li {
+          margin-left: 15px;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .course-box {
+          width: calc(50% - 30px);
+        }
+
+        .services-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .destinations-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          flex-wrap: wrap;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+          /* order: 1; */
+        }
+
+        .logo {
+          /* order: 2; */
+          flex: 1;
+          text-align: center;
+        }
+
+        .nav-menu {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          order: 3;
+          padding: 20px 0;
+          background: white;
+        }
+
+        .nav-menu.active {
+          display: flex;
+        }
+
+        .nav-menu li {
+          margin: 10px 0;
+          text-align: center;
+          margin-left: 0;
+        }
+
+        .dropdown-menu {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          box-shadow: none;
+          display: none;
+          background: #f9f9f9;
+          margin-top: 5px;
+        }
+
+        .dropdown.active .dropdown-menu {
+          display: block;
+        }
+
+        .dropdown-toggle::after {
+          content: "+";
+          margin-left: 5px;
+        }
+
+        .dropdown.active .dropdown-toggle::after {
+          content: "-";
+        }
+      }
     </style>
   </head>
   <body class="font-poppins bg-gray-100 text-gray-800">
-    <!-- Header navigation -->
+    <!-- Header & Navigation -->
     <header class="header">
       <div class="header-container">
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-          <i class="fas fa-bars"></i>
-        </button>
         <a href="../index.html" class="logo">
           <img src="../images\GTO.png" alt="Globetrek Overseas" class="w-full w-auto h-[68px]" />
         </a>
@@ -210,6 +288,9 @@
           <li><a href="News&Articles.html">News&Articles</a></li>
           <li><a href="contact us.html">Contact</a></li>
         </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </header>
     <!-- Header Section -->
