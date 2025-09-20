@@ -429,48 +429,43 @@ document.querySelectorAll(".country-item").forEach((item) => {
   });
 });
 
-function showPopup(
-  title,
-  duration,
-  description,
-  requirements,
-  whatsappMessage
-) {
-  document.getElementById("popup-title").textContent = title;
-  document.getElementById(
-    "popup-duration"
-  ).textContent = `Duration: ${duration}`;
-  document.getElementById("popup-description").textContent = description;
+// function showPopup(
+//   title,
+//   duration,
+//   description,
+//   requirements,
+//   whatsappMessage
+// ) {
+//   document.getElementById("popup-title").textContent = title;
+//   document.getElementById(
+//     "popup-duration"
+//   ).textContent = `Duration: ${duration}`;
+//   document.getElementById("popup-description").textContent = description;
 
-  // Clear previous requirements
-  const requirementsList = document.getElementById("requirements-list");
-  requirementsList.innerHTML = "";
+//   // Clear previous requirements
+//   const requirementsList = document.getElementById("requirements-list");
+//   requirementsList.innerHTML = "";
 
-  // Add new requirements
-  const requirementsArray = requirements.split("\n");
-  requirementsArray.forEach((req) => {
-    if (req.trim()) {
-      const li = document.createElement("li");
-      li.textContent = req;
-      requirementsList.appendChild(li);
-    }
-  });
+//   // Add new requirements
+//   const requirementsArray = requirements.split("\n");
+//   requirementsArray.forEach((req) => {
+//     if (req.trim()) {
+//       const li = document.createElement("li");
+//       li.textContent = req;
+//       requirementsList.appendChild(li);
+//     }
+//   });
 
-  // Set WhatsApp link with custom message
-  const encodedMessage = encodeURIComponent(whatsappMessage);
-  // document.getElementById(
-  //   "whatsapp-link"
-  // ).href = `https://?text=${encodedMessage}`;
+//   // Set WhatsApp link with custom message
+//   const encodedMessage = encodeURIComponent(whatsappMessage);
+//   // document.getElementById(
+//   //   "whatsapp-link"
+//   // ).href = `https://?text=${encodedMessage}`;
 
-  // Show popup
-  document.getElementById("popup").classList.add("active");
-  document.body.style.overflow = "hidden";
-}
-
-function hidePopup() {
-  document.getElementById("popup").classList.remove("active");
-  document.body.style.overflow = "auto";
-}
+//   // Show popup
+//   document.getElementById("popup").classList.add("active");
+//   document.body.style.overflow = "hidden";
+// }
 
 // Close popup when clicking outside content
 document.getElementById("popup").addEventListener("click", function (e) {

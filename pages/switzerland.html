@@ -1747,109 +1747,19 @@
       });
     </script>
 
-    <!-- <script>
-      // Wait for DOM to fully load
-      document.addEventListener('DOMContentLoaded', function () {
-        // Add loaded class to body for fade-in effect
-        document.body.classList.add('loaded');
+    <!-- Navbar -->
+    <script>
+      document.getElementById("mobileMenuBtn").addEventListener("click", function () {
+        document.getElementById("navMenu").classList.toggle("active");
+      });
 
-        // Mobile menu toggle
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-
-        mobileMenuToggle.addEventListener('click', function () {
-          navMenu.classList.toggle('active');
-          this.querySelector('i').classList.toggle('fa-bars');
-          this.querySelector('i').classList.toggle('fa-times');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              // Close mobile menu if open
-              navMenu.classList.remove('active');
-              mobileMenuToggle.querySelector('i').classList.add('fa-bars');
-              mobileMenuToggle.querySelector('i').classList.remove('fa-times');
-
-              // Scroll to target
-              window.scrollTo({
-                top: targetElement.offsetTop - 100,
-                behavior: 'smooth'
-              });
-            }
-          });
-        });
-
-        // Back to top button
-        const backToTopButton = document.getElementById('back-to-top');
-
-        window.addEventListener('scroll', function () {
-          // Show/hide back to top button
-          if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('active');
-          } else {
-            backToTopButton.classList.remove('active');
-          }
-
-          // Update progress bar
-          const winHeight = window.innerHeight;
-          const docHeight = document.documentElement.scrollHeight;
-          const scrollTop = window.pageYOffset;
-          const trackLength = docHeight - winHeight;
-          const progress = (scrollTop / trackLength) * 100;
-          document.getElementById('progress-bar').style.width = progress + '%';
-
-          // Section reveal animation
-          document.querySelectorAll('section').forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const triggerBottom = window.innerHeight * 0.8;
-
-            if (sectionTop < triggerBottom) {
-              section.classList.add('visible');
-            }
-          });
-        });
-
-        // Modal functionality
-        const consultationBtn = document.getElementById('consultation-btn');
-        const consultationModal = document.getElementById('consultation-modal');
-        const closeModal = document.getElementById('close-modal');
-
-        consultationBtn.addEventListener('click', function () {
-          consultationModal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-
-        closeModal.addEventListener('click', function () {
-          consultationModal.classList.remove('active');
-          document.body.style.overflow = 'auto';
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', function (e) {
-          if (e.target === consultationModal) {
-            consultationModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-          }
-        });
-
-        // Initialize all sections for reveal animation
-        document.querySelectorAll('section').forEach(section => {
-          const sectionTop = section.getBoundingClientRect().top;
-          const triggerBottom = window.innerHeight * 0.8;
-
-          if (sectionTop < triggerBottom) {
-            section.classList.add('visible');
-          }
+      // Dropdown toggle for mobile
+      document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
+        toggle.addEventListener("click", function () {
+          const dropdown = this.parentElement;
+          dropdown.classList.toggle("active");
         });
       });
-    </script> -->
+    </script>
   </body>
 </html>

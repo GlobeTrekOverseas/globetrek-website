@@ -601,5 +601,19 @@
         alert('Contact form would open here! Please provide your details to connect with our team.');
       });
     </script>
+    <!-- Navbar -->
+    <script>
+      document.getElementById("mobileMenuBtn").addEventListener("click", function () {
+        document.getElementById("navMenu").classList.toggle("active");
+      });
+
+      // Dropdown toggle for mobile
+      document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
+        toggle.addEventListener("click", function () {
+          const dropdown = this.parentElement;
+          dropdown.classList.toggle("active");
+        });
+      });
+    </script>
   </body>
 </html>
