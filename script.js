@@ -132,28 +132,28 @@ document.addEventListener("DOMContentLoaded", function () {
 const stories = {
   anjali: {
     flag: "🇨🇭",
-    name: "Sunita R.",
+    name: "Anjali R.",
     university: "Geneva School of Diplomacy, Switzerland",
     quote:
       "I always wanted to study international relations in Europe but didn't know where to start. Globetrek helped me discover a niche program in Switzerland that perfectly matched my interests. They supported me from application to visa to accommodation. Today, I'm studying at one of the most diplomatic hubs in the world!",
   },
   karthik: {
     flag: "🇬🇧",
-    name: "Dhruv Chauhan.",
+    name: "Karthik M.",
     university: "University of Portsmouth, UK",
     quote:
       "Coming from a technical background, I wanted a fast-track top-up program in the UK. Globetrek guided me to the perfect fit at Portsmouth London campus. I had an offer within 10 days, and my visa was approved in under 3 weeks. Their team made the process simple and stress-free.",
   },
   shivani: {
     flag: "🇨🇦",
-    name: "Shivani T.",
+    name: "Shivani K.",
     university: "Seneca College, Canada",
     quote:
       "From course selection to SOPs and GIC funding guidance, Globetrek was there for me every step of the way. What I loved most was their honesty, no false promises, just clear communication. I'm now pursuing a business diploma in Toronto and couldn't be happier.",
   },
   aditya: {
     flag: "🇦🇺",
-    name: "Tanishq Jayank.",
+    name: "Aditya P.",
     university: "Deakin University, Australia",
     quote:
       "I had multiple refusals before approaching Globetrek. They helped rebuild my profile and guided me into a course that matched my goals and visa credibility. I not only got accepted but also received a partial scholarship!",
