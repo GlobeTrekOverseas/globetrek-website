@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            width: 100%;
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            margin: 20px;
+        }
+
+        .header {
+            background: #35506B;
+            color: #FFFFFF;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 10rem;
+            max-width: 15vw;
+            height: auto;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            object-fit: contain;
+            display: block;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: #FFFFFF; /* Changed to strict theme color */
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            right: calc(-50% - 10px); /* Improved alignment */
+            width: 100%;
+            height: 2px;
+            background: #ddd;
+            z-index: 1;
+        }
+
+        .step.active:not(:last-child)::after {
+            background: #35506B;
+        }
+
+        .step-circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-weight: bold;
+            z-index: 2;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .step.active .step-circle {
+            background: #35506B;
+        }
+
+        .step.completed .step-circle {
+            background: #2D6F41;
+        }
+
+        .step.completed .step-circle::after {
+            content: '✓';
+        }
+
+        .step-label {
+            margin-top: 6px;
+            font-size: 13px;
+            color: #444; /* Improved contrast */
+            text-align: center;
+        }
+
+        .step.active .step-label {
+            color: #35506B;
+            font-weight: 600;
+        }
+
+        .form-container {
+            padding: 25px;
+            background: #FFFFFF;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #35506B;
+            box-shadow: 0 0 0 3px rgba(53, 80, 107, 0.2);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .btn {
+            background: #35506B;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #2D6F41;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(53, 80, 107, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #35506B;
+            border: 2px solid #35506B;
+        }
+
+        .btn-outline:hover {
+            background: #f5f9ff;
+        }
+
+        .btn:disabled {
+            background: #6b829c; /* Theme-consistent muted color */
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 13px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .payment-details {
+            display: flex;
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .bank-details {
+            flex: 1;
+        }
+
+        .qr-code {
+            flex: 0 0 180px;
+            text-align: center;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Improved scaling */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 8px;
+            background: #FFFFFF;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        td:first-child {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        .confirmation {
+            text-align: center;
+            padding: 25px 0;
+        }
+
+        .confirmation i {
+            font-size: 50px;
+            color: #2D6F41;
+            margin-bottom: 15px;
+        }
+
+        .confirmation h2 {
+            color: #35506B;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .confirmation p {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .summary-table {
+            width: 100%;
+            margin: 15px 0;
+            border-collapse: collapse;
+            background: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-table td:first-child {
+            font-weight: bold;
+            width: 30%;
+            background: #f9f9f9;
+        }
+
+        @media (max-width: 768px) {
+            .form-row, .payment-details {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .progress-bar {
+                padding: 10px 15px;
+            }
+            
+            .step:not(:last-child)::after {
+                right: calc(-40% - 10px); /* Adjusted for smaller screens */
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .form-container {
+                padding: 15px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+
+            .logo {
+                width: 8rem;
+                max-width: 20vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 6rem;
+                max-width: 25vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <img src="images/GTO.png" alt="Globetrek Overseas Logo" class="logo" onerror="this.src='fallback-logo.png';">
+            <div>
+                <h1>Book Your Course Now</h1>
+                <p>Complete your IELTS registration in 3 simple steps</p>
+            </div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="step active" id="step1">
+                <div class="step-circle">1</div>
+                <div class="step-label">Personal Details</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-circle">2</div>
+                <div class="step-label">Payment</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-circle">3</div>
+                <div class="step-label">Confirmation</div>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <!-- Step 1: Personal Details -->
+            <div class="form-step active" id="formStep1">
+                <h2 style="margin-bottom: 15px; color: #35506B;">Personal Information</h2>
+                <form id="personalForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required aria-describedby="fullNameError">
+                        <div class="error-message" id="fullNameError">Please enter your full name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dob">Date of Birth *</label>
+                        <input type="date" id="dob" name="dob" required aria-describedby="dobError">
+                        <div class="error-message" id="dobError">Please select your date of birth</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">Gender *</label>
+                        <select id="gender" name="gender" required aria-describedby="genderError">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <div class="error-message" id="genderError">Please select your gender</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required aria-describedby="emailError">
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number *</label>
+                        <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" pattern="[0-9]{10}" required aria-describedby="mobileError">
+                        <div class="error-message" id="mobileError">Please enter a valid mobile number (10 digits)</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <select id="state" name="state" required aria-describedby="stateError">
+                                    <option value="">Select State</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                                <div class="error-message" id="stateError">Please select your state</div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="country">Country *</label>
+                                <select id="country" name="country" required aria-describedby="countryError">
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="IN">India</option>
+                                    <option value="CN">China</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="ZA">South Africa</option>
+                                    <option value="NG">Nigeria</option>
+                                    <option value="EG">Egypt</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="AE">United Arab Emirates</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="PT">Portugal</option>
+                                    <option value="NL">Netherlands</option>
+                                    <option value="SE">Sweden</option>
+                                    <option value="NO">Norway</option>
+                                    <option value="DK">Denmark</option>
+                                    <option value="FI">Finland</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="TR">Turkey</option>
+                                    <option value="PL">Poland</option>
+                                    <option value="UA">Ukraine</option>
+                                    <option value="GR">Greece</option>
+                                    <option value="IL">Israel</option>
+                                    <option value="IR">Iran</option>
+                                    <option value="IQ">Iraq</option>
+                                    <option value="PK">Pakistan</option>
+                                    <option value="BD">Bangladesh</option>
+                                    <option value="LK">Sri Lanka</option>
+                                    <option value="NP">Nepal</option>
+                                    <option value="AF">Afghanistan</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="error-message" id="countryError">Please select your country</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <div></div>
+                        <button type="button" class="btn" id="nextToPayment">Next: Payment Details</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Step 2: Payment Details -->
+            <div class="form-step" id="formStep2">
+                <h2 style="margin-bottom: 15px; color: #35506B;">Payment Information</h2>
+                
+                
+                <div class="payment-details">
+                    <div class="bank-details">
+                        <h3 style="margin-bottom: 10px; color: #35506B;">Net Banking Details</h3>
+                        <table>
+                            <tr>
+                                <td>Name</td>
+                                <td>GLOBETREK OVERSEAS LLP</td>
+                            </tr>
+                            <tr>
+                                <td>Account No.</td>
+                                <td>50200109076685</td>
+                            </tr>
+                            <tr>
+                                <td>Bank</td>
+                                <td>HDFC Bank</td>
+                            </tr>
+                            <tr>
+                                <td>IFSC Code</td>
+                                <td>HDFC0000278</td>
+                            </tr>
+                            <tr>
+                                <td>Type</td>
+                                <td>Current Account</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="qr-code">
+                        <h4>Scan to Pay</h4>
+                        <div style="width: 180px; height: 220px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto; overflow: hidden;">
+                            <img src="QR code.jpg" alt="Scan to Pay QR Code" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.src='fallback-qr.png';" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; text-align: center;">
+                    <p style="font-weight: bold; color: #35506B;">GLOBETREK OVERSEAS</p>
+                </div>
+                
+                <div class="form-group" style="margin-top: 15px;">
+                    <label for="transactionId">Transaction ID (After Payment) *</label>
+                    <input type="text" id="transactionId" name="transactionId" placeholder="Enter your transaction ID" required aria-describedby="transactionError">
+                    <div class="error-message" id="transactionError">Please enter your transaction ID</div>
+                </div>
+                
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline" id="backToPersonal">Back</button>
+                    <button type="button" class="btn" id="submitPayment">Submit Payment</button>
+                </div>
+            </div>
+            
+            <!-- Step 3: Confirmation -->
+            <div class="form-step" id="formStep3">
+                <div class="confirmation">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Registration Successful!</h2>
+                    <p>Thank you for registering for the IELTS course.</p>
+                    <p>A confirmation email has been sent to <span id="confirmationEmail" style="font-weight: bold;">your-email@example.com</span></p>
+                    
+                    <h3 style="margin-top: 20px; color: #35506B;">Registration Summary</h3>
+                    <table class="summary-table">
+                        <tr>
+                            <td>Full Name</td>
+                            <td id="summaryName">-</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td id="summaryDob">-</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td id="summaryGender">-</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td id="summaryEmail">-</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile Number</td>
+                            <td id="summaryMobile">-</td>
+                        </tr>
+                        <tr>
+                            <td>State</td>
+                            <td id="summaryState">-</td>
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td id="summaryCountry">-</td>
+                        </tr>
+                        <tr>
+                            <td>Transaction ID</td>
+                            <td id="summaryTransaction">-</td>
+                        </tr>
+                    </table>
+                    
+                    <p style="margin-top: 15px;">We will contact you shortly with further details about your course.</p>
+                    
+                    <div class="btn-group" style="margin-top: 20px;">
+                        <button type="button" class="btn" id="newRegistration">New Registration</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Step navigation elements
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const step3 = document.getElementById('step3');
+            const formStep1 = document.getElementById('formStep1');
+            const formStep2 = document.getElementById('formStep2');
+            const formStep3 = document.getElementById('formStep3');
+            const nextToPaymentBtn = document.getElementById('nextToPayment');
+            const backToPersonalBtn = document.getElementById('backToPersonal');
+            const submitPaymentBtn = document.getElementById('submitPayment');
+            const newRegistrationBtn = document.getElementById('newRegistration');
+            
+            // Form elements
+            const personalForm = document.getElementById('personalForm');
+            const transactionIdInput = document.getElementById('transactionId');
+            const dobInput = document.getElementById('dob');
+            
+            // Summary elements
+            const summaryName = document.getElementById('summaryName');
+            const summaryDob = document.getElementById('summaryDob');
+            const summaryGender = document.getElementById('summaryGender');
+            const summaryEmail = document.getElementById('summaryEmail');
+            const summaryMobile = document.getElementById('summaryMobile');
+            const summaryState = document.getElementById('summaryState');
+            const summaryCountry = document.getElementById('summaryCountry');
+            const summaryTransaction = document.getElementById('summaryTransaction');
+            const confirmationEmail = document.getElementById('confirmationEmail');
+            
+            // Step Navigation Functions
+            function goToStep(stepNumber) {
+                // Hide all steps
+                formStep1.classList.remove('active');
+                formStep2.classList.remove('active');
+                formStep3.classList.remove('active');
+                step1.classList.remove('active', 'completed');
+                step2.classList.remove('active', 'completed');
+                step3.classList.remove('active', 'completed');
+                
+                // Show the selected step
+                if (stepNumber === 1) {
+                    formStep1.classList.add('active');
+                    step1.classList.add('active');
+                } else if (stepNumber === 2) {
+                    formStep2.classList.add('active');
+                    step1.classList.add('completed');
+                    step2.classList.add('active');
+                } else if (stepNumber === 3) {
+                    formStep3.classList.add('active');
+                    step1.classList.add('completed');
+                    step2.classList.add('completed');
+                    step3.classList.add('active');
+                    step1.querySelector('.step-circle').style.background = '#2D6F41';
+                    step2.querySelector('.step-circle').style.background = '#2D6F41';
+                    step3.querySelector('.step-circle').style.background = '#2D6F41';
+                    step1.querySelector('.step-circle').innerHTML = '✓';
+                    step2.querySelector('.step-circle').innerHTML = '✓';
+                    step3.querySelector('.step-circle').innerHTML = '✓';
+                    updateSummary();
+                }
+            }
+            
+            // Update the confirmation summary
+            function updateSummary() {
+                summaryName.textContent = document.getElementById('fullName').value;
+                summaryDob.textContent = document.getElementById('dob').value;
+                summaryGender.textContent = document.getElementById('gender').options[document.getElementById('gender').selectedIndex].text;
+                summaryEmail.textContent = document.getElementById('email').value;
+                confirmationEmail.textContent = document.getElementById('email').value;
+                summaryMobile.textContent = document.getElementById('mobile').value;
+                summaryState.textContent = document.getElementById('state').options[document.getElementById('state').selectedIndex].text;
+                summaryCountry.textContent = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
+                summaryTransaction.textContent = transactionIdInput.value;
+            }
+            
+            // Validate Step 1
+            function validateStep1() {
+                let isValid = true;
+                
+                // Reset error messages
+                document.querySelectorAll('.error-message').forEach(error => {
+                    error.style.display = 'none';
+                });
+                
+                // Validate full name
+                const fullName = document.getElementById('fullName').value.trim();
+                if (!fullName) {
+                    document.getElementById('fullNameError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate date of birth
+                if (!dobInput.value) {
+                    document.getElementById('dobError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    const dob = new Date(dobInput.value);
+                    const today = new Date();
+                    const minAge = 16;
+                    let age = today.getFullYear() - dob.getFullYear();
+                    const monthDiff = today.getMonth() - dob.getMonth();
+                    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                        age--;
+                    }
+                    if (age < minAge) {
+                        document.getElementById('dobError').textContent = `You must be at least ${minAge} years old`;
+                        document.getElementById('dobError').style.display = 'block';
+                        isValid = false;
+                    }
+                }
+                
+                // Validate gender
+                const gender = document.getElementById('gender').value;
+                if (!gender) {
+                    document.getElementById('genderError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate email
+                const email = document.getElementById('email').value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate mobile number
+                const mobile = document.getElementById('mobile').value.trim();
+                const mobileRegex = /^[0-9]{10}$/;
+                if (!mobileRegex.test(mobile)) {
+                    document.getElementById('mobileError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate state
+                const state = document.getElementById('state').value;
+                if (!state) {
+                    document.getElementById('stateError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate country
+                const country = document.getElementById('country').value;
+                if (!country) {
+                    document.getElementById('countryError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // Validate Step 2
+            function validateStep2() {
+                if (!transactionIdInput.value.trim()) {
+                    document.getElementById('transactionError').style.display = 'block';
+                    return false;
+                }
+                document.getElementById('transactionError').style.display = 'none';
+                return true;
+            }
+            
+            // Step Navigation Event Listeners
+            nextToPaymentBtn.addEventListener('click', function() {
+                if (validateStep1()) {
+                    goToStep(2);
+                }
+            });
+            
+            backToPersonalBtn.addEventListener('click', function() {
+                goToStep(1);
+            });
+            
+            submitPaymentBtn.addEventListener('click', function() {
+                if (validateStep2()) {
+                    goToStep(3);
+                }
+            });
+            
+            newRegistrationBtn.addEventListener('click', function() {
+                // Reset form
+                personalForm.reset();
+                transactionIdInput.value = '';
+                dobInput.value = '';
+                
+                // Reset error messages
+                document.querySelectorAll('.error-message').forEach(error => {
+                    error.style.display = 'none';
+                });
+                
+                // Reset step circles to default
+                step1.querySelector('.step-circle').style.background = '#ddd';
+                step2.querySelector('.step-circle').style.background = '#ddd';
+                step3.querySelector('.step-circle').style.background = '#ddd';
+                step1.querySelector('.step-circle').innerHTML = '1';
+                step2.querySelector('.step-circle').innerHTML = '2';
+                step3.querySelector('.step-circle').innerHTML = '3';
+                
+                // Go back to step 1
+                goToStep(1);
+            });
+        });
+    </script>
+</body>
+</html>

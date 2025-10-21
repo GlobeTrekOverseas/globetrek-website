@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Exam - Globetrek Overseas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --primary: #35506B;
+        --accent: #2D6F41;
+        --light: #f8f9fa;
+        --dark: #343a40;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --transition: all 0.4s ease;
+        --tab-bg: #003087;
+        --tab-text: #ffffff;
+        --highlight-bg: linear-gradient(135deg, #e3f2fd 0%, #c4ddf7 100%);
+        --highlight-border: #2D6F41;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #f0f4f8 0%, #e0e7f0 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Hero Section with Image */
+      .hero-section {
+        position: relative;
+        height: 70vh;
+        min-height: 500px;
+        margin: 0;
+        overflow: hidden;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
+          url('/videos/IELTS\ VIDEO.mp4') no-repeat center center/cover;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-align: center;
+        color: white;
+        padding: 0 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        animation: fadeInDown 2s ease;
+      }
+
+      .hero-content p {
+        font-size: 1.4rem;
+        margin-bottom: 2.5rem;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        animation: fadeIn 1.2s ease;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: var(--transition);
+        border: 2px solid transparent;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-btn:hover {
+        background: transparent;
+        border-color: white;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-btn.secondary {
+        background: var(--accent);
+      }
+
+      .hero-btn.secondary:hover {
+        background: transparent;
+        border-color: white;
+      }
+
+      /* Tabs Section */
+      .tabs-section {
+        margin: 3rem 0;
+      }
+
+      .tabs-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+      }
+
+      .tab-card {
+        flex: 0 1 calc(25% - 1.5rem);
+        background: var(--tab-bg);
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        padding: 2rem 1.5rem;
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        animation: fadeIn 0.8s ease;
+        text-decoration: none;
+      }
+
+      .tab-card i {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--tab-text);
+        transition: var(--transition);
+      }
+
+      .tab-card:hover i {
+        transform: scale(1.2);
+        color: var(--tab-text);
+      }
+
+      .tab-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: var(--tab-text);
+      }
+
+      .tab-card p {
+        color: var(--tab-text);
+        margin-bottom: 1.5rem;
+      }
+
+      .tab-card .arrow {
+        color: var(--tab-text);
+        font-weight: bold;
+        transition: var(--transition);
+        display: inline-block;
+      }
+
+      .tab-card:hover .arrow {
+        transform: translateX(5px);
+        color: var(--tab-text);
+        animation: arrowBounce 0.5s ease infinite;
+      }
+
+      /* Arrow Bounce Animation */
+      @keyframes arrowBounce {
+
+        0%,
+        100% {
+          transform: translateX(5px);
+        }
+
+        50% {
+          transform: translateX(10px);
+        }
+      }
+
+      /* Content Sections */
+      .content-section {
+        background: white;
+        border-radius: 10px;
+        padding: 2.5rem;
+        margin: 2rem 0;
+        box-shadow: var(--shadow);
+        animation: fadeIn 1s ease;
+      }
+
+      .content-section h2 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--light);
+        position: relative;
+      }
+
+      .content-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 80px;
+        height: 2px;
+        background: var(--secondary);
+      }
+
+      .content-section ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .content-section li {
+        margin-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .content-section li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: bold;
+      }
+
+      .highlight-box {
+        background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+        border-left: 4px solid var(--secondary);
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0 8px 8px 0;
+        animation: pulse 2s infinite;
+      }
+
+      /* Good News Highlight */
+      .good-news {
+        background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        border: 2px solid var(--accent);
+        border-radius: 10px;
+        padding: 2rem;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
+        animation: goodNewsPulse 3s infinite, fadeIn 1s ease;
+      }
+
+      .good-news::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .good-news-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .good-news-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .good-news-icon {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-right: 1rem;
+        animation: bounce 2s infinite;
+      }
+
+      .good-news h3 {
+        color: var(--accent);
+        font-size: 1.8rem;
+        margin: 0;
+      }
+
+      .good-news p {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: #2e7d32;
+      }
+
+      .good-news ul {
+        margin-left: 1.5rem;
+      }
+
+      .good-news li {
+        margin-bottom: 0.8rem;
+        color: #2e7d32;
+      }
+
+      .steps {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .step {
+        flex: 1 1 calc(33.333% - 1.5rem);
+        background: var(--light);
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .step:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .step-number {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        line-height: 40px;
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+
+      /* Why Choose Us Section */
+      .why-choose {
+        background: linear-gradient(135deg, var(--primary) 0%, #004494 100%);
+        color: white;
+        padding: 3rem 2.5rem;
+        border-radius: 10px;
+        margin: 3rem 0;
+        box-shadow: var(--shadow);
+        animation: fadeIn 1s ease;
+      }
+
+      .why-choose h2 {
+        color: white;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .why-choose h2::after {
+        background: var(--secondary);
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .feature {
+        flex: 1 1 calc(25% - 1.5rem);
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        transition: var(--transition);
+      }
+
+      .feature:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .feature i {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--secondary);
+      }
+
+      /* Curriculum Section */
+      .curriculum-section {
+        background: white;
+        border-radius: 10px;
+        padding: 2.5rem;
+        margin: 3rem 0;
+        box-shadow: var(--shadow);
+        animation: fadeIn 1s ease;
+      }
+
+      .curriculum-section h2 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--light);
+        position: relative;
+        text-align: center;
+      }
+
+      .curriculum-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 2px;
+        background: var(--secondary);
+      }
+
+      .curriculum-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        justify-content: center;
+      }
+
+      .curriculum-tab {
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+        border: 2px solid var(--primary);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 600;
+        color: var(--primary);
+        box-shadow: 0 4px 8px rgba(0, 86, 179, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .curriculum-tab::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transition: var(--transition);
+      }
+
+      .curriculum-tab:hover::before {
+        left: 100%;
+      }
+
+      .curriculum-tab.active {
+        background: linear-gradient(135deg, var(--primary) 0%, #004494 100%);
+        color: white;
+        box-shadow: 0 6px 12px rgba(0, 86, 179, 0.4);
+        transform: translateY(-2px);
+      }
+
+      .curriculum-tab:hover:not(.active) {
+        background: linear-gradient(135deg, #d4e6f7 0%, #e8d9f0 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 86, 179, 0.3);
+      }
+
+      .curriculum-content {
+        display: none;
+      }
+
+      .curriculum-content.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      /* Highlighted Box for Course Overview */
+      .highlighted-box {
+        background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+        border: 2px solid var(--primary);
+        border-radius: 15px;
+        padding: 2.5rem;
+        margin: 2rem 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlighted-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+      }
+
+      .highlighted-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .highlighted-box h3 {
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-size: 1.8rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+
+      .highlighted-box h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--accent);
+      }
+
+      /* 4 Core Modules in 2x2 Grid Layout */
+      .modules-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .module-box {
+        background: white;
+        border-radius: 12px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .module-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--primary);
+      }
+
+      .module-box:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        border-color: var(--primary);
+      }
+
+      .module-box i {
+        font-size: 3.5rem;
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        display: block;
+        transition: var(--transition);
+      }
+
+      .module-box:hover i {
+        transform: scale(1.1);
+        color: var(--accent);
+      }
+
+      .module-box h4 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.6rem;
+        font-weight: 600;
+      }
+
+      .module-box p {
+        color: var(--dark);
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      /* Enhanced Curriculum Table */
+      .curriculum-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .curriculum-table th,
+      .curriculum-table td {
+        padding: 1.2rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+
+      .curriculum-table th {
+        background: linear-gradient(135deg, var(--primary) 0%, #004494 100%);
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .curriculum-table tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+
+      .curriculum-table tr:hover {
+        background: #f0f4f8;
+        transform: scale(1.01);
+        transition: var(--transition);
+      }
+
+      /* Enhanced Week Plan */
+      .week-plan {
+        margin-bottom: 2.5rem;
+        padding: 2rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid var(--primary);
+        transition: var(--transition);
+      }
+
+      .week-plan:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .week-plan:last-child {
+        border-bottom: none;
+      }
+
+      .week-plan h4 {
+        color: var(--primary);
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+
+      .week-plan h4 i {
+        margin-right: 0.8rem;
+        color: var(--accent);
+        font-size: 1.6rem;
+      }
+
+      .topics-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.2rem;
+        margin-top: 1.2rem;
+      }
+
+      .topic-item {
+        background: #f8f9fa;
+        padding: 1.2rem;
+        border-radius: 8px;
+        border-left: 4px solid var(--accent);
+        transition: var(--transition);
+      }
+
+      .topic-item:hover {
+        background: #e9ecef;
+        transform: translateX(5px);
+      }
+
+      /* Enhanced Inclusions Grid */
+      .inclusions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.8rem;
+      }
+
+      .inclusion-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        transition: var(--transition);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e9ecef;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .inclusion-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--accent);
+      }
+
+      .inclusion-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .inclusion-card h4 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      .inclusion-card p {
+        color: var(--dark);
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      /* Footer */
+      footer {
+        background: #ffffff;
+        color: var(--dark);
+        padding: 2rem 0;
+        margin-top: 3rem;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .footer-column {
+        flex: 1 1 300px;
+      }
+
+      .footer-column h3 {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        color: var(--dark);
+      }
+
+      .footer-column ul {
+        list-style: none;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-column ul li a {
+        color: var(--dark);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-column ul li a:hover {
+        color: var(--secondary);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-icons img {
+        width: 24px;
+        height: 24px;
+        transition: var(--transition);
+      }
+
+      .social-icons img:hover {
+        transform: scale(1.2);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .contact-item i {
+        font-size: 1.2rem;
+        color: var(--secondary);
+      }
+
+      .contact-item a {
+        color: var(--dark);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .contact-item a:hover {
+        color: var(--secondary);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .footer-bottom p {
+        color: var(--dark);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.4);
+        }
+
+        70% {
+          box-shadow: 0 0 0 10px rgba(255, 107, 0, 0);
+        }
+
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 107, 0, 0);
+        }
+      }
+
+      @keyframes goodNewsPulse {
+        0% {
+          box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
+          transform: scale(1);
+        }
+
+        50% {
+          box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
+          transform: scale(1.005);
+        }
+
+        100% {
+          box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
+          transform: scale(1);
+        }
+      }
+
+      @keyframes bounce {
+
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+
+        40% {
+          transform: translateY(-10px);
+        }
+
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .tab-card {
+          flex: 0 1 calc(50% - 1.5rem);
+        }
+
+        .step {
+          flex: 1 1 calc(50% - 1.5rem);
+        }
+
+        .feature {
+          flex: 1 1 calc(50% - 1.5rem);
+        }
+
+        .hero-content h1 {
+          font-size: 2.8rem;
+        }
+
+        .hero-content p {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .logo {
+          margin-bottom: 1rem;
+        }
+
+        nav {
+          display: none;
+          width: 100%;
+        }
+
+        nav.active {
+          display: block;
+        }
+
+        nav ul {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .dropdown-menu {
+          position: static;
+          background: rgba(255, 255, 255, 0.9);
+          box-shadow: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+          position: absolute;
+          top: 1.5rem;
+          right: 1.5rem;
+        }
+
+        .tab-card {
+          flex: 0 1 100%;
+        }
+
+        .step {
+          flex: 1 1 100%;
+        }
+
+        .feature {
+          flex: 1 1 100%;
+        }
+
+        .hero-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .hero-btn {
+          width: 100%;
+          max-width: 250px;
+        }
+
+        .good-news-header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .good-news-icon {
+          margin-right: 0;
+          margin-bottom: 0.5rem;
+        }
+
+        .curriculum-tabs {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .curriculum-tab {
+          width: 100%;
+          max-width: 300px;
+          text-align: center;
+        }
+
+        .modules-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .inclusions-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .highlighted-box {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+    <!-- Header -->
+    <style>
+      .header {
+        background-color: white;
+        padding: 10px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-menu li {
+        position: relative;
+        margin-left: 20px;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: #024672;
+        font-weight: 500;
+        font-size: 16px;
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .nav-menu a:hover {
+        color: #2c3e50;
+      }
+
+      .logo img {
+        height: 80px;
+        width: auto;
+      }
+
+      /* Dropdown Styles */
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        min-width: 200px;
+        box-shadow: var(--shadow);
+        border-radius: 5px;
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 100;
+        list-style: none;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .dropdown-menu li {
+        margin: 0;
+        padding: 0;
+      }
+
+      .dropdown-menu a {
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text);
+        white-space: nowrap;
+      }
+
+      .dropdown-menu a:hover {
+        background: var(--light);
+        color: var(--secondary);
+      }
+
+      .dropdown-divider {
+        height: 1px;
+        background: #eee;
+        margin: 5px 0;
+      }
+
+      /* Mobile Navigation */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: var(--secondary);
+        cursor: pointer;
+      }
+
+      @media (max-width: 992px) {
+        .nav-menu li {
+          margin-left: 15px;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .course-box {
+          width: calc(50% - 30px);
+        }
+
+        .services-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .destinations-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          flex-wrap: wrap;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+          /* order: 1; */
+        }
+
+        .logo {
+          /* order: 2; */
+          flex: 1;
+          text-align: center;
+        }
+
+        .nav-menu {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          order: 3;
+          padding: 20px 0;
+          background: white;
+        }
+
+        .nav-menu.active {
+          display: flex;
+        }
+
+        .nav-menu li {
+          margin: 10px 0;
+          text-align: center;
+          margin-left: 0;
+        }
+
+        .dropdown-menu {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          box-shadow: none;
+          display: none;
+          background: #f9f9f9;
+          margin-top: 5px;
+        }
+
+        .dropdown.active .dropdown-menu {
+          display: block;
+        }
+
+        .dropdown-toggle::after {
+          content: "+";
+          margin-left: 5px;
+        }
+
+        .dropdown.active .dropdown-toggle::after {
+          content: "-";
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header class="header">
+      <div class="header-container">
+        <a href="../index.html" class="logo">
+          <img src="../images\GTO.png" alt="Globetrek Overseas" class="w-full w-auto h-[68px]" />
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="about-us.html">About Us</a></li>
+
+          <!-- Courses Dropdown -->
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle">Courses <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="IELTS EXAM.html"><i class="fas fa-book"></i>IELTS</a>
+              </li>
+              <li>
+                <a href="coming soon  page.html"><i class="fas fa-book"></i>PTE</a>
+              </li>
+              <li>
+                <a href="coming soon  page.html"><i class="fas fa-book"></i>GMAT</a>
+              </li>
+              <li>
+                <a href="coming soon  page.html"><i class="fas fa-book"></i>GRE</a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Our Services Dropdown -->
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle">Our Services <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="academic&course.html"><i class="fas fa-user-graduate"></i> Academic & Course
+                  Counseling</a>
+              </li>
+              <li>
+                <a href="university selection.html"><i class="fas fa-university"></i> University Selection &
+                  Applications</a>
+              </li>
+              <li>
+                <a href="visa assistance.html"><i class="fas fa-passport"></i> Visa Assistance</a>
+              </li>
+              <li>
+                <a href="scholarships.html"><i class="fas fa-hand-holding-usd"></i> Scholarships &
+                  Funding Guidance</a>
+              </li>
+              <li>
+                <a href="pre departure.html"><i class="fas fa-plane-departure"></i> Pre-Departure &
+                  Post-Arrival Support</a>
+              </li>
+              <li>
+                <a href="channel partner.html"><i class="fas fa-handshake"></i> Channel Partner Support</a>
+              </li>
+            </ul>
+          </li>
+          <!-- Study Destinations Dropdown -->
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle">Study Destinations <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="united states.html">
+                  <img src="../images/usa-flag.png" alt="USA" class="w-5 h-5"> United States</a>
+              </li>
+              <li>
+                <a href="uk.html">
+                  <img src="../images/uk-flag.png" alt="USA" class="w-5 h-5"> United Kingdom</a>
+              </li>
+              <li>
+                <a href="australia.html"><img src="../images/au-flag.png" alt="USA" class="w-5 h-5"> Australia</a>
+              </li>
+              <li>
+                <a href="switzerland.html"><img src="../images/sw-flag.png" alt="USA" class="w-5 h-5"> Switzerland</a>
+              </li>
+              <li>
+                <a href="germany.html"><img src="../images/ge-flag.png" alt="USA" class="w-5 h-5"> Germany</a>
+              </li>
+              <li class="dropdown-divider"></li>
+            </ul>
+          </li>
+          <li><a href="success stories.html">Success Stories</a></li>
+          <li><a href="News&Articles.html">News&Articles</a></li>
+          <li><a href="contact us.html">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section with Video Background -->
+    <section class="hero-section">
+      <video autoplay muted loop playsinline class="hero-video">
+        <source src="/videos/ielts 1.mp4" type="video/mp4">
+
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>IELTS Exam</h1>
+        <p>Recognised and trusted across the world, IELTS stands as the only English proficiency test approved by all international immigration bodies for language assessment.</p>
+        <div class="hero-buttons">
+          <a href="online batches.html" class="hero-btn">Enroll Now</a>
+          <a href="payment gateway.html" class="hero-btn secondary">Book a Test</a>
+          <a href="../brochure .pdf" class="hero-btn">View Brochure </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="tabs-section">
+        <div class="tabs-container">
+          <a href="/pages/IELTS EXAM structure.html" class="tab-card">
+            <i class="fas fa-laptop"></i>
+            <h3>IELTS Exam Structure</h3>
+            <p>Read Our Latest Structure</p>
+            <span class="arrow">&rarr;</span>
+          </a>
+          <a href="/pages/online batches.html" class="tab-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Online Batches</h3>
+            <p>Access Our Latest Batches</p>
+            <span class="arrow">&rarr;</span>
+          </a>
+          <a href="/pages/idioms quiz.html" class="tab-card">
+            <i class="fas fa-file-alt"></i>
+            <h3>Practice/Mock Test Series</h3>
+            <p>Practice with Our Mock Test</p>
+            <span class="arrow">&rarr;</span>
+          </a>
+          <a href="https://youtube.com/@globetrekoverseaspathway?si=7nS8JHDoHGOj5SUX" class="tab-card">
+            <i class="fas fa-video"></i>
+            <h3>IELTS Strategy Videos</h3>
+            <p>Find IELTS Strategy Videos</p>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>What is IELTS Exam?</h2>
+        <p>
+          The <strong>IELTS (International English Language Testing System)</strong> is a globally recognized English proficiency test designed to assess your ability to communicate in English across four key skills —<strong>Listening, Reading, Writing, and Speaking</strong>.
+        </p>
+        <p>
+          It is jointly managed by <strong>IDP: IELTS Australia</strong>, the<strong>British Council</strong>, and <strong>Cambridge Assessment English</strong>, and is accepted by more than <strong>11,000 organisations worldwide</strong>, including universities, employers, immigration authorities, and professional bodies.
+        </p>
+
+        <div class="highlight-box">
+          <h3>There are two types of IELTS tests:</h3>
+          <ul>
+            <li><strong>IELTS Academic</strong> – for students who wish to study abroad.</li>
+            <li><strong>IELTS General Training</strong> – for professionals or migrants moving to English-speaking countries.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Why do we need to take this Exam?</h2>
+        <p>IELTS is required if you plan to:</p>
+        <ul>
+          <li><strong>Study Abroad</strong> – Most universities in countries like the <strong>UK, Canada, Australia, New Zealand, and the USA</strong> require IELTS scores for admission.</li>
+          <li><strong>Work Abroad</strong> – Employers in English-speaking countries often demand proof of language proficiency.</li>
+          <li><strong>Migrate or Settle Abroad</strong> – It's the<strong>only English test accepted by all major immigration authorities</strong>, including those of <strong>Canada, Australia, New Zealand, and the UK</strong>.</li>
+          <li><strong>Professional Recognition</strong> – Many global institutions and licensing bodies accept IELTS scores for professional registration (e.g., healthcare, engineering, teaching).</li>
+        </ul>
+        <p>In short, IELTS is your <strong>gateway to global education, career, and migration opportunities</strong>.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>Scope of IELTS Exam</h2>
+        <p>The scope of IELTS extends far beyond just university admissions:</p>
+        <ul>
+          <li><strong>Higher Education:</strong> Required for undergraduate, postgraduate, and doctoral programs.</li>
+          <li><strong>Permanent Residency (PR):</strong> Mandatory for migration processes in countries like Canada and Australia.</li>
+          <li><strong>Employment Abroad:</strong> Needed for job visa applications and professional licensing.</li>
+          <li><strong>Global Career Growth:</strong> Recognized by top multinational companies and global recruiters.</li>
+        </ul>
+        <p>Your IELTS score reflects your <strong>real-world English communication ability</strong>, making it a powerful credential for both academic and professional pursuits.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>IELTS Eligibility</h2>
+
+        <div class="good-news">
+          <div class="good-news-content">
+            <div class="good-news-header">
+              <i class="fas fa-bullhorn good-news-icon"></i>
+              <h3>Good News!</h3>
+            </div>
+            <p><strong>There are no official eligibility restrictions</strong> for taking the IELTS exam.</p>
+
+            <p>However, the general guidelines are:</p>
+            <ul>
+              <li><strong>Minimum Age:</strong> 16 years or above.</li>
+              <li><strong>Education Qualification:</strong> No minimum qualification required, but test-takers usually have completed secondary education.</li>
+              <li><strong>Purpose:</strong> Study, work, or migration to English-speaking countries.</li>
+            </ul>
+          </div>
+        </div>
+
+        <p>If you're applying for UK Visas and Immigration (UKVI), you'll need to take IELTS for UKVI, a specially approved version.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>IELTS Registration Process</h2>
+        <p>Registering for IELTS is simple — and our experts at Globetrek Overseas make it even easier!</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Choose Test Type</h3>
+            <p>Select Academic or General Training based on your purpose.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Select Date & City</h3>
+            <p>Choose your preferred test date and location.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Register</h3>
+            <p>Register through <strong>the official IELTS website</strong> or <strong>visit Globetrek Overseas</strong>.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Upload & Pay</h3>
+            <p>Upload your passport and pay the test fee (approx. ₹17,000 – ₹18,000).</p>
+          </div>
+          <div class="step">
+            <div class="step-number">5</div>
+            <h3>Confirmation</h3>
+            <p>Receive confirmation email and start preparation with our <strong>personalized coaching plans</strong>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="why-choose">
+        <h2><strong>Why Choose Globetrek Overseas for IELTS?</strong></h2>
+        <div class="features">
+          <div class="feature">
+            <i class="fas fa-user-graduate"></i>
+            <h3>Certified Trainers</h3>
+            <p>With Proven Track Record</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-chart-line"></i>
+            <h3>Personalized Plans</h3>
+            <p>Band Improvement Strategies</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-book"></i>
+            <h3>Mock Tests & Materials</h3>
+            <p>Feedback Sessions & Study Resources</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-handshake"></i>
+            <h3>Assistance with</h3>
+            <p>Exam Booking, Visa & Admission Process</p>
+          </div>
+        </div>
+      </section>
+      <!--success stories IELTS-->
+
+      <!-- Curriculum Section -->
+      <section class="curriculum-section">
+        <h2>IELTS Common Curriculum Framework</h2>
+        <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">Our comprehensive curriculum is designed for both Academic and General Training test takers, focusing on developing all four core language skills.</p>
+
+        <div class="curriculum-tabs">
+          <button class="curriculum-tab active" data-tab="overview">
+            <i class="fas fa-graduation-cap" style="margin-right: 8px;"></i>Course Overview
+          </button>
+          <button class="curriculum-tab" data-tab="detailed">
+            <i class="fas fa-book-open" style="margin-right: 8px;"></i>Detailed Curriculum
+          </button>
+          <button class="curriculum-tab" data-tab="inclusions">
+            <i class="fas fa-star" style="margin-right: 8px;"></i>Additional Inclusions
+          </button>
+        </div>
+
+        <div class="curriculum-content active" id="overview">
+          <div class="highlighted-box">
+            <div class="highlighted-content">
+              <h3>4 Core Modules</h3>
+              <!-- 4 Core Modules in 2x2 Grid Layout -->
+              <div class="modules-grid">
+                <!-- Row 1 -->
+                <div class="module-box">
+                  <i class="fas fa-headphones"></i>
+                  <h4>Listening</h4>
+                  <p>Understanding conversations, monologues, and lectures in various accents. Practice with different question types and improve your ability to follow spoken English.</p>
+                </div>
+                <div class="module-box">
+                  <i class="fas fa-book-open"></i>
+                  <h4>Reading</h4>
+                  <p>Mastering skimming, scanning, and comprehension of various text types. Learn strategies for different question formats and improve reading speed and accuracy.</p>
+                </div>
+                <!-- Row 2 -->
+                <div class="module-box">
+                  <i class="fas fa-pen-fancy"></i>
+                  <h4>Writing</h4>
+                  <p>Developing structured essays, reports, and letters with appropriate vocabulary. Learn task response strategies, coherence, and academic writing conventions.</p>
+                </div>
+                <div class="module-box">
+                  <i class="fas fa-microphone"></i>
+                  <h4>Speaking</h4>
+                  <p>Building fluency, pronunciation, and confidence in face-to-face communication. Practice all three parts of the speaking test with personalized feedback.</p>
+                </div>
+              </div>
+
+              <p style="text-align: center; margin-top: 2rem; font-size: 1.1rem; font-weight: 600;">
+                <strong>Each module includes:</strong> Concept learning, Skill-building activities, Practice tasks & mock tests, Band-improvement feedback
+              </p>
+            </div>
+          </div>
+
+          <div class="highlighted-box">
+            <div class="highlighted-content">
+              <h3>Overall Course Structure</h3>
+              <div class="table-container">
+                <table class="curriculum-table">
+                  <thead>
+                    <tr>
+                      <th>Week</th>
+                      <th>Module Focus</th>
+                      <th>Learning Goals</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Week 1</strong></td>
+                      <td>Orientation + Grammar & Vocabulary Foundation</td>
+                      <td>Understand IELTS structure, scoring, common mistakes, and build essential grammar base.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Week 2</strong></td>
+                      <td>Listening + Reading Skills</td>
+                      <td>Master question types, scanning/skimming, note completion, and inference.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Week 3</strong></td>
+                      <td>Writing Task 1 & 2 (Academic/General)</td>
+                      <td>Learn essay and letter/report formats, coherence, vocabulary, and time management.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Week 4</strong></td>
+                      <td>Speaking Skills + Full Mock Practice</td>
+                      <td>Learn pronunciation, fluency, coherence, and confidence in Part 1–3.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Week 5–8</strong><br><small>(2–4 month batches)</small></td>
+                      <td>Advanced strategy, section-wise full mocks, error analysis</td>
+                      <td>Feedback-driven improvement for achieving Band 7+.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-content" id="detailed">
+          <div class="highlighted-box">
+            <div class="highlighted-content">
+              <h3>Detailed Topic-wise Curriculum</h3>
+
+              <div class="week-plan">
+                <h4><i class="fas fa-calendar-week"></i> WEEK 1 — Orientation + Grammar & Vocabulary Foundation</h4>
+                <p><strong>Topics:</strong> IELTS exam overview (Academic vs General), Scoring system and band descriptors, Time management & test strategies, Grammar essentials: tenses, articles, prepositions, connectors, Vocabulary sets: academic phrases, idioms, topic-wise (education, technology, health, etc.), Daily speaking warm-ups + pronunciation drills</p>
+                <p><strong>Activities:</strong> Diagnostic test (to gauge level), Daily "Word Power" activity, Short listening clip with MCQs (warm-up)</p>
+              </div>
+
+              <div class="week-plan">
+                <h4><i class="fas fa-calendar-week"></i> WEEK 2 — Listening & Reading Skills</h4>
+                <p><strong>Listening Module:</strong> Understanding 4 sections (conversations, monologues, lectures), Recognizing paraphrasing, synonyms, distractors, Practice: form/note completion, map labeling, multiple choice, Audio focus on British, Australian, American accents</p>
+                <p><strong>Reading Module:</strong> Skimming and scanning techniques, Identifying main ideas & specific information, True/False/Not Given & Matching Headings, Reading Academic texts (for Academic) or social/workplace content (for General)</p>
+                <p><strong>Activities:</strong> Sectional timed tests, Peer analysis and discussion of wrong answers</p>
+              </div>
+
+              <div class="week-plan">
+                <h4><i class="fas fa-calendar-week"></i> WEEK 3 — Writing Module</h4>
+                <p><strong>Task 1 (Academic):</strong> Describing graphs, charts, maps, and processes, Structure: introduction, overview, detailed body, Language for trends (rise, fall, fluctuate)</p>
+                <p><strong>Task 1 (General):</strong> Formal, semi-formal, informal letter formats, Tone, structure, and functional vocabulary</p>
+                <p><strong>Task 2 (Common to both):</strong> Essay structure: introduction, body, conclusion, Types of essays: opinion, discussion, advantages/disadvantages, problem-solution, Cohesive devices and transition words, Vocabulary for argumentation and logic</p>
+                <p><strong>Activities:</strong> Write 2 full essays weekly with trainer feedback, Band-based correction practice, Peer evaluation</p>
+              </div>
+
+              <div class="week-plan">
+                <h4><i class="fas fa-calendar-week"></i> WEEK 4 — Speaking Module</h4>
+                <p><strong>Part 1 (Introduction & Interview):</strong> Everyday topics: hometown, studies, work, hobbies</p>
+                <p><strong>Part 2 (Cue Card):</strong> Structuring 1–2 minute responses, Developing storytelling & fluency</p>
+                <p><strong>Part 3 (Follow-up Discussion):</strong> Analytical & opinion-based questions</p>
+                <p><strong>Activities:</strong> Daily 1:1 speaking sessions, Mock interviews, Pronunciation and accent neutralization drills, Vocabulary for connectors ("I believe…", "In my opinion…", "That reminds me of…")</p>
+              </div>
+
+              <div class="week-plan">
+                <h4><i class="fas fa-calendar-week"></i> WEEK 5–8 — Advanced Strategy & Practice</h4>
+                <p><strong>Focus:</strong> Weekly full-length mock tests, Deep feedback analysis on each module, Time-bound writing & speaking simulations, Topic-wise vocabulary expansion, Focus on achieving Band 7+ through precision writing & natural speaking</p>
+                <p><strong>Activities:</strong> 8 full mocks (Listening, Reading, Writing, Speaking), 1:1 personalized improvement plan, Pronunciation clinics & advanced writing workshops</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="curriculum-content" id="inclusions">
+          <div class="highlighted-box">
+            <div class="highlighted-content">
+              <h3>Additional Inclusions (for all batch durations)</h3>
+
+              <div class="inclusions-grid">
+                <div class="inclusion-card">
+                  <h4>Weekly Mock Tests</h4>
+                  <p>1 complete test every week with scores and trainer feedback.</p>
+                </div>
+                <div class="inclusion-card">
+                  <h4>Vocabulary Builder Kit</h4>
+                  <p>25 topic-wise word lists with examples & collocations.</p>
+                </div>
+                <div class="inclusion-card">
+                  <h4>Writing & Speaking Band Tracker</h4>
+                  <p>Individual progress reports after each mock.</p>
+                </div>
+                <div class="inclusion-card">
+                  <h4>Grammar Refresher</h4>
+                  <p>Short video or worksheet series on common grammar issues.</p>
+                </div>
+                <div class="inclusion-card">
+                  <h4>Feedback Sessions</h4>
+                  <p>One-on-one review every 2 weeks.</p>
+                </div>
+                <div class="inclusion-card">
+                  <h4>Final Band Prediction Test</h4>
+                  <p>Simulated IELTS test in last week.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="
+            background-color: white;
+            color: #023e65;
+            padding: 40px 0 20px;
+            border-top: 1px solid #eee;
+          ">
+      <div class="footer-grid" style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 30px;
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 20px;
+            ">
+        <!-- Company Info Column -->
+        <div class="footer-col">
+          <a href="../index.html" class="logo" style="text-align: center">
+            <img src="../images\GTO.png" alt="Globetrek Overseas" style="height: 80px; margin-bottom: 20px" />
+          </a>
+          <p class="footer-about" style="
+                  text-align:  right center;
+                  line-height: 1.6;
+                  margin-bottom: 25px;
+                  color: #023e65;
+                ">
+            <span style="font-weight: bold;"> We are a leading study abroad consultancy dedicated to helping
+              students achieve their international education dreams.</span>
+          </p>
+          <div class="footer-section">
+            <h3 style="
+                    text-align: right center;
+                    margin-bottom: 15px;
+                    font-size: 1.4rem;
+                    color: #015f18;
+                  ">
+              <span style="font-weight: bold;">Follow Us</span>
+            </h3>
+            <div class="social-links" style="
+                    display: flex;
+                    justify-content:  right center;
+                    gap: 15px;
+                    margin-bottom: 20px;
+                  ">
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/globetrekoverseas?igsh=MWp4Nzk2M3J2NnhjNw==" class="social-icon" style="
+                      display: inline-block;
+                      width: 40px;
+                      height: 40px;
+                      transition: all 0.5s ease;
+                    " onclick="animateIcon(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" style="width: 100%; height: 100%; object-fit: contain" />
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/company/globetrek-overseas/" class="social-icon" style="
+                      display: inline-block;
+                      width: 40px;
+                      height: 40px;
+                      transition: all 0.5s ease;
+                    " onclick="animateIcon(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 100%; height: 100%; object-fit: contain" />
+              </a>
+
+              <!-- WhatsApp -->
+              <a href="https://wa.me/919311331899" target="_blank" class="social-icon" style="
+                      display: inline-block;
+                      width: 40px;
+                      height: 40px;
+                      transition: all 0.3s ease;
+                    " onclick="animateIcon(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 100%; height: 100%; object-fit: contain" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-col">
+          <h3 class="footer-links-title font-bold !text-[#023e65]" style="
+                              font-size: 1.2rem;
+                              margin-bottom: 20px;
+                              position: relative;
+                              padding-bottom: 10px;
+                              color: #333;
+                            ">
+            Quick Links
+            <span style="
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                width: 60px;
+                                height: 3px;
+                                background-color: #02406a;
+                              "></span>
+          </h3>
+          <ul class="footer-links" style="list-style: none; padding: 0">
+            <li style="margin-bottom: 10px">
+              <a href="about-us.html" style="
+                                  color: #01500c;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">About Us</span></a>
+
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="academic&course.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">Our Services</span></a>
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="united states.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">Study Destinations</span></a>
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="success stories.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">Success Stories</span></a>
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="News&Articles.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">News&Article</span></a>
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="contact us.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">Contact</span></a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info Column -->
+        <div class="footer-col">
+          <h3 class="footer-contact-title font-bold !text-[#023e65]" style="
+                  font-size: 1.2rem;
+                  margin-bottom: 20px;
+                  position: relative;
+                  padding-bottom: 10px;
+                  color: #333;
+                ">
+            Contact Us
+            <span style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 50px;
+                    height: 2px;
+                    background-color: #023e65;
+                  "></span>
+          </h3>
+          <div class="contact-item" style="display: flex; margin-bottom: 15px">
+            <i class="fas fa-map-marker-alt" style="margin-right: 10px; margin-top: 5px; color: #023e65"></i>
+            <p style="margin: 0; line-height: 1.5; color: #023e65">
+              <span style="font-weight: bold;">Tower 4 - 1210 Asshotech business cresterra<br>Sector 135 Noida,<br> Uttar
+                Pradesh 201304</span>
+            </p>
+          </div>
+          <div class="contact-item" style="display: flex; margin-bottom: 15px">
+            <i class="fas fa-phone-alt" style="margin-right: 10px; margin-top: 5px; color: #023e65"></i>
+            <div>
+              <p style="margin: 0 0 5px 0">
+                <a href="tel:+919311331899" style="color: #023e65; text-decoration: none"> <span style="font-weight: bold;">+91 93113 31899</span></a>
+              </p>
+              <p style="margin: 0">
+                <a href="tel:+919211313899" style="color: #023e65; text-decoration: none"> <span style="font-weight: bold;">+91 92113 13899</span></a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item" style="display: flex; margin-bottom: 15px">
+            <i class="fas fa-envelope" style="margin-right: 10px; margin-top: 5px; color: #023e65"></i>
+            <p style="margin: 0">
+              <a href="mailto:Headoffice@globetrekoverseas.com" style="color: #023e65; text-decoration: none"> <span style="font-weight: bold;">Headoffice@globetrekoverseas.com</span></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom" style="
+              text-align: center;
+              padding-top: 30px;
+              margin-top: 30px;
+              border-top: 1px solid #eee;
+            ">
+        <p style="margin: 0; font-size: 0.9rem; color: #023e65">
+          <span style="font-weight: bold;">&copy;2023 Globetrek Overseas. All Rights Reserved.</span>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', function () {
+          navMenu.classList.toggle('active');
+          const isActive = navMenu.classList.contains('active');
+          mobileMenuBtn.innerHTML = `<i class="fas fa-${isActive ? 'times' : 'bars'}"></i>`;
+        });
+
+        // Curriculum tabs functionality
+        const curriculumTabs = document.querySelectorAll('.curriculum-tab');
+        const curriculumContents = document.querySelectorAll('.curriculum-content');
+
+        curriculumTabs.forEach(tab => {
+          tab.addEventListener('click', function () {
+            // Remove active class from all tabs and contents
+            curriculumTabs.forEach(t => t.classList.remove('active'));
+            curriculumContents.forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked tab and corresponding content
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+          });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section, .why-choose, .curriculum-section').forEach(section => {
+          section.style.animation = 'fadeIn 1s ease forwards';
+          section.style.animationPlayState = 'paused';
+          observer.observe(section);
+        });
+
+        // Add hover effects to tab cards
+        const tabCards = document.querySelectorAll('.tab-card');
+        tabCards.forEach(card => {
+          card.addEventListener('mouseenter', function () {
+            this.style.transform = 'translateY(-10px)';
+          });
+
+          card.addEventListener('mouseleave', function () {
+            this.style.transform = 'translateY(0)';
+          });
+        });
+
+        // Add animation to module boxes
+        const moduleBoxes = document.querySelectorAll('.module-box');
+        moduleBoxes.forEach(box => {
+          box.addEventListener('mouseenter', function () {
+            this.style.transform = 'translateY(-8px)';
+          });
+
+          box.addEventListener('mouseleave', function () {
+            this.style.transform = 'translateY(0)';
+          });
+        });
+
+        // Add special effect to good news section
+        const goodNewsSection = document.querySelector('.good-news');
+        if (goodNewsSection) {
+          goodNewsSection.addEventListener('mouseenter', function () {
+            this.style.transform = 'scale(1.02)';
+          });
+
+          goodNewsSection.addEventListener('mouseleave', function () {
+            this.style.transform = 'scale(1)';
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

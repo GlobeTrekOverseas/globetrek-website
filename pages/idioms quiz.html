@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Neural Mastery Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --neural-blue: #2196F3;
+            --neural-purple: #9C27B0;
+            --neural-pink: #E91E63;
+            --neural-green: #4CAF50;
+            --dark-bg: #0a0a1a;
+            --card-bg: rgba(30, 30, 60, 0.85);
+            --text: #ffffff;
+            --text-light: #b0b0d0;
+            --correct: #4CAF50;
+            --incorrect: #F44336;
+        }
+        
+        body {
+            background: var(--dark-bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Neural Network Background */
+        .neural-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .brain-model {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            opacity: 0.7;
+        }
+        
+        .brain-hemisphere {
+            position: absolute;
+            width: 180px;
+            height: 220px;
+            background: radial-gradient(circle at 30% 40%, var(--neural-purple), transparent 70%);
+            border-radius: 50% 50% 60% 60%;
+            box-shadow: 
+                inset 0 0 50px rgba(156, 39, 176, 0.5),
+                0 0 80px rgba(156, 39, 176, 0.3);
+        }
+        
+        .left-hemisphere {
+            top: 90px;
+            left: 110px;
+            transform: rotate(-5deg);
+        }
+        
+        .right-hemisphere {
+            top: 90px;
+            left: 210px;
+            transform: rotate(5deg);
+        }
+        
+        .brain-division {
+            position: absolute;
+            top: 90px;
+            left: 200px;
+            width: 2px;
+            height: 220px;
+            background: linear-gradient(to bottom, transparent, var(--neural-blue), transparent);
+        }
+        
+        .neural-pathway {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neural-pink), transparent);
+            transform-origin: left center;
+            box-shadow: 0 0 10px var(--neural-pink);
+            animation: neuralPulse 3s infinite;
+        }
+        
+        .synapse {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--neural-green);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--neural-green);
+            animation: synapsePulse 2s infinite alternate;
+        }
+        
+        .neural-impulse {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neural-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neural-blue);
+            animation: impulseTravel 4s infinite linear;
+        }
+        
+        .circuit-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neural-blue), transparent);
+            box-shadow: 0 0 8px var(--neural-blue);
+            animation: circuitScan 5s infinite linear;
+        }
+        
+        /* Animations */
+        @keyframes neuralPulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        @keyframes synapsePulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        @keyframes impulseTravel {
+            0% { transform: translate(0, 0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate(100px, 50px); opacity: 0; }
+        }
+        
+        @keyframes circuitScan {
+            0% { transform: translateX(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(100vw); opacity: 0; }
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--neural-blue);
+            margin-right: 15px;
+            text-shadow: 0 0 15px rgba(33, 150, 243, 0.7);
+        }
+        
+        h1 {
+            color: var(--neural-blue);
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+        }
+        
+        .subtitle {
+            color: var(--neural-pink);
+            font-size: 1.3rem;
+            font-weight: 500;
+            background: rgba(233, 30, 99, 0.1);
+            padding: 8px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            height: 12px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+        }
+        
+        .question-counter {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .question-card {
+            background: rgba(40, 40, 70, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-left: 5px solid var(--neural-blue);
+            transition: transform 0.3s ease;
+        }
+        
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .question-category {
+            display: inline-block;
+            background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .question-text {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text);
+            line-height: 1.5;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option {
+            padding: 15px;
+            background: rgba(50, 50, 80, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background: rgba(70, 70, 100, 0.7);
+            transform: translateX(5px);
+            border-color: var(--neural-blue);
+        }
+        
+        .option.selected {
+            background: rgba(76, 175, 80, 0.2);
+            border-color: var(--neural-green);
+        }
+        
+        .option.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: var(--correct);
+        }
+        
+        .option.incorrect {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: var(--incorrect);
+        }
+        
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: var(--neural-blue);
+            color: white;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-weight: bold;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: rgba(76, 175, 80, 0.2);
+            border-left: 4px solid var(--correct);
+            color: #a5d6a7;
+        }
+        
+        .feedback.incorrect {
+            background: rgba(244, 67, 54, 0.2);
+            border-left: 4px solid var(--incorrect);
+            color: #ef9a9a;
+        }
+        
+        .tip {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #FF9800;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+            color: #ffcc80;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.5);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.6);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .results-container {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        
+        .score {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 20px 0;
+            text-shadow: 0 0 15px rgba(156, 39, 176, 0.3);
+        }
+        
+        .message {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+        
+        .restart-btn {
+            background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.5);
+            font-weight: bold;
+        }
+        
+        .restart-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--neural-blue);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .question-text {
+                font-size: 1.1rem;
+            }
+            
+            .option {
+                padding: 12px;
+            }
+            
+            .brain-model {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .brain-hemisphere {
+                width: 130px;
+                height: 160px;
+            }
+            
+            .left-hemisphere {
+                top: 70px;
+                left: 85px;
+            }
+            
+            .right-hemisphere {
+                top: 70px;
+                left: 155px;
+            }
+            
+            .brain-division {
+                top: 70px;
+                left: 150px;
+                height: 160px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .question-card {
+                padding: 15px;
+            }
+            
+            .brain-model {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .brain-hemisphere {
+                width: 110px;
+                height: 130px;
+            }
+            
+            .left-hemisphere {
+                top: 60px;
+                left: 70px;
+            }
+            
+            .right-hemisphere {
+                top: 60px;
+                left: 130px;
+            }
+            
+            .brain-division {
+                top: 60px;
+                left: 125px;
+                height: 130px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-container" id="neural-container">
+        <!-- Neural elements will be generated by JavaScript -->
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-brain"></i></div>
+                <h1>IELTS Neural Mastery</h1>
+            </div>
+            <p class="subtitle">Activate Your English Potential</p>
+        </header>
+        
+        <div class="question-counter">Question <span id="current-question">1</span> of <span id="total-questions">15</span></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        
+        <div id="quiz-content">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+        
+        <button class="submit-btn" id="submit-btn">Submit Answer</button>
+        
+        <div class="results-container" id="results-container">
+            <h2>Neural Processing Complete!</h2>
+            <div class="score" id="final-score">0/15</div>
+            <p class="message" id="result-message">Great effort! Keep practicing to improve your IELTS skills.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="correct-answers">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="incorrect-answers">0</div>
+                    <div class="stat-label">Incorrect</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="percentage">0%</div>
+                    <div class="stat-label">Score</div>
+                </div>
+            </div>
+            
+            <button class="restart-btn" id="restart-btn">Activate Neural Pathways</button>
+        </div>
+    </div>
+
+    <script>
+        // Create neural background
+        function createNeuralBackground() {
+            const container = document.getElementById('neural-container');
+            
+            // Create brain model
+            const brainModel = document.createElement('div');
+            brainModel.className = 'brain-model';
+            
+            const leftHemisphere = document.createElement('div');
+            leftHemisphere.className = 'brain-hemisphere left-hemisphere';
+            
+            const rightHemisphere = document.createElement('div');
+            rightHemisphere.className = 'brain-hemisphere right-hemisphere';
+            
+            const brainDivision = document.createElement('div');
+            brainDivision.className = 'brain-division';
+            
+            brainModel.appendChild(leftHemisphere);
+            brainModel.appendChild(rightHemisphere);
+            brainModel.appendChild(brainDivision);
+            container.appendChild(brainModel);
+            
+            // Create neural pathways
+            for (let i = 0; i < 20; i++) {
+                const pathway = document.createElement('div');
+                pathway.className = 'neural-pathway';
+                
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 100;
+                const endX = Math.random() * 100;
+                const endY = Math.random() * 100;
+                
+                const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+                const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+                
+                pathway.style.width = `${length}%`;
+                pathway.style.left = `${startX}%`;
+                pathway.style.top = `${startY}%`;
+                pathway.style.transform = `rotate(${angle}deg)`;
+                pathway.style.animationDelay = `${Math.random() * 3}s`;
+                
+                container.appendChild(pathway);
+            }
+            
+            // Create synapses
+            for (let i = 0; i < 30; i++) {
+                const synapse = document.createElement('div');
+                synapse.className = 'synapse';
+                synapse.style.left = `${Math.random() * 100}%`;
+                synapse.style.top = `${Math.random() * 100}%`;
+                synapse.style.animationDelay = `${Math.random() * 2}s`;
+                container.appendChild(synapse);
+            }
+            
+            // Create neural impulses
+            for (let i = 0; i < 15; i++) {
+                const impulse = document.createElement('div');
+                impulse.className = 'neural-impulse';
+                impulse.style.left = `${Math.random() * 100}%`;
+                impulse.style.top = `${Math.random() * 100}%`;
+                impulse.style.animationDelay = `${Math.random() * 4}s`;
+                container.appendChild(impulse);
+            }
+            
+            // Create circuit lines
+            for (let i = 0; i < 8; i++) {
+                const circuit = document.createElement('div');
+                circuit.className = 'circuit-line';
+                circuit.style.top = `${Math.random() * 100}%`;
+                circuit.style.width = `${Math.random() * 200 + 100}px`;
+                circuit.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(circuit);
+            }
+        }
+
+        // Quiz data
+        const quizData = [
+            {
+                category: "🧠 Vocabulary & Idioms",
+                question: "Which idiom means 'to start working seriously'?",
+                options: ["Pull your socks up", "Hit the sack", "Break a leg"],
+                correctAnswer: 0,
+                tip: "Use idioms naturally in Speaking to sound more fluent."
+            },
+            {
+                category: "🧠 Vocabulary & Idioms",
+                question: "What does the word meticulous mean?",
+                options: ["Careless", "Very careful and precise", "Fast"],
+                correctAnswer: 1,
+                tip: "Strong adjectives can raise your Lexical Resource score."
+            },
+            {
+                category: "🧠 Vocabulary & Idioms",
+                question: "Choose the correct synonym for 'important':",
+                options: ["Significant", "Silly", "Trivial"],
+                correctAnswer: 0,
+                tip: "Avoid repetition — use synonyms wisely."
+            },
+            {
+                category: "🗣️ Speaking Skills",
+                question: "True or False: You must speak in a British accent to get Band 8.",
+                options: ["True", "False"],
+                correctAnswer: 1,
+                tip: "Focus on pronunciation, not accent imitation."
+            },
+            {
+                category: "🗣️ Speaking Skills",
+                question: "What should you do if you forget a word during Speaking?",
+                options: ["Stop and panic", "Use fillers and rephrase", "Ask the examiner to wait"],
+                correctAnswer: 1,
+                tip: "Natural communication matters more than perfection."
+            },
+            {
+                category: "🗣️ Speaking Skills",
+                question: "Which of these shows good fluency?",
+                options: ["Long pauses", "Self-correction", "Smooth flow of ideas"],
+                correctAnswer: 2,
+                tip: ""
+            },
+            {
+                category: "📈 Writing Tasks",
+                question: "Academic Writing Task 1 asks you to:",
+                options: ["Write a story", "Describe visuals like charts or graphs", "Express opinions"],
+                correctAnswer: 1,
+                tip: ""
+            },
+            {
+                category: "📈 Writing Tasks",
+                question: "General Training Task 1 is usually:",
+                options: ["A letter", "A report", "An essay"],
+                correctAnswer: 0,
+                tip: ""
+            },
+            {
+                category: "📈 Writing Tasks",
+                question: "Minimum word count for Writing Task 1?",
+                options: ["120 words", "150 words", "200 words"],
+                correctAnswer: 1,
+                tip: "Fewer words = penalty for Task Achievement."
+            },
+            {
+                category: "📚 Reading & Listening",
+                question: "What's skimming in IELTS Reading?",
+                options: ["Reading every word carefully", "Reading for general meaning", "Reading backward"],
+                correctAnswer: 1,
+                tip: ""
+            },
+            {
+                category: "📚 Reading & Listening",
+                question: "What's scanning in IELTS Reading?",
+                options: ["Reading for specific details", "Reading aloud", "Reading headlines"],
+                correctAnswer: 0,
+                tip: ""
+            },
+            {
+                category: "📚 Reading & Listening",
+                question: "How many sections are there in IELTS Listening?",
+                options: ["3", "4", "5"],
+                correctAnswer: 1,
+                tip: ""
+            },
+            {
+                category: "🧩 Grammar Challenges",
+                question: "Choose the correct sentence:",
+                options: ["She don't like tea.", "She doesn't likes tea.", "She doesn't like tea."],
+                correctAnswer: 2,
+                tip: ""
+            },
+            {
+                category: "🧩 Grammar Challenges",
+                question: "Which tense is correct for this sentence: 'I ______ my homework before dinner.'",
+                options: ["done", "did", "have did"],
+                correctAnswer: 1,
+                tip: ""
+            },
+            {
+                category: "🌍 IELTS Myths & Facts",
+                question: "True or False: You can lose marks if you ask the examiner to repeat a question.",
+                options: ["True", "False"],
+                correctAnswer: 1,
+                tip: "IELTS tests communication, not memorization."
+            }
+        ];
+
+        // Quiz state
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+
+        // DOM elements
+        const quizContent = document.getElementById('quiz-content');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultsContainer = document.getElementById('results-container');
+        const finalScore = document.getElementById('final-score');
+        const resultMessage = document.getElementById('result-message');
+        const restartBtn = document.getElementById('restart-btn');
+        const currentQuestionElement = document.getElementById('current-question');
+        const totalQuestionsElement = document.getElementById('total-questions');
+        const progressBar = document.getElementById('progress-bar');
+        const correctAnswersElement = document.getElementById('correct-answers');
+        const incorrectAnswersElement = document.getElementById('incorrect-answers');
+        const percentageElement = document.getElementById('percentage');
+
+        // Initialize quiz
+        function initQuiz() {
+            createNeuralBackground();
+            totalQuestionsElement.textContent = quizData.length;
+            showQuestion();
+        }
+
+        // Display current question
+        function showQuestion() {
+            const question = quizData[currentQuestion];
+            currentQuestionElement.textContent = currentQuestion + 1;
+            
+            // Update progress bar
+            progressBar.style.width = `${((currentQuestion) / quizData.length) * 100}%`;
+            
+            // Create question HTML
+            let optionsHTML = '';
+            question.options.forEach((option, index) => {
+                const isSelected = userAnswers[currentQuestion] === index;
+                optionsHTML += `
+                    <div class="option ${isSelected ? 'selected' : ''}" data-index="${index}">
+                        <span class="option-letter">${String.fromCharCode(65 + index)}</span>
+                        ${option}
+                    </div>
+                `;
+            });
+            
+            quizContent.innerHTML = `
+                <div class="question-card">
+                    <div class="question-category">${question.category}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options-container">
+                        ${optionsHTML}
+                    </div>
+                    <div class="feedback" id="feedback"></div>
+                    ${question.tip ? `<div class="tip" id="tip">🎯 ${question.tip}</div>` : ''}
+                </div>
+            `;
+            
+            // Add event listeners to options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function() {
+                    if (document.querySelector('.feedback').style.display === 'block') return;
+                    
+                    document.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    this.classList.add('selected');
+                    userAnswers[currentQuestion] = parseInt(this.getAttribute('data-index'));
+                });
+            });
+            
+            // Hide feedback and tip initially
+            document.getElementById('feedback').style.display = 'none';
+            if (question.tip) {
+                document.getElementById('tip').style.display = 'none';
+            }
+        }
+
+        // Check answer and show feedback
+        function checkAnswer() {
+            const selectedOption = userAnswers[currentQuestion];
+            if (selectedOption === null) {
+                alert('Please select an answer before submitting.');
+                return;
+            }
+            
+            const question = quizData[currentQuestion];
+            const feedback = document.getElementById('feedback');
+            const tip = document.getElementById('tip');
+            const options = document.querySelectorAll('.option');
+            
+            // Show feedback
+            if (selectedOption === question.correctAnswer) {
+                feedback.textContent = '✅ Correct! Well done.';
+                feedback.className = 'feedback correct';
+                score++;
+            } else {
+                feedback.textContent = `❌ Incorrect. The correct answer is: ${question.options[question.correctAnswer]}`;
+                feedback.className = 'feedback incorrect';
+            }
+            
+            feedback.style.display = 'block';
+            
+            // Show tip if available
+            if (tip) {
+                tip.style.display = 'block';
+            }
+            
+            // Highlight correct and incorrect answers
+            options.forEach((option, index) => {
+                if (index === question.correctAnswer) {
+                    option.classList.add('correct');
+                } else if (index === selectedOption && index !== question.correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Update submit button text
+            if (currentQuestion === quizData.length - 1) {
+                submitBtn.textContent = 'See Results';
+            } else {
+                submitBtn.textContent = 'Next Question';
+            }
+        }
+
+        // Show final results
+        function showResults() {
+            quizContent.style.display = 'none';
+            submitBtn.style.display = 'none';
+            resultsContainer.style.display = 'block';
+            
+            finalScore.textContent = `${score}/${quizData.length}`;
+            
+            // Update stats
+            correctAnswersElement.textContent = score;
+            incorrectAnswersElement.textContent = quizData.length - score;
+            percentageElement.textContent = `${Math.round((score / quizData.length) * 100)}%`;
+            
+            // Custom message based on score
+            if (score === quizData.length) {
+                resultMessage.textContent = 'Perfect score! Your neural pathways are fully optimized!';
+            } else if (score >= quizData.length * 0.7) {
+                resultMessage.textContent = 'Great job! Your English neural network is strong.';
+            } else if (score >= quizData.length * 0.5) {
+                resultMessage.textContent = 'Good effort! Keep strengthening those neural connections.';
+            } else {
+                resultMessage.textContent = 'Keep practicing! Your brain is building new pathways.';
+            }
+            
+            // Update progress bar to 100%
+            progressBar.style.width = '100%';
+        }
+
+        // Event listeners
+        submitBtn.addEventListener('click', function() {
+            // If we're showing feedback for the current question
+            if (document.querySelector('.feedback').style.display === 'block') {
+                // Move to next question or show results
+                if (currentQuestion < quizData.length - 1) {
+                    currentQuestion++;
+                    showQuestion();
+                    submitBtn.textContent = 'Submit Answer';
+                } else {
+                    showResults();
+                }
+            } else {
+                // Check the current answer
+                checkAnswer();
+            }
+        });
+
+        restartBtn.addEventListener('click', function() {
+            // Reset quiz state
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            
+            // Show quiz content again
+            quizContent.style.display = 'block';
+            submitBtn.style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            // Reset submit button text
+            submitBtn.textContent = 'Submit Answer';
+            
+            // Show first question
+            showQuestion();
+        });
+
+        // Initialize the quiz
+        initQuiz();
+    </script>
+</body>
+</html>

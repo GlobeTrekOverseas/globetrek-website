@@ -435,6 +435,10 @@
         .service-popup {
           width: 85%;
         }
+
+        .courses-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       .destinations-section {
@@ -845,6 +849,172 @@
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
     </style>
+    <!-- courses -->
+    <style>
+      #courses {
+        --primary: #2D6F41;
+        --secondary: #35506B;
+        --white: #FFFFFF;
+        --light: #F5F7FA;
+        --dark: #212529;
+        --success: #4cc9f0;
+        --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        color: var(--dark);
+        position: relative;
+        display: inline-block;
+        font-weight: 700;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 4px;
+        background: var(--gradient);
+        border-radius: 2px;
+      }
+
+      #courses {
+        width: 100%;
+        max-width: 900px;
+        margin-inline: auto;
+        padding-inline: 28px;
+      }
+
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .course-item {
+        background: var(--white);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        animation: fadeInUp 0.5s ease;
+      }
+
+      .course-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .course-img {
+        height: 180px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .course-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .course-img:hover img {
+        transform: scale(1.1);
+      }
+
+      .course-info {
+        padding: 1.5rem;
+      }
+
+      .course-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .course-info p {
+        color: #666;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .btn-learn {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+        flex: 1;
+        text-decoration: none;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .btn-learn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient);
+        transition: left 0.5s ease;
+        z-index: -1;
+      }
+
+      .btn-learn:hover {
+        color: var(--white);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(45, 111, 65, 0.3);
+      }
+
+      .btn-learn:hover::before {
+        left: 0;
+      }
+
+      .btn-learn i {
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+      }
+
+      .btn-learn:hover i {
+        transform: translateX(3px);
+      }
+
+      .btn-enroll,
+      .btn-enroll-sm {
+        background: var(--gradient);
+        color: var(--white);
+        box-shadow: 0 4px 15px rgba(45, 111, 65, 0.3);
+        animation: pulse 2s infinite;
+      }
+
+      .btn-enroll-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        flex: 1;
+        text-decoration: none;
+        text-align: center;
+      }
+    </style>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style type="text/tailwindcss">
@@ -870,22 +1040,16 @@
             <a href="javascript:void(0)" class="dropdown-toggle">Courses <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li>
-                <a href="business-management.html"><i class="fas fa-chart-line"></i> Business & Management</a>
+                <a href="./pages/IELTS EXAM.html"><i class="fas fa-book"></i>IELTS</a>
               </li>
               <li>
-                <a href="engineering.html"><i class="fas fa-cogs"></i> Engineering</a>
+                <a href="./pages/coming soon  page.html"><i class="fas fa-book"></i>PTE</a>
               </li>
               <li>
-                <a href="medicine.html"><i class="fas fa-heartbeat"></i> Medicine & Healthcare</a>
+                <a href="./pages/coming soon  page.html"><i class="fas fa-book"></i>GMAT</a>
               </li>
               <li>
-                <a href="law.html"><i class="fas fa-gavel"></i> Law</a>
-              </li>
-              <li>
-                <a href="IELTS.html"><i class="fas fa-book"></i>IELTS</a>
-              </li>
-              <li>
-                <a href="PTE.html"><i class="fas fa-book"></i>PTE</a>
+                <a href="./pages/coming soon  page.html"><i class="fas fa-book"></i>GRE</a>
               </li>
             </ul>
           </li>
@@ -895,18 +1059,18 @@
             <a href="javascript:void(0)" class="dropdown-toggle">Our Services <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li>
-                <a href="pages/course counselling.html"><i class="fas fa-user-graduate"></i> Career & Course
+                <a href="pages/academic&course.html"><i class="fas fa-user-graduate"></i>Academic & Course
                   Counseling</a>
               </li>
               <li>
-                <a href="pages/university selection.html"><i class="fas fa-university"></i> University Selection &
+                <a href="pages/university selection.html"><i class="fas fa-university"></i>University Selection &
                   Applications</a>
               </li>
               <li>
-                <a href="pages/visa assistance.html"><i class="fas fa-passport"></i> Visa Assistance</a>
+                <a href="pages/visa assistance.html"><i class="fas fa-passport"></i>Visa Assistance</a>
               </li>
               <li>
-                <a href="pages/scholarships.html"><i class="fas fa-hand-holding-usd"></i> Scholarships &
+                <a href="pages/scholarships.html"><i class="fas fa-hand-holding-usd"></i>Scholarships &
                   Funding Guidance</a>
               </li>
               <li>
@@ -1084,145 +1248,63 @@
     </section>
 
     <!--Course Section-->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-      <div class="text-center mb-12">
-        <h1 class="text-5xl font-bold leading-tight tracking-tighter mb-4 text-[#023e65]">Courses</h1>
-        <p class="text-slate-500 text-lg font-normal leading-normal max-w-2xl mx-auto">Explore our comprehensive programs designed to help you achieve your academic and professional goals.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Business Administration -->
-        <div class="course-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group flex flex-col p-6 cursor-pointer" onclick="showPopup(
-                         'Business Administration', 
-                         '3-4 years', 
-                         'Comprehensive program covering all aspects of modern business management including finance, marketing, and operations.', 
-                         'Minimum IELTS 6.5 or equivalent\nHigh school diploma required\nMathematics proficiency',
-                         'Hello, I\'m interested in the Business Administration course. Can you provide more information?'
-                     )">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Business Administration</h3>
-          <div class="flex justify-between items-center text-sm mt-auto">
-            <span class="inline-block bg-pink-100 text-pink-700 text-xs font-semibold px-2 py-1 rounded-full">BUSINESS</span>
-            <div class="flex items-center text-gray-500">
-              <span class="material-symbols-outlined text-base mr-1">Duration</span>
-              <span class="text-xs font-medium">3-4 years</span>
+    <section id="courses">
+      <h2 class="section-title">Featured Courses</h2>
+      <div class="courses-grid">
+        <div class="course-item">
+          <div class="course-img">
+            <img src="/images/IELTS.png" alt="IELTS Program">
+          </div>
+          <div class="course-info">
+            <h3>IELTS Program</h3>
+            <p>Comprehensive preparation for all IELTS modules with expert instructors and personalized feedback.</p>
+            <div class="course-actions">
+              <a href="/pages/IELTS EXAM.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+              <a href="/pages/online batches.html" class="btn-enroll-sm">Choose Your Batches</a>
             </div>
           </div>
         </div>
-
-        <!-- Law -->
-        <div class="course-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group flex flex-col p-6 cursor-pointer" onclick="showPopup(
-                         'Law', 
-                         '4 years', 
-                         'Study of legal systems and international relations between nations with focus on contemporary legal challenges.', 
-                         'Minimum IELTS 7.0 or equivalent\nStrong academic writing skills\nCritical thinking assessment',
-                         'Hello, I\'m interested in the Law course. Can you provide more information?'
-                     )">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Law</h3>
-          <div class="flex justify-between items-center text-sm mt-auto">
-            <span class="inline-block bg-red-100 text-red-700 text-xs font-semibold px-2 py-1 rounded-full">LAW</span>
-            <div class="flex items-center text-gray-500">
-              <span class="material-symbols-outlined text-base mr-1">Duration</span>
-              <span class="text-xs font-medium">4 years</span>
+        <div class="course-item">
+          <div class="course-img">
+            <img src="/images/PTE.png" alt="PTE Academic Success">
+          </div>
+          <div class="course-info">
+            <h3>PTE Academic Success</h3>
+            <p>Master the computer-based PTE exam with our AI-powered practice tests and detailed analytics.</p>
+            <div class="course-actions">
+              <a href="/pages/coming soon  page.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+              <a href="/pages/coming soon  page.html" class="btn-enroll-sm">Choose Your Batches</a>
             </div>
           </div>
         </div>
-
-        <!-- Computer Engineering -->
-        <div class="course-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group flex flex-col p-6 cursor-pointer" onclick="showPopup(
-                         'Computer Engineering', 
-                         '4-5 years', 
-                         'Advanced engineering concepts with focus on computer systems, networks, and software development.', 
-                         'Minimum IELTS 6.0 or equivalent\nStrong mathematics background\nPhysics knowledge preferred',
-                         'Hello, I\'m interested in the Computer Engineering course. Can you provide more information?'
-                     )">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Computer Engineering</h3>
-          <div class="flex justify-between items-center text-sm mt-auto">
-            <span class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">ENGINEERING</span>
-            <div class="flex items-center text-gray-500">
-              <span class="material-symbols-oriented text-base mr-1">Duration</span>
-              <span class="text-xs font-medium">4-5 years</span>
+        <div class="course-item">
+          <div class="course-img">
+            <img src="/images/GMAT.png" alt="GMAT Quantitative Focus">
+          </div>
+          <div class="course-info">
+            <h3>GMAT Quantitative Focus</h3>
+            <p>Boost your quantitative reasoning skills with targeted practice and strategic problem-solving techniques.</p>
+            <div class="course-actions">
+              <a href="/pages/coming soon  page.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+              <a href="/pages/coming soon  page.html" class="btn-enroll-sm">Choose Your Batches</a>
             </div>
           </div>
         </div>
-
-        <!-- Medical Sciences -->
-        <div class="course-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group flex flex-col p-6 cursor-pointer" onclick="showPopup(
-                         'Medical Sciences', 
-                         '5-6 years', 
-                         'In-depth study of human anatomy, physiology and medical practices with clinical rotations.', 
-                         'Minimum IELTS 7.5 or equivalent\nBiology and Chemistry prerequisites\nEntrance examination',
-                         'Hello, I\'m interested in the Medical Sciences course. Can you provide more information?'
-                     )">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">Medical Sciences</h3>
-          <div class="flex justify-between items-center text-sm mt-auto">
-            <span class="inline-block bg-yellow-100 text-yellow-700 text-xs font-semibold px-2 py-1 rounded-full">MEDICINE</span>
-            <div class="flex items-center text-gray-500">
-              <span class="material-symbols-outlined text-base mr-1">Duration</span>
-              <span class="text-xs font-medium">5-6 years</span>
-            </div>
+        <div class="course-item">
+          <div class="course-img">
+            <img src="/images/GRE.png" alt="GRE Comprehensive Prep">
           </div>
-        </div>
-
-        <!-- IELTS -->
-        <div class="course-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group flex flex-col p-6 cursor-pointer" onclick="showPopup(
-                         'IELTS Preparation', 
-                         '3-6 months', 
-                         'Comprehensive English language training to help you achieve your desired IELTS score for academic or immigration purposes', 
-                         'Basic English knowledge required\nPractice tests included\nFlexible study schedule',
-                         'Hello, I\'m interested in the IELTS Preparation course. Can you provide more information?'
-                     )">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">IELTS Preparation</h3>
-          <div class="flex justify-between items-center text-sm mt-auto">
-            <span class="inline-block bg-purple-100 text-purple-700 text-xs font-semibold px-2 py-1 rounded-full">IELTS</span>
-            <div class="flex items-center text-gray-500">
-              <span class="material-symbols-outlined text-base mr-1">Duration</span>
-              <span class="text-xs font-medium">3-6 months</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- PTE -->
-        <div class="course-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group flex flex-col p-6 cursor-pointer" onclick="showPopup(
-                         'PTE Academic', 
-                         '3-6 months', 
-                         'Preparation course for Pearson Test of English (PTE) Academic, recognized by universities worldwide.', 
-                         'Basic English knowledge required\nComputer-based test practice\nSpeaking and writing focus',
-                         'Hello, I\'m interested in the PTE Academic course. Can you provide more information?'
-                     )">
-          <h3 class="text-xl font-bold text-gray-900 mb-4">PTE Academic</h3>
-          <div class="flex justify-between items-center text-sm mt-auto">
-            <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-2 py-1 rounded-full">PTE</span>
-            <div class="flex items-center text-gray-500">
-              <span class="material-symbols-outlined text-base mr-1">Duration</span>
-              <span class="text-xs font-medium">3-6 months</span>
+          <div class="course-info">
+            <h3>GRE Comprehensive Prep</h3>
+            <p>Complete preparation for all GRE sections with extensive practice materials and vocabulary building.</p>
+            <div class="course-actions">
+              <a href="/pages/coming soon  page.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+              <a href="/pages/coming soon  page.html" class="btn-enroll-sm">Choose Your Batches</a>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Popup Overlay -->
-      <div class="popup-overlay" id="popup">
-        <div class="popup-content">
-          <h2 class="popup-title" id="popup-title">Course Title</h2>
-          <div class="popup-duration text-white" id="popup-duration">Duration: X years</div>
-          <p class="popup-description" id="popup-description">
-            Course description will appear here.
-          </p>
-
-          <div class="popup-requirements">
-            <div class="requirements-title">Admission Requirements:</div>
-            <ul class="requirements-list" id="requirements-list">
-              <!-- Requirements will be added here by JavaScript -->
-            </ul>
-          </div>
-
-          <div class="action-buttons">
-            <a href="https://api.whatsapp.com/send/?phone=919211313899&text&type=phone_number&app_absent=0" class="whatsapp-btn" id="whatsapp-link" target="_blank">Chat on WhatsApp</a>
-            <button class="close-popup" onclick="hidePopup()">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
 
     <!-- Services -->
     <div class="relative flex size-full min-h-screen flex-col group/design-root">
@@ -1241,14 +1323,14 @@
                 <div class="w-16 h-16 bg-[var(--secondary-color)] rounded-full flex items-center justify-center mb-6 z-20"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="#13a4ec">
                     <path d="M264 112L376 112C380.4 112 384 115.6 384 120L384 160L256 160L256 120C256 115.6 259.6 112 264 112zM208 120L208 160L128 160C92.7 160 64 188.7 64 224L64 320L576 320L576 224C576 188.7 547.3 160 512 160L432 160L432 120C432 89.1 406.9 64 376 64L264 64C233.1 64 208 89.1 208 120zM576 368L384 368L384 384C384 401.7 369.7 416 352 416L288 416C270.3 416 256 401.7 256 384L256 368L64 368L64 480C64 515.3 92.7 544 128 544L512 544C547.3 544 576 515.3 576 480L576 368z" />
                   </svg></div>
-                <h3 class="text-slate-800 text-lg font-bold leading-normal mb-2 z-20 group-hover:text-white">Career & Course Counselling</h3>
+                <h3 class="text-slate-800 text-lg font-bold leading-normal mb-2 z-20 group-hover:text-white">Academic & Course Counselling</h3>
                 <p class="text-slate-500 text-sm font-normal leading-relaxed z-20 group-hover:text-gray-300 mb-5">
                   Every student is unique. We offer one-on-one counseling to help
                   you identify the right program, university, and country based on
                   your academic background, career goals, and budget.
                 </p>
 
-                <a href="./pages/course counselling.html" class="px-5 py-2 rounded-md bg-blue-500 text-white mt-auto relative z-[50] hover:scale-[1.05] transition">Learn More</a>
+                <a href="./pages/academic&course.html" class="px-5 py-2 rounded-md bg-blue-500 text-white mt-auto relative z-[50] hover:scale-[1.05] transition">Learn More</a>
                 <div class="absolute top-0 w-full h-2 bg-[#1F3A5F] group-hover:h-full -z-0 duration-300 ease-in"></div>
               </div>
               <div class="relative group flex flex-col items-center text-center p-8 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
@@ -2180,7 +2262,7 @@
           <div class="contact-item" style="display: flex; margin-bottom: 15px">
             <i class="fas fa-map-marker-alt" style="margin-right: 10px; margin-top: 5px; color: #023e65"></i>
             <p style="margin: 0; line-height: 1.5; color: #023e65">
-              <span style="font-weight: bold;"> 618 Tower-A, ATS BOUQUET Block B<br>Sector 132 Noida,<br> Uttar
+              <span style="font-weight: bold;">Tower 4 - 1210 Asshotech business cresterra<br>Sector 135 Noida,<br> Uttar
                 Pradesh 201304</span>
             </p>
           </div>
