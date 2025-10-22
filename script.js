@@ -1,31 +1,32 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Get DOM elements
-  const toggleBtn = document.getElementById("toggleBtn");
-  const navMenu = document.getElementById("navMenu");
-  const hamburgerIcon = document.getElementById("hamburgerIcon");
-  const closeIcon = document.getElementById("closeIcon");
+// document.addEventListener("DOMContentLoaded", function () {
+//   // Get DOM elements
+//   const toggleBtn = document.getElementById("toggleBtn");
+//   const navMenu = document.getElementById("navMenu");
+//   const hamburgerIcon = document.getElementById("hamburgerIcon");
+//   const closeIcon = document.getElementById("closeIcon");
+//   console.log(closeIcon);
 
-  // Check if elements exist before adding event listener
-  if (toggleBtn && navMenu && hamburgerIcon && closeIcon) {
-    toggleBtn.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-      hamburgerIcon.classList.toggle("hidden");
-      closeIcon.classList.toggle("hidden");
-    });
-  } else {
-    console.error("One or more elements not found in the DOM");
-  }
+//   // Check if elements exist before adding event listener
+//   if (toggleBtn && navMenu && hamburgerIcon && closeIcon) {
+//     toggleBtn.addEventListener("click", () => {
+//       navMenu.classList.toggle("active");
+//       hamburgerIcon.classList.toggle("hidden");
+//       closeIcon.classList.toggle("hidden");
+//     });
+//   } else {
+//     console.error("One or more elements not found in the DOM");
+//   }
 
-  // Close menu when clicking on a link
-  const navLinks = document.querySelectorAll(".nav-link");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("active");
-      hamburgerIcon.classList.remove("hidden");
-      closeIcon.classList.add("hidden");
-    });
-  });
-});
+//   // Close menu when clicking on a link
+//   const navLinks = document.querySelectorAll(".nav-link");
+//   navLinks.forEach((link) => {
+//     link.addEventListener("click", () => {
+//       navMenu.classList.remove("active");
+//       hamburgerIcon.classList.remove("hidden");
+//       closeIcon.classList.add("hidden");
+//     });
+//   });
+// });
 
 // WhatsApp number
 const whatsappNumber = "919211313899"; // Format: country code + number without spaces or special characters
@@ -67,11 +68,11 @@ function hidePopup() {
 }
 
 // Close popup when clicking outside content
-document.getElementById("popup").addEventListener("click", function (e) {
-  if (e.target === this) {
-    hidePopup();
-  }
-});
+// document.getElementById("popup").addEventListener("click", function (e) {
+//   if (e.target === this) {
+//     hidePopup();
+//   }
+// });
 
 // Close popup with Escape key
 document.addEventListener("keydown", function (e) {
@@ -378,13 +379,6 @@ function hidePopup() {
   document.body.style.overflow = "auto";
 }
 
-// Close popup when clicking outside content
-document.getElementById("popup").addEventListener("click", function (e) {
-  if (e.target === this) {
-    hidePopup();
-  }
-});
-
 // Country content functions
 function showCountryContent(country) {
   document.getElementById(country + "-content").classList.add("active");
@@ -466,13 +460,6 @@ document.querySelectorAll(".country-item").forEach((item) => {
 //   document.getElementById("popup").classList.add("active");
 //   document.body.style.overflow = "hidden";
 // }
-
-// Close popup when clicking outside content
-document.getElementById("popup").addEventListener("click", function (e) {
-  if (e.target === this) {
-    hidePopup();
-  }
-});
 
 document.addEventListener("DOMContentLoaded", function () {
   const serviceBoxes = document.querySelectorAll(".service-box");
