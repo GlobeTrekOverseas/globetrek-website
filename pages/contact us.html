@@ -954,6 +954,16 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="course">Select your course*</label>
+              <select id="course" name="course" required aria-required="true">
+                <option value="">Select course</option>
+                <option value="IELTS" data-emoji="🗣️">IELTS</option>
+                <option value="PTE" data-emoji="🏫">PTE</option>
+                <option value="GMAT" data-emoji="🎓">GMAT</option>
+                <option value="GRE" data-emoji="📚">GRE</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="funding">How would you fund your education?*</label>
               <select id="funding" name="funding" required aria-required="true">
                 <option value="">Select funding method</option>
@@ -965,7 +975,7 @@
             </div>
             <div class="checkbox-group">
               <input type="checkbox" id="terms" name="terms" required aria-required="true">
-              <label for="terms">I agree to GlobetrekOverseas Terms and privacy policy</label>
+              <label for="terms">I agree to GlobetrekOverseas <a href="./terms&condition.html" class="underline">Terms and conditions</a></label>
             </div>
             <div class="checkbox-group">
               <input type="checkbox" id="contact" name="contact">
@@ -1274,7 +1284,6 @@
 
         // Collect form data
         const formData = new FormData(form);
-        console.log(formData.getAll(""));
         let message = "📋 *New Counselling Enquiry* %0A%0A";
         for (let [key, value] of formData.entries()) {
           // if (key === "terms") value = "✔️ Agreed";
@@ -1284,7 +1293,6 @@
             message += `*${key}*: ${value}%0A`;
           }
         }
-        console.log(message)
 
         // WhatsApp number (with country code, no + or spaces)
         const whatsappNumber = "92113 13899"; // 🔹 replace with your WhatsApp number

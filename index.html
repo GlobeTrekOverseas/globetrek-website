@@ -1117,7 +1117,7 @@
     <section class="relative py-10 flex items-center justify-center overflow-hidden">
       <!-- Video Background -->
       <video autoplay muted loop class="hero-video">
-        <source src="videos/sequence.mp4" type="video/mp4" />
+        <source src="videos/website main .mp4" type="video/mp4" />
       </video>
 
       <!--  Overlay -->
@@ -2408,6 +2408,17 @@
               </select>
             </div>
 
+            <div class="form-group">
+              <label for="course" class="block text-sm font-medium text-gray-700 mb-1">Select your course*</label>
+              <select id="course" name="course" required aria-required="true" class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="">Select course</option>
+                <option value="IELTS" data-emoji="🗣️">IELTS</option>
+                <option value="PTE" data-emoji="🏫">PTE</option>
+                <option value="GMAT" data-emoji="🎓">GMAT</option>
+                <option value="GRE" data-emoji="📚">GRE</option>
+              </select>
+            </div>
+
             <!-- Funding -->
             <div class="form-group">
               <label for="funding" class="block text-sm font-medium text-gray-700 mb-1">How would you fund your education?*</label>
@@ -2424,7 +2435,7 @@
             <div class="md:col-span-2 space-y-3 mt-2">
               <div class="checkbox-group flex items-center gap-2">
                 <input type="checkbox" id="terms" name="terms" required aria-required="true" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
-                <label for="terms" class="text-sm text-gray-700">I agree to GlobetrekOverseas Terms and privacy policy</label>
+                <label for="terms" class="text-sm text-gray-700">I agree to GlobetrekOverseas <a href="./pages/terms&condition.html" class="underline">Terms and conditions</a></label>
               </div>
               <div class="checkbox-group flex items-center gap-2">
                 <input type="checkbox" id="contact" name="contact" class="h-4 w-4 text-blue-600 border-gray-300 rounded">
