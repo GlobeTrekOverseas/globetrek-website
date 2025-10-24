@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Step-by-Step Guide: How to Apply for a Student Visa to the UK (2025 Edition) | GlobeTrek Overseas</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
       * {
@@ -15,12 +14,12 @@
       }
 
       :root {
-        --primary: #1a4b8c;
+        --primary: #023e65;
         --secondary: #e63946;
         --accent: #f1faee;
         --light: #f8f9fa;
         --dark: #1d3557;
-        --text: #333;
+        --text: black;
         --text-light: #6c757d;
       }
 
@@ -38,7 +37,7 @@
 
       /* Hero Section */
       .hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/image.jpg') center/cover no-repeat;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/Student\ Visa\ UK.png') center/cover no-repeat;
         color: white;
         padding: 80px 0;
         text-align: center;
@@ -502,115 +501,43 @@
         color: var(--secondary);
         cursor: pointer;
       }
-
-      @media (max-width: 992px) {
-        .nav-menu li {
-          margin-left: 15px;
-        }
-
-        .hero h1 {
-          font-size: 2.5rem;
-        }
-
-        .course-box {
-          width: calc(50% - 30px);
-        }
-
-        .services-container {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .destinations-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .header-container {
-          flex-wrap: wrap;
-        }
-
-        .mobile-menu-btn {
-          display: block;
-          /* order: 1; */
-        }
-
-        .logo {
-          /* order: 2; */
-          flex: 1;
-          text-align: center;
-        }
-
-        .nav-menu {
-          display: none;
-          flex-direction: column;
-          width: 100%;
-          order: 3;
-          padding: 20px 0;
-          background: white;
-        }
-
-        .nav-menu.active {
-          display: flex;
-        }
-
-        .nav-menu li {
-          margin: 10px 0;
-          text-align: center;
-          margin-left: 0;
-        }
-
-        .dropdown-menu {
-          position: static;
-          opacity: 1;
-          visibility: visible;
-          box-shadow: none;
-          display: none;
-          background: #f9f9f9;
-          margin-top: 5px;
-        }
-
-        .dropdown.active .dropdown-menu {
-          display: block;
-        }
-
-        .dropdown-toggle::after {
-          content: "+";
-          margin-left: 5px;
-        }
-
-        .dropdown.active .dropdown-toggle::after {
-          content: "-";
-        }
-      }
     </style>
   </head>
   <body>
-    <!-- Header & Navigation -->
+    <!-- Header Section -->
     <header class="header">
       <div class="header-container">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
         <a href="../index.html" class="logo">
           <img src="../images\GTO.png" alt="Globetrek Overseas" class="w-full w-auto h-[68px]" />
         </a>
 
         <ul class="nav-menu" id="navMenu">
-          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="about us.html">About Us</a></li>
 
           <!-- Courses Dropdown -->
           <li class="dropdown">
             <a href="javascript:void(0)" class="dropdown-toggle">Courses <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li>
-                <a href="IELTS EXAM.html"><i class="fas fa-book"></i>IELTS</a>
+                <a href="business-management.html"><i class="fas fa-chart-line"></i> Business & Management</a>
               </li>
               <li>
-                <a href="coming soon  page.html"><i class="fas fa-book"></i>PTE</a>
+                <a href="engineering.html"><i class="fas fa-cogs"></i> Engineering</a>
               </li>
               <li>
-                <a href="coming soon  page.html"><i class="fas fa-book"></i>GMAT</a>
+                <a href="medicine.html"><i class="fas fa-heartbeat"></i> Medicine & Healthcare</a>
               </li>
               <li>
-                <a href="coming soon  page.html"><i class="fas fa-book"></i>GRE</a>
+                <a href="law.html"><i class="fas fa-gavel"></i> Law</a>
+              </li>
+              <li>
+                <a href="IELTS.html"><i class="fas fa-book"></i>IELTS</a>
+              </li>
+              <li>
+                <a href="PTE.html"><i class="fas fa-book"></i>PTE</a>
               </li>
             </ul>
           </li>
@@ -620,26 +547,26 @@
             <a href="javascript:void(0)" class="dropdown-toggle">Our Services <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li>
-                <a href="academic&course.html"><i class="fas fa-user-graduate"></i> Academic & Course
+                <a href="#"><i class="fas fa-user-graduate"></i> Career & Course
                   Counseling</a>
               </li>
               <li>
-                <a href="university selection.html"><i class="fas fa-university"></i> University Selection &
+                <a href="#"><i class="fas fa-university"></i> University Selection &
                   Applications</a>
               </li>
               <li>
-                <a href="visa assistance.html"><i class="fas fa-passport"></i> Visa Assistance</a>
+                <a href="#"><i class="fas fa-passport"></i> Visa Assistance</a>
               </li>
               <li>
-                <a href="scholarships.html"><i class="fas fa-hand-holding-usd"></i> Scholarships &
+                <a href="#"><i class="fas fa-hand-holding-usd"></i> Scholarships &
                   Funding Guidance</a>
               </li>
               <li>
-                <a href="pre departure.html"><i class="fas fa-plane-departure"></i> Pre-Departure &
+                <a href="#"><i class="fas fa-plane-departure"></i> Pre-Departure &
                   Post-Arrival Support</a>
               </li>
               <li>
-                <a href="channel partner.html"><i class="fas fa-handshake"></i> Channel Partner Support</a>
+                <a href="#"><i class="fas fa-handshake"></i> Channel Partner Support</a>
               </li>
             </ul>
           </li>
@@ -648,21 +575,21 @@
             <a href="javascript:void(0)" class="dropdown-toggle">Study Destinations <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li>
-                <a href="united states.html">
-                  <img src="../images/usa-flag.png" alt="USA" class="w-5 h-5"> United States</a>
+                <a href="./united states.html">
+                  <i class="fas fa-landmark"></i> United States</a>
               </li>
               <li>
-                <a href="uk.html">
-                  <img src="../images/uk-flag.png" alt="USA" class="w-5 h-5"> United Kingdom</a>
+                <a href="./UK.html">
+                  <i class="fas fa-landmark"></i> United Kingdom</a>
               </li>
               <li>
-                <a href="australia.html"><img src="../images/au-flag.png" alt="USA" class="w-5 h-5"> Australia</a>
+                <a href="./australia.html"><i class="fas fa-landmark"></i> Australia</a>
               </li>
               <li>
-                <a href="switzerland.html"><img src="../images/sw-flag.png" alt="USA" class="w-5 h-5"> Switzerland</a>
+                <a href="./switzerland.html"><i class="fas fa-landmark"></i> Switzerland</a>
               </li>
               <li>
-                <a href="germany.html"><img src="../images/ge-flag.png" alt="USA" class="w-5 h-5"> Germany</a>
+                <a href="germany.html"><i class="fas fa-landmark"></i> Germany</a>
               </li>
               <li class="dropdown-divider"></li>
             </ul>
@@ -671,9 +598,6 @@
           <li><a href="News&Articles.html">News&Articles</a></li>
           <li><a href="contact us.html">Contact</a></li>
         </ul>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-          <i class="fas fa-bars"></i>
-        </button>
       </div>
     </header>
 
@@ -1005,65 +929,65 @@
         <!-- Quick Links Column -->
         <div class="footer-col">
           <h3 class="footer-links-title font-bold !text-[#023e65]" style="
-                          font-size: 1.2rem;
-                          margin-bottom: 20px;
-                          position: relative;
-                          padding-bottom: 10px;
-                          color: #333;
-                        ">
+                  font-size: 1.2rem;
+                  margin-bottom: 20px;
+                  position: relative;
+                  padding-bottom: 10px;
+                  color: #333;
+                ">
             Quick Links
             <span style="
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            width: 60px;
-                            height: 3px;
-                            background-color: #02406a;
-                          "></span>
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 60px;
+                    height: 3px;
+                    background-color: #02406a;
+                  "></span>
           </h3>
           <ul class="footer-links" style="list-style: none; padding: 0">
             <li style="margin-bottom: 10px">
-              <a href="about-us.html" style="
-                              color: #01500c;
-                              text-decoration: none;
-                              transition: color 0.3s;
-                            "> <span style="font-weight: bold;">About Us</span></a>
+              <a href="./about us.html" style="
+                      color: #01500c;
+                      text-decoration: none;
+                      transition: color 0.3s;
+                    "> <span style="font-weight: bold;">About Us</span></a>
 
             </li>
             <li style="margin-bottom: 10px">
-              <a href="academic&course.html" style="
-                              color: #2D6F41;
-                              text-decoration: none;
-                              transition: color 0.3s;
-                            "> <span style="font-weight: bold;">Our Services</span></a>
+              <a href="" style="
+                      color: #2D6F41;
+                      text-decoration: none;
+                      transition: color 0.3s;
+                    "> <span style="font-weight: bold;">Our Services</span></a>
             </li>
             <li style="margin-bottom: 10px">
-              <a href="united states.html" style="
-                              color: #2D6F41;
-                              text-decoration: none;
-                              transition: color 0.3s;
-                            "> <span style="font-weight: bold;">Study Destinations</span></a>
+              <a href="" style="
+                      color: #2D6F41;
+                      text-decoration: none;
+                      transition: color 0.3s;
+                    "> <span style="font-weight: bold;">Study Destinations</span></a>
             </li>
             <li style="margin-bottom: 10px">
-              <a href="success stories.html" style="
-                              color: #2D6F41;
-                              text-decoration: none;
-                              transition: color 0.3s;
-                            "> <span style="font-weight: bold;">Success Stories</span></a>
+              <a href="./success stories.html" style="
+                      color: #2D6F41;
+                      text-decoration: none;
+                      transition: color 0.3s;
+                    "> <span style="font-weight: bold;">Success Stories</span></a>
             </li>
             <li style="margin-bottom: 10px">
-              <a href="News&Articles.html" style="
-                              color: #2D6F41;
-                              text-decoration: none;
-                              transition: color 0.3s;
-                            "> <span style="font-weight: bold;">News&Article</span></a>
+              <a href="./News&Articles.html" style="
+                      color: #2D6F41;
+                      text-decoration: none;
+                      transition: color 0.3s;
+                    "> <span style="font-weight: bold;">News&Article</span></a>
             </li>
             <li style="margin-bottom: 10px">
-              <a href="contact us.html" style="
-                              color: #2D6F41;
-                              text-decoration: none;
-                              transition: color 0.3s;
-                            "> <span style="font-weight: bold;">Contact</span></a>
+              <a href="./contact us.html" style="
+                      color: #2D6F41;
+                      text-decoration: none;
+                      transition: color 0.3s;
+                    "> <span style="font-weight: bold;">Contact</span></a>
             </li>
           </ul>
         </div>
@@ -1090,7 +1014,7 @@
           <div class="contact-item" style="display: flex; margin-bottom: 15px">
             <i class="fas fa-map-marker-alt" style="margin-right: 10px; margin-top: 5px; color: #023e65"></i>
             <p style="margin: 0; line-height: 1.5; color: #023e65">
-              <span style="font-weight: bold;">Tower 4 - 1210 Asshotech business cresterra<br>Sector 135 Noida,<br> Uttar
+              <span style="font-weight: bold;"> 618 Tower-A, ATS BOUQUET Block B<br>Sector 132 Noida,<br> Uttar
                 Pradesh 201304</span>
             </p>
           </div>
@@ -1143,20 +1067,6 @@
           });
         });
       }
-    </script>
-    <!-- Navbar -->
-    <script>
-      document.getElementById("mobileMenuBtn").addEventListener("click", function () {
-        document.getElementById("navMenu").classList.toggle("active");
-      });
-
-      // Dropdown toggle for mobile
-      document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
-        toggle.addEventListener("click", function () {
-          const dropdown = this.parentElement;
-          dropdown.classList.toggle("active");
-        });
-      });
     </script>
   </body>
 </html>
