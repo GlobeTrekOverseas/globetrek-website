@@ -1706,7 +1706,7 @@ body {
   background-size: cover;
   background-position: center;
   margin: 0 auto 15px;
-  border: 3px solid #2c8dfb;
+  border: 3px solid #2c3e50;
 }
 
 .student-name {
@@ -1727,12 +1727,12 @@ body {
 }
 
 .story-flag {
-  font-size: 40px;
+  font-size: 50px;
   margin-bottom: 15px;
 }
 
 .story-display h3 {
-  color: #2c8dfb;
+  color: #072d5a;
   margin-bottom: 5px;
 }
 
@@ -1740,12 +1740,13 @@ body {
   color: #666;
   margin-top: 0;
   margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .testimonial {
-  font-style: italic;
+  font-style: bold;
   line-height: 1.6;
-  color: #444;
+  color: #01410c;
 }
 
 .social-icon {
