@@ -9,11 +9,11 @@
     <style>
       :root {
         --primary: #025c0e;
-        --secondary: #10b981;
-        --accent: #44c14b;
+        --secondary: #002963;
+        --accent: #0a2879;
         --dark: #003479;
         --light: #f8fafc;
-        --gray: #64748b;
+        --gray: #0e5302;
       }
 
       * {
@@ -88,7 +88,7 @@
 
       /* Hero Section */
       .hero {
-        background: linear-gradient(rgba(30, 64, 175, 0.7), rgba(30, 64, 175, 0.7)), url('contact-us-image.png') center/cover no-repeat;
+        background: linear-gradient(rgba(26, 34, 58, 0.7), rgba(13, 17, 30, 0.7)), url('') center/cover no-repeat;
         color: white;
         padding: 4rem 0;
         text-align: center;
@@ -263,11 +263,11 @@
         font-weight: 600;
         cursor: pointer;
         width: 100%;
-        transition: background 0.4s;
+        transition:  0.4s;
       }
 
       .submit-btn:hover {
-        background: #0da271;
+        background: #025c0e;
       }
 
       .submit-btn:disabled {
@@ -290,7 +290,7 @@
 
       .progress-fill {
         height: 100%;
-        background: linear-gradient(90deg, var(--secondary), #34d399);
+        background: linear-gradient(90deg, var(--secondary), #025c0e);
         width: 0%;
         transition: width 0.5s ease;
       }
@@ -322,7 +322,7 @@
         cursor: pointer;
         margin-bottom: 1rem;
         font-size: 0.9rem;
-        transition: background 0.3s;
+        transition:  0.3s;
       }
 
       .toggle-btn:hover {
@@ -820,7 +820,7 @@
           </li>
           <li><a href="success stories.html">Success Stories</a></li>
           <li><a href="News&Articles.html">News&Articles</a></li>
-          <li><a href="contact us.html">Contact</a></li>
+          <li><a href="contact us.html">Contact Us</a></li>
         </ul>
         <button class="mobile-menu-btn" id="mobileMenuBtn">
           <i class="fas fa-bars"></i>
@@ -828,59 +828,12 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <h1>Get in Touch With Us</h1>
-        <p>Our team of experts is ready to help you achieve your study abroad dreams. Reach out to us for free counselling and guidance.</p>
-      </div>
-    </section>
-
-    <!-- Main Content -->
-    <div class="container main-content">
-      <div class="contact-grid">
-        <!-- Contact Information -->
-        <div class="contact-info animated">
-          <h2>Contact Information</h2>
-          <div class="info-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <div>
-              <h3>Our Office</h3>
-              <p> 618 Tower-A, ATS BOUQUET Block B Sector 132 Noida<br> Uttar Pradesh 201304</p>
-            </div>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-phone-alt"></i>
-            <div>
-              <h3>Phone Number</h3>
-              <p><a href="tel:+919311331899">+91 93113 31899</a><br><a href="tel:+919211313899">+91 92113 13899</a></p>
-            </div>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-envelope"></i>
-            <div>
-              <h3>Email Address</h3>
-              <p><a href="mailto:Headoffice@globetrekoverseas.com">Headoffice@globetrekoverseas.com</a></p>
-            </div>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-clock"></i>
-            <div>
-              <h3>Working Hours</h3>
-              <p>Monday-Friday: 9am - 6pm<br>Saturday: Off<br>Sunday: Off</p>
-            </div>
-          </div>
-          <div class="social-links">
-            <a href="https://www.instagram.com/globetrekoverseas?igsh=MWp4Nzk2M3J2NnhjNw==" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/company/globetrek-overseas/" aria-label="Connect with us on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://wa.me/919311331899" aria-label="Contact us on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          </div>
-        </div>
+   
 
         <!-- Counselling Form -->
         <div class="form-container animated delay-1">
           <div class="form-header">
-            <h2>🎓 Get FREE Counselling Today!</h2>
+            <h2><strong>🎓 Get FREE Counselling Today!</strong></h2>
             <p>Enter your details and our expert will reach out to you to discuss your plans. By the way, all our services are completely free!</p>
           </div>
           <button class="toggle-btn" onclick="toggleProgress()"><i class="fas fa-eye"></i> Hide Progress</button>
@@ -991,83 +944,78 @@
         </div>
       </div>
 
-      <!-- Map Section -->
-      <div class="map-section animated delay-2">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28721026.239075057!2d77.3805309!3d28.5101096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce91c984af61b%3A0xf7c472e577438194!2sGlobeTrek%20Overseas!5e0!3m2!1sen!2sin!4v1758085158368!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-
+      
     <!-- Footer -->
     <footer class="footer" style="
-            background-color: white;
-            color: #023e65;
-            padding: 40px 0 20px;
-            border-top: 1px solid #eee;
-          ">
+        background-color: white;
+        color: #023e65;
+        padding: 40px 0 20px;
+        border-top: 1px solid #eee;
+      ">
       <div class="footer-grid" style="
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-              gap: 30px;
-              max-width: 1200px;
-              margin: 0 auto;
-              padding: 0 20px;
-            ">
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 30px;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        ">
         <!-- Company Info Column -->
         <div class="footer-col">
           <a href="../index.html" class="logo" style="text-align: center">
             <img src="../images\GTO.png" alt="Globetrek Overseas" style="height: 80px; margin-bottom: 20px" />
           </a>
           <p class="footer-about" style="
-                  text-align:  right center;
-                  line-height: 1.6;
-                  margin-bottom: 25px;
-                  color: #023e65;
-                ">
+              text-align:  right center;
+              line-height: 1.6;
+              margin-bottom: 25px;
+              color: #023e65;
+            ">
             <span style="font-weight: bold;"> We are a leading study abroad consultancy dedicated to helping
               students achieve their international education dreams.</span>
           </p>
           <div class="footer-section">
             <h3 style="
-                    text-align: right center;
-                    margin-bottom: 15px;
-                    font-size: 1.4rem;
-                    color: #015f18;
-                  ">
+                text-align: right center;
+                margin-bottom: 15px;
+                font-size: 1.4rem;
+                color: #015f18;
+              ">
               <span style="font-weight: bold;">Follow Us</span>
             </h3>
             <div class="social-links" style="
-                    display: flex;
-                    justify-content:  right center;
-                    gap: 15px;
-                    margin-bottom: 20px;
-                  ">
+                display: flex;
+                justify-content:  right center;
+                gap: 15px;
+                margin-bottom: 20px;
+              ">
               <!-- Instagram -->
               <a href="https://www.instagram.com/globetrekoverseas?igsh=MWp4Nzk2M3J2NnhjNw==" class="social-icon" style="
-                      display: inline-block;
-                      width: 40px;
-                      height: 40px;
-                      transition: all 0.5s ease;
-                    " onclick="animateIcon(this)">
+                  display: inline-block;
+                  width: 40px;
+                  height: 40px;
+                  transition: all 0.5s ease;
+                " onclick="animateIcon(this)">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" style="width: 100%; height: 100%; object-fit: contain" />
               </a>
 
               <!-- LinkedIn -->
               <a href="https://www.linkedin.com/company/globetrek-overseas/" class="social-icon" style="
-                      display: inline-block;
-                      width: 40px;
-                      height: 40px;
-                      transition: all 0.5s ease;
-                    " onclick="animateIcon(this)">
+                  display: inline-block;
+                  width: 40px;
+                  height: 40px;
+                  transition: all 0.5s ease;
+                " onclick="animateIcon(this)">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 100%; height: 100%; object-fit: contain" />
               </a>
 
               <!-- WhatsApp -->
               <a href="https://wa.me/919311331899" target="_blank" class="social-icon" style="
-                      display: inline-block;
-                      width: 40px;
-                      height: 40px;
-                      transition: all 0.3s ease;
-                    " onclick="animateIcon(this)">
+                  display: inline-block;
+                  width: 40px;
+                  height: 40px;
+                  transition: all 0.3s ease;
+                " onclick="animateIcon(this)">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 100%; height: 100%; object-fit: contain" />
               </a>
             </div>
@@ -1084,14 +1032,7 @@
                           color: #333;
                         ">
             Quick Links
-            <span style="
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            width: 60px;
-                            height: 3px;
-                            background-color: #02406a;
-                          "></span>
+           
           </h3>
           <ul class="footer-links" style="list-style: none; padding: 0">
             <li style="margin-bottom: 10px">
@@ -1143,21 +1084,13 @@
         <!-- Contact Info Column -->
         <div class="footer-col">
           <h3 class="footer-contact-title font-bold !text-[#023e65]" style="
-                  font-size: 1.2rem;
-                  margin-bottom: 20px;
-                  position: relative;
-                  padding-bottom: 10px;
-                  color: #333;
-                ">
+              font-size: 1.2rem;
+              margin-bottom: 20px;
+              position: relative;
+              padding-bottom: 10px;
+              color: #333;
+            ">
             Contact Us
-            <span style="
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 50px;
-                    height: 2px;
-                    background-color: #023e65;
-                  "></span>
           </h3>
           <div class="contact-item" style="display: flex; margin-bottom: 15px">
             <i class="fas fa-map-marker-alt" style="margin-right: 10px; margin-top: 5px; color: #023e65"></i>
@@ -1188,17 +1121,18 @@
 
       <!-- Footer Bottom -->
       <div class="footer-bottom" style="
-              text-align: center;
-              padding-top: 30px;
-              margin-top: 30px;
-              border-top: 1px solid #eee;
-            ">
+          text-align: center;
+          padding-top: 30px;
+          margin-top: 30px;
+          border-top: 1px solid #eee;
+        ">
         <p style="margin: 0; font-size: 0.9rem; color: #023e65">
           <span style="font-weight: bold;">&copy;2023 Globetrek Overseas. All Rights Reserved.</span>
         </p>
       </div>
     </footer>
 
+  
     <script>
       const form = document.getElementById('counsellingForm');
       const progressFill = document.getElementById('progressFill');

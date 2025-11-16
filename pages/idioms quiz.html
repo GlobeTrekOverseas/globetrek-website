@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IELTS Neural Mastery Quiz</title>
+    <title>GTO IELTS Mastery Quiz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -30,7 +30,7 @@
             background: var(--dark-bg);
             color: var(--text);
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -54,15 +54,15 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
+            width: 300px;
+            height: 300px;
             opacity: 0.7;
         }
         
         .brain-hemisphere {
             position: absolute;
-            width: 180px;
-            height: 220px;
+            width: 130px;
+            height: 160px;
             background: radial-gradient(circle at 30% 40%, var(--neural-purple), transparent 70%);
             border-radius: 50% 50% 60% 60%;
             box-shadow: 
@@ -71,23 +71,23 @@
         }
         
         .left-hemisphere {
-            top: 90px;
-            left: 110px;
+            top: 70px;
+            left: 85px;
             transform: rotate(-5deg);
         }
         
         .right-hemisphere {
-            top: 90px;
-            left: 210px;
+            top: 70px;
+            left: 155px;
             transform: rotate(5deg);
         }
         
         .brain-division {
             position: absolute;
-            top: 90px;
-            left: 200px;
+            top: 70px;
+            left: 150px;
             width: 2px;
-            height: 220px;
+            height: 160px;
             background: linear-gradient(to bottom, transparent, var(--neural-blue), transparent);
         }
         
@@ -102,8 +102,8 @@
         
         .synapse {
             position: absolute;
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background: var(--neural-green);
             border-radius: 50%;
             box-shadow: 0 0 15px var(--neural-green);
@@ -112,8 +112,8 @@
         
         .neural-impulse {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 3px;
+            height: 3px;
             background: var(--neural-blue);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--neural-blue);
@@ -161,8 +161,8 @@
             background: var(--card-bg);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            padding: 30px;
-            margin: 20px 0;
+            padding: 25px;
+            margin: 15px 0;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1;
@@ -170,51 +170,69 @@
         
         header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            gap: 20px;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
+            justify-content: flex-start;
+            flex-shrink: 0;
+            
         }
         
-        .logo-icon {
-            font-size: 2.5rem;
-            color: var(--neural-blue);
-            margin-right: 15px;
-            text-shadow: 0 0 15px rgba(33, 150, 243, 0.7);
+        .logo-img {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+        
+        }
+        
+        .header-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         
         h1 {
-            color: var(--neural-blue);
-            font-size: 2.8rem;
+            color: var(--text);
+            font-size: 2.2rem;
             margin-bottom: 5px;
             letter-spacing: 1px;
             text-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+            text-align: center;
         }
         
         .subtitle {
-            color: var(--neural-pink);
-            font-size: 1.3rem;
+            color: var(--text);
+            font-size: 1.1rem;
             font-weight: 500;
             background: rgba(233, 30, 99, 0.1);
-            padding: 8px 20px;
+            padding: 6px 15px;
             border-radius: 30px;
             display: inline-block;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         
         .progress-container {
             width: 100%;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 15px 0;
             overflow: hidden;
-            height: 12px;
+            height: 10px;
         }
         
         .progress-bar {
@@ -228,7 +246,7 @@
         
         .question-counter {
             text-align: right;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-light);
             margin-bottom: 5px;
         }
@@ -236,8 +254,8 @@
         .question-card {
             background: rgba(40, 40, 70, 0.7);
             border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
+            padding: 20px;
+            margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border-left: 5px solid var(--neural-blue);
             transition: transform 0.3s ease;
@@ -252,16 +270,16 @@
             display: inline-block;
             background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
             color: white;
-            padding: 5px 15px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
         
         .question-text {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 18px;
             color: var(--text);
             line-height: 1.5;
         }
@@ -269,11 +287,11 @@
         .options-container {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
         
         .option {
-            padding: 15px;
+            padding: 12px;
             background: rgba(50, 50, 80, 0.5);
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
@@ -308,19 +326,20 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             background: var(--neural-blue);
             color: white;
             border-radius: 50%;
-            margin-right: 15px;
+            margin-right: 12px;
             font-weight: bold;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
         }
         
         .feedback {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 18px;
+            padding: 12px;
             border-radius: 10px;
             display: none;
         }
@@ -340,9 +359,9 @@
         .tip {
             background: rgba(255, 152, 0, 0.1);
             border-left: 4px solid #FF9800;
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
-            margin-top: 15px;
+            margin-top: 12px;
             display: none;
             color: #ffcc80;
         }
@@ -351,16 +370,18 @@
             background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
+            padding: 14px 35px;
+            font-size: 1rem;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             display: block;
-            margin: 30px auto 0;
+            margin: 25px auto 0;
             box-shadow: 0 5px 15px rgba(156, 39, 176, 0.5);
             font-weight: bold;
             letter-spacing: 1px;
+            width: 100%;
+            max-width: 300px;
         }
         
         .submit-btn:hover {
@@ -374,75 +395,199 @@
         
         .results-container {
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             display: none;
         }
         
         .score {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: bold;
             background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin: 20px 0;
+            margin: 15px 0;
             text-shadow: 0 0 15px rgba(156, 39, 176, 0.3);
         }
         
         .message {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
             color: var(--text);
+            line-height: 1.4;
         }
         
-        .restart-btn {
-            background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
+        .whatsapp-btn {
+            background: linear-gradient(to right, #25D366, #128C7E);
             color: white;
             border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
+            padding: 12px 25px;
+            font-size: 0.95rem;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.5);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
             font-weight: bold;
+            margin: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            max-width: 300px;
         }
         
-        .restart-btn:hover {
+        .whatsapp-btn:hover {
             transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.7);
         }
         
         .stats {
             display: flex;
             justify-content: space-around;
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 18px;
+            padding: 12px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
+            flex-wrap: wrap;
         }
         
         .stat-item {
             text-align: center;
+            flex: 1;
+            min-width: 100px;
+            margin: 5px;
         }
         
         .stat-value {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: var(--neural-blue);
         }
         
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-light);
         }
         
+        /* Start Screen Styles */
+        .start-screen {
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--white--);
+            font-size: 0.95rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--neural-blue);
+            box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+        }
+        
+        .start-btn {
+            background: linear-gradient(to right, var(--neural-purple), var(--neural-blue));
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 18px;
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.5);
+            font-weight: bold;
+            letter-spacing: 1px;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.6);
+        }
+        
+        .quiz-screen {
+            display: none;
+        }
+        
+        .whatsapp-submitted {
+            display: none;
+            text-align: center;
+            margin-top: 18px;
+            padding: 12px;
+            background: rgba(37, 211, 102, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #25D366;
+        }
+        
+        .whatsapp-submitted p {
+            color: #a5d6a7;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: rgba(244, 67, 54, 0.9);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            max-width: 350px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .notification i {
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
             }
             
             h1 {
-                font-size: 2.2rem;
+                font-size: 1.9rem;
             }
             
             .question-text {
@@ -450,38 +595,59 @@
             }
             
             .option {
-                padding: 12px;
+                padding: 10px;
             }
             
             .brain-model {
-                width: 300px;
-                height: 300px;
+                width: 250px;
+                height: 250px;
             }
             
             .brain-hemisphere {
-                width: 130px;
-                height: 160px;
+                width: 110px;
+                height: 140px;
             }
             
             .left-hemisphere {
-                top: 70px;
-                left: 85px;
+                top: 55px;
+                left: 70px;
             }
             
             .right-hemisphere {
-                top: 70px;
-                left: 155px;
+                top: 55px;
+                left: 130px;
             }
             
             .brain-division {
-                top: 70px;
-                left: 150px;
-                height: 160px;
+                top: 55px;
+                left: 125px;
+                height: 140px;
             }
             
             .stats {
                 flex-direction: column;
+                gap: 10px;
+            }
+            
+            .stat-item {
+                min-width: auto;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                text-align: center;
                 gap: 15px;
+            }
+            
+            .logo {
+                justify-content: center;
+            }
+            
+            .notification {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
             }
         }
         
@@ -495,7 +661,7 @@
             }
             
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .question-card {
@@ -503,29 +669,60 @@
             }
             
             .brain-model {
-                width: 250px;
-                height: 250px;
+                width: 200px;
+                height: 200px;
             }
             
             .brain-hemisphere {
-                width: 110px;
-                height: 130px;
+                width: 90px;
+                height: 110px;
             }
             
             .left-hemisphere {
-                top: 60px;
-                left: 70px;
+                top: 45px;
+                left: 55px;
             }
             
             .right-hemisphere {
-                top: 60px;
-                left: 130px;
+                top: 45px;
+                left: 105px;
             }
             
             .brain-division {
-                top: 60px;
-                left: 125px;
-                height: 130px;
+                top: 45px;
+                left: 100px;
+                height: 110px;
+            }
+            
+            .score {
+                font-size: 3rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+            }
+            
+            .logo-img {
+                height: 60px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .logo-img {
+                height: 50px;
+            }
+            
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .subtitle {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -535,28 +732,61 @@
         <!-- Neural elements will be generated by JavaScript -->
     </div>
     
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="notification-text">Please submit your results via WhatsApp to proceed.</span>
+    </div>
+            
     <div class="container">
         <header>
-            <div class="logo">
-                <div class="logo-icon"><i class="fas fa-brain"></i></div>
-                <h1>IELTS Neural Mastery</h1>
+            <div class="header-container">
+                <div class="logo">
+                    <img src="/images/GTO.png" alt="GTO Logo" class="logo-img">
+                <div class="header-content">
+                    <h1>GTO IELTS Pathway</h1>
+                    <p class="subtitle">Activate Your English Potential</p>
+                </div>
             </div>
-            <p class="subtitle">Activate Your English Potential</p>
         </header>
         
-        <div class="question-counter">Question <span id="current-question">1</span> of <span id="total-questions">15</span></div>
-        <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
+        <!-- Start Screen -->
+        <div class="start-screen" id="start-screen">
+            <div class="form-group">
+                <label for="student-name">Student Name</label>
+                <input type="text" id="student-name" placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email ID</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            
+            <button class="start-btn" id="start-btn">Start Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div class="quiz-screen" id="quiz-screen">
+            <div class="question-counter">Question <span id="current-question">1</span> of <span id="total-questions">15</span></div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div id="quiz-content">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            
+            <button class="submit-btn" id="submit-btn">Submit Answer</button>
         </div>
         
-        <div id="quiz-content">
-            <!-- Questions will be dynamically inserted here -->
-        </div>
-        
-        <button class="submit-btn" id="submit-btn">Submit Answer</button>
-        
+        <!-- Results Screen -->
         <div class="results-container" id="results-container">
-            <h2>Neural Processing Complete!</h2>
+            <h2>IELTS Practical Mock Test Complete!</h2>
             <div class="score" id="final-score">0/15</div>
             <p class="message" id="result-message">Great effort! Keep practicing to improve your IELTS skills.</p>
             
@@ -575,7 +805,15 @@
                 </div>
             </div>
             
-            <button class="restart-btn" id="restart-btn">Activate Neural Pathways</button>
+            <div class="whatsapp-submitted" id="whatsapp-submitted">
+                <p><i class="fas fa-check-circle"></i> Results submitted successfully via WhatsApp!</p>
+            </div>
+            
+            <div class="button-container">
+                <button class="whatsapp-btn" id="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Submit to WhatsApp
+                </button>
+            </div>
         </div>
     </div>
 
@@ -603,7 +841,7 @@
             container.appendChild(brainModel);
             
             // Create neural pathways
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 15; i++) {
                 const pathway = document.createElement('div');
                 pathway.className = 'neural-pathway';
                 
@@ -625,7 +863,7 @@
             }
             
             // Create synapses
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 20; i++) {
                 const synapse = document.createElement('div');
                 synapse.className = 'synapse';
                 synapse.style.left = `${Math.random() * 100}%`;
@@ -635,7 +873,7 @@
             }
             
             // Create neural impulses
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 10; i++) {
                 const impulse = document.createElement('div');
                 impulse.className = 'neural-impulse';
                 impulse.style.left = `${Math.random() * 100}%`;
@@ -645,7 +883,7 @@
             }
             
             // Create circuit lines
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 5; i++) {
                 const circuit = document.createElement('div');
                 circuit.className = 'circuit-line';
                 circuit.style.top = `${Math.random() * 100}%`;
@@ -768,25 +1006,56 @@
         let currentQuestion = 0;
         let score = 0;
         let userAnswers = new Array(quizData.length).fill(null);
+        let resultsSubmitted = false;
 
         // DOM elements
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
         const quizContent = document.getElementById('quiz-content');
         const submitBtn = document.getElementById('submit-btn');
         const resultsContainer = document.getElementById('results-container');
         const finalScore = document.getElementById('final-score');
         const resultMessage = document.getElementById('result-message');
-        const restartBtn = document.getElementById('restart-btn');
         const currentQuestionElement = document.getElementById('current-question');
         const totalQuestionsElement = document.getElementById('total-questions');
         const progressBar = document.getElementById('progress-bar');
         const correctAnswersElement = document.getElementById('correct-answers');
         const incorrectAnswersElement = document.getElementById('incorrect-answers');
         const percentageElement = document.getElementById('percentage');
+        const startBtn = document.getElementById('start-btn');
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        const whatsappSubmitted = document.getElementById('whatsapp-submitted');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
 
         // Initialize quiz
         function initQuiz() {
             createNeuralBackground();
             totalQuestionsElement.textContent = quizData.length;
+            
+            // Set up event listeners
+            startBtn.addEventListener('click', startQuiz);
+            submitBtn.addEventListener('click', handleSubmit);
+            whatsappBtn.addEventListener('click', submitViaWhatsApp);
+        }
+
+        // Start the quiz
+        function startQuiz() {
+            const name = document.getElementById('student-name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            
+            // Simple validation
+            if (!name || !phone || !email) {
+                alert('Please fill in all fields before starting the quiz.');
+                return;
+            }
+            
+            // Hide start screen, show quiz screen
+            startScreen.style.display = 'none';
+            quizScreen.style.display = 'block';
+            
+            // Show first question
             showQuestion();
         }
 
@@ -843,6 +1112,24 @@
             }
         }
 
+        // Handle submit button click
+        function handleSubmit() {
+            // If we're showing feedback for the current question
+            if (document.querySelector('.feedback').style.display === 'block') {
+                // Move to next question or show results
+                if (currentQuestion < quizData.length - 1) {
+                    currentQuestion++;
+                    showQuestion();
+                    submitBtn.textContent = 'Submit Answer';
+                } else {
+                    showResults();
+                }
+            } else {
+                // Check the current answer
+                checkAnswer();
+            }
+        }
+
         // Check answer and show feedback
         function checkAnswer() {
             const selectedOption = userAnswers[currentQuestion];
@@ -892,8 +1179,7 @@
 
         // Show final results
         function showResults() {
-            quizContent.style.display = 'none';
-            submitBtn.style.display = 'none';
+            quizScreen.style.display = 'none';
             resultsContainer.style.display = 'block';
             
             finalScore.textContent = `${score}/${quizData.length}`;
@@ -905,9 +1191,9 @@
             
             // Custom message based on score
             if (score === quizData.length) {
-                resultMessage.textContent = 'Perfect score! Your neural pathways are fully optimized!';
+                resultMessage.textContent = 'Perfect score! Your GTO pathways are fully optimized!';
             } else if (score >= quizData.length * 0.7) {
-                resultMessage.textContent = 'Great job! Your English neural network is strong.';
+                resultMessage.textContent = 'Great job! Your English GTO network is strong.';
             } else if (score >= quizData.length * 0.5) {
                 resultMessage.textContent = 'Good effort! Keep strengthening those neural connections.';
             } else {
@@ -916,43 +1202,73 @@
             
             // Update progress bar to 100%
             progressBar.style.width = '100%';
+            
+            // Reset submission status
+            resultsSubmitted = false;
+            whatsappSubmitted.style.display = 'none';
         }
 
-        // Event listeners
-        submitBtn.addEventListener('click', function() {
-            // If we're showing feedback for the current question
-            if (document.querySelector('.feedback').style.display === 'block') {
-                // Move to next question or show results
-                if (currentQuestion < quizData.length - 1) {
-                    currentQuestion++;
-                    showQuestion();
-                    submitBtn.textContent = 'Submit Answer';
-                } else {
-                    showResults();
-                }
-            } else {
-                // Check the current answer
-                checkAnswer();
-            }
-        });
+        // Show notification
+        function showNotification(message) {
+            notificationText.textContent = message;
+            notification.style.display = 'flex';
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
 
-        restartBtn.addEventListener('click', function() {
-            // Reset quiz state
-            currentQuestion = 0;
-            score = 0;
-            userAnswers = new Array(quizData.length).fill(null);
+        // Submit results via WhatsApp to specific number
+        function submitViaWhatsApp() {
+            if (resultsSubmitted) {
+                showNotification('Results have already been submitted via WhatsApp.');
+                return;
+            }
             
-            // Show quiz content again
-            quizContent.style.display = 'block';
-            submitBtn.style.display = 'block';
-            resultsContainer.style.display = 'none';
+            const name = document.getElementById('student-name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const percentage = Math.round((score / quizData.length) * 100);
             
-            // Reset submit button text
-            submitBtn.textContent = 'Submit Answer';
+            // Create message content
+            const message = `GTO IELTS Pathway Quiz Results:
             
-            // Show first question
-            showQuestion();
-        });
+Student Name: ${name}
+Phone: ${phone}
+Email: ${email}
+
+Quiz Results:
+Score: ${score}/${quizData.length} (${percentage}%)
+Correct Answers: ${score}
+Incorrect Answers: ${quizData.length - score}
+
+Well done on completing the GTO IELTS Pathway Quiz!`;
+
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // The specific WhatsApp number to send to (replace with your desired number)
+            const whatsappNumber = "+918306111899"; // Replace with your actual number
+            
+            // Create WhatsApp URL with specific number
+            const whatsappURL = `https://wa.me/${+918306111899}?text=${encodedMessage}`;
+            
+            // Open WhatsApp in a new tab
+            window.open(whatsappURL, '_blank');
+            
+            // Mark as submitted
+            resultsSubmitted = true;
+            whatsappSubmitted.style.display = 'block';
+            
+            // Disable the WhatsApp button
+            whatsappBtn.disabled = true;
+            whatsappBtn.style.opacity = '0.6';
+            whatsappBtn.style.cursor = 'not-allowed';
+            
+            // Show success notification
+            showNotification('Results submitted successfully via WhatsApp!');
+        }
 
         // Initialize the quiz
         initQuiz();
