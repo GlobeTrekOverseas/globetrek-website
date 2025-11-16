@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobetrekOverseas - Exam Preparation Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --primary: #2D6F41;
+        --secondary: #35506B;
+        --white: #FFFFFF;
+        --light: #F5F7FA;
+        --dark: #212529;
+        --success: #4cc9f0;
+        --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--white), var(--light));
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.2rem 5%;
+        background: var(--white);
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow);
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .header-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .logo {
+        max-width: 150px;
+        flex-shrink: 0;
+      }
+
+      .logo img {
+        width: 100%;
+        height: auto;
+        max-height: 60px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .logo img:hover {
+        transform: scale(1.1);
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0 20px;
+      }
+
+      nav ul li {
+        margin: 0 1rem;
+        position: relative;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      nav ul li a:hover {
+        color: var(--primary);
+      }
+
+      nav ul li a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gradient);
+        transition: var(--transition);
+      }
+
+      nav ul li a:hover::after {
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--white);
+        box-shadow: var(--shadow);
+        border-radius: 8px;
+        min-width: 200px;
+        z-index: 1000;
+        padding: 0.5rem 0;
+        animation: slideDown 0.3s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+      .dropdown-menu li {
+        margin: 0;
+        padding: 0.5rem 1rem;
+      }
+
+      .dropdown-menu li a {
+        display: flex;
+        align-items: center;
+        color: var(--dark);
+        font-weight: 400;
+        transition: var(--transition);
+      }
+
+      .dropdown-menu li a:hover {
+        color: var(--primary);
+        padding-left: 5px;
+      }
+
+      .dropdown-menu li a img {
+        margin-right: 0.5rem;
+        width: 20px;
+        height: 20px;
+      }
+
+      .dropdown-divider {
+        border-top: 1px solid #eee;
+        margin: 0.5rem 0;
+      }
+
+      .btn {
+        padding: 0.8rem 1.8rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        outline: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn-enroll,
+      .btn-enroll-sm {
+        background: var(--gradient);
+        color: var(--white);
+        box-shadow: 0 4px 15px rgba(45, 111, 65, 0.3);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 4px 15px rgba(45, 111, 65, 0.3);
+        }
+
+        50% {
+          transform: scale(1.02);
+          box-shadow: 0 6px 20px rgba(45, 111, 65, 0.4);
+        }
+
+        100% {
+          transform: scale(1);
+          box-shadow: 0 4px 15px rgba(45, 111, 65, 0.3);
+        }
+      }
+
+      .btn-enroll:hover,
+      .btn-enroll-sm:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(45, 111, 65, 0.5);
+      }
+
+      .container {
+        display: flex;
+        min-height: 100vh;
+        /* padding-top: 80px; */
+      }
+
+      .sidebar {
+        width: 280px;
+        background: var(--gradient);
+        padding: 2rem 1.5rem;
+        color: var(--white);
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+        /* z-index: 100; */
+      }
+
+      .sidebar-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .sidebar-title i {
+        margin-right: 0.8rem;
+        font-size: 1.5rem;
+      }
+
+      .category-box {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 1.8rem;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .category-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .category-header h3 {
+        font-size: 1.1rem;
+      }
+
+      .category-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+      }
+
+      .category-box.active .category-content {
+        max-height: 1000px;
+      }
+
+      .category-box.active .toggle-icon {
+        transform: rotate(90deg);
+      }
+
+      .toggle-icon {
+        transition: var(--transition);
+      }
+
+      .course-cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .course-card,
+      .faculty-card {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 1.2rem;
+        color: var(--dark);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        animation: fadeInUp 0.5s ease;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .course-card:hover,
+      .faculty-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .course-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        transition: var(--transition);
+      }
+
+      .course-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .course-icon:hover img {
+        transform: scale(1.1);
+      }
+
+      .course-card h4 {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .course-card p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 1rem;
+      }
+
+      .course-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .btn-learn {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+        flex: 1;
+        text-decoration: none;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .btn-learn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient);
+        transition: left 0.5s ease;
+        z-index: -1;
+      }
+
+      .btn-learn:hover {
+        color: var(--white);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(45, 111, 65, 0.3);
+      }
+
+      .btn-learn:hover::before {
+        left: 0;
+      }
+
+      .btn-learn i {
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+      }
+
+      .btn-learn:hover i {
+        transform: translateX(3px);
+      }
+
+      .btn-enroll-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        flex: 1;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      .profile-header {
+        background: var(--gradient);
+        padding: 1rem;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .profile-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid var(--white);
+        margin: 0 auto 10px;
+        overflow: hidden;
+      }
+
+      .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .profile-name {
+        color: var(--white);
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .profile-title {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .profile-content {
+        padding: 1rem;
+      }
+
+      .profile-bio {
+        color: #666;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 2rem 3rem;
+        overflow-y: auto;
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+        background: var(--white);
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 400px;
+        height: 400px;
+        background: var(--gradient);
+        border-radius: 50%;
+        opacity: 0.1;
+        z-index: 0;
+      }
+
+      .hero-content {
+        flex: 1;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        color: var(--secondary);
+        font-weight: 800;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+        max-width: 500px;
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        z-index: 1;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .hero-image img:hover {
+        transform: scale(1.05);
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        color: var(--dark);
+        position: relative;
+        display: inline-block;
+        font-weight: 700;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 4px;
+        background: var(--gradient);
+        border-radius: 2px;
+      }
+
+      .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .course-item {
+        background: var(--white);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        animation: fadeInUp 0.5s ease;
+      }
+
+      .course-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .course-img {
+        height: 180px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .course-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .course-img:hover img {
+        transform: scale(1.1);
+      }
+
+      .course-info {
+        padding: 1.5rem;
+      }
+
+      .course-info h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .course-info p {
+        color: #666;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+
+      footer {
+        background: var(--white);
+        color: var(--secondary);
+        padding: 4rem 5% 2rem;
+        border-top: 1px solid #eee;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .footer-column h3::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 30px;
+        height: 3px;
+        background: var(--secondary);
+      }
+
+      .footer-column ul {
+        list-style: none;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-column ul li a {
+        color: var(--secondary);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-column ul li a:hover {
+        color: var(--primary);
+        padding-left: 5px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: rgba(53, 80, 107, 0.1);
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background: rgba(53, 80, 107, 0.2);
+        transform: translateY(-3px);
+      }
+
+      .social-icons img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #eee;
+        color: var(--secondary);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .contact-item i {
+        font-size: 1.2rem;
+        color: var(--primary);
+      }
+
+      @media (max-width: 992px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          padding: 1.5rem;
+        }
+
+        .main-content {
+          padding: 1.5rem;
+        }
+
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding: 2rem;
+        }
+
+        .hero-content {
+          margin-bottom: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          flex-wrap: wrap;
+        }
+
+        nav ul {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 80px;
+          left: 0;
+          width: 100%;
+          background: var(--white);
+          box-shadow: var(--shadow);
+          padding: 1rem;
+        }
+
+        nav ul.active {
+          display: flex;
+        }
+
+        .dropdown-menu {
+          position: static;
+          box-shadow: none;
+          background: var(--light);
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .courses-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          height: calc(100vh - 80px);
+          transition: var(--transition);
+          z-index: 999;
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--dark);
+        cursor: pointer;
+      }
+    </style>
+    <!-- Header -->
+    <style>
+      .header {
+        background-color: white;
+        padding: 10px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-menu li {
+        position: relative;
+        margin-left: 20px;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: #024672;
+        font-weight: 500;
+        font-size: 16px;
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .nav-menu a:hover {
+        color: #2c3e50;
+      }
+
+      .logo img {
+        height: 80px;
+        width: auto;
+      }
+
+      /* Dropdown Styles */
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        min-width: 200px;
+        box-shadow: var(--shadow);
+        border-radius: 5px;
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 100;
+        list-style: none;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .dropdown-menu li {
+        margin: 0;
+        padding: 0;
+      }
+
+      .dropdown-menu a {
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text);
+        white-space: nowrap;
+      }
+
+      .dropdown-menu a:hover {
+        background: var(--light);
+        color: var(--secondary);
+      }
+
+      .dropdown-divider {
+        height: 1px;
+        background: #eee;
+        margin: 5px 0;
+      }
+
+      /* Mobile Navigation */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: var(--secondary);
+        cursor: pointer;
+      }
+
+      @media (max-width: 992px) {
+        .nav-menu li {
+          margin-left: 15px;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .course-box {
+          width: calc(50% - 30px);
+        }
+
+        .services-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .destinations-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          flex-wrap: wrap;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+          /* order: 1; */
+        }
+
+        .logo {
+          /* order: 2; */
+          flex: 1;
+          text-align: center;
+        }
+
+        .nav-menu {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          order: 3;
+          padding: 20px 0;
+          background: white;
+        }
+
+        .nav-menu.active {
+          display: flex;
+        }
+
+        .nav-menu li {
+          margin: 10px 0;
+          text-align: center;
+          margin-left: 0;
+        }
+
+        .dropdown-menu {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          box-shadow: none;
+          display: none;
+          background: #f9f9f9;
+          margin-top: 5px;
+        }
+
+        .dropdown.active .dropdown-menu {
+          display: block;
+        }
+
+        .dropdown-toggle::after {
+          content: "+";
+          margin-left: 5px;
+        }
+
+        .dropdown.active .dropdown-toggle::after {
+          content: "-";
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header & Navigation -->
+    <header class="header">
+      <div class="header-container">
+        <a href="../index.html" class="logo">
+          <img src="../images\GTO.png" alt="Globetrek Overseas" class="w-full w-auto h-[68px]" />
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="about-us.html">About Us</a></li>
+
+          <!-- Courses Dropdown -->
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle">Courses <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="IELTS EXAM.html"><i class="fas fa-book"></i>IELTS</a>
+              </li>
+              <li>
+                <a href="coming soon  page.html"><i class="fas fa-book"></i>PTE</a>
+              </li>
+              <li>
+                <a href="coming soon  page.html"><i class="fas fa-book"></i>GMAT</a>
+              </li>
+              <li>
+                <a href="coming soon  page.html"><i class="fas fa-book"></i>GRE</a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Our Services Dropdown -->
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle">Our Services <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="academic&course.html"><i class="fas fa-user-graduate"></i> Academic & Course
+                  Counseling</a>
+              </li>
+              <li>
+                <a href="university selection.html"><i class="fas fa-university"></i> University Selection &
+                  Applications</a>
+              </li>
+              <li>
+                <a href="visa assistance.html"><i class="fas fa-passport"></i> Visa Assistance</a>
+              </li>
+              <li>
+                <a href="scholarships.html"><i class="fas fa-hand-holding-usd"></i> Scholarships &
+                  Funding Guidance</a>
+              </li>
+              <li>
+                <a href="pre departure.html"><i class="fas fa-plane-departure"></i> Pre-Departure &
+                  Post-Arrival Support</a>
+              </li>
+              <li>
+                <a href="channel partner.html"><i class="fas fa-handshake"></i> Channel Partner Support</a>
+              </li>
+            </ul>
+          </li>
+          <!-- Study Destinations Dropdown -->
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle">Study Destinations <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="united states.html">
+                  <img src="../images/usa-flag.png" alt="USA" class="w-5 h-5"> United States</a>
+              </li>
+              <li>
+                <a href="uk.html">
+                  <img src="../images/uk-flag.png" alt="USA" class="w-5 h-5"> United Kingdom</a>
+              </li>
+              <li>
+                <a href="australia.html"><img src="../images/au-flag.png" alt="USA" class="w-5 h-5"> Australia</a>
+              </li>
+              <li>
+                <a href="switzerland.html"><img src="../images/sw-flag.png" alt="USA" class="w-5 h-5"> Switzerland</a>
+              </li>
+              <li>
+                <a href="germany.html"><img src="../images/ge-flag.png" alt="USA" class="w-5 h-5"> Germany</a>
+              </li>
+              <li class="dropdown-divider"></li>
+            </ul>
+          </li>
+          <li><a href="success stories.html">Success Stories</a></li>
+          <li><a href="News&Articles.html">News&Articles</a></li>
+          <li><a href="contact us.html">Contact Us</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="container">
+      <aside class="sidebar">
+        <h2 class="sidebar-title"><i class="fas fa-book-open"></i> Course Categories</h2>
+        <div class="category-box">
+          <div class="category-header">
+            <h3>English Proficiency</h3>
+            <span class="toggle-icon"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="category-content">
+            <div class="course-cards">
+              <div class="course-card">
+                <div class="course-icon">
+                  <img src="/images/IELTS.png" alt="IELTS Course">
+                </div>
+                <h4>IELTS</h4>
+                <p>International English Language Testing System</p>
+                <div class="course-actions">
+                  <a href="/pages/IELTS EXAM.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+                  <a href="/pages/online batches.html" class="btn-enroll-sm">Choose Your Batches</a>
+                </div>
+              </div>
+              <div class="course-card">
+                <div class="course-icon">
+                  <img src="/images/PTE.png" alt="PTE Course">
+                </div>
+                <h4>PTE</h4>
+                <p>Pearson Test of English Academic</p>
+                <div class="course-actions">
+                  <a href="/pages/coming soon  page.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+                  <a href="/pages/coming soon  page.html" class="btn-enroll-sm">Choose Your Batches</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="category-box">
+          <div class="category-header">
+            <h3>Entrance Exam</h3>
+            <span class="toggle-icon"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="category-content">
+            <div class="course-cards">
+              <div class="course-card">
+                <div class="course-icon">
+                  <img src="/images/GMAT.png" alt="GMAT Course">
+                </div>
+                <h4>GMAT</h4>
+                <p>Graduate Management Admission Test</p>
+                <div class="course-actions">
+                  <a href="/pages/coming soon  page.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+                  <a href="/pages/coming soon  page.html" class="btn-enroll-sm">Choose Your Batches</a>
+                </div>
+              </div>
+              <div class="course-card">
+                <div class="course-icon">
+                  <img src="/images/GRE.png" alt="GRE Course">
+                </div>
+                <h4>GRE</h4>
+                <p>Graduate Record Examinations</p>
+                <div class="course-actions">
+                  <a href="/pages/coming soon  page.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+                  <a href="/pages/coming soon  page.html" class="btn-enroll-sm">Choose Your Batches</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="category-box">
+          <div class="category-header">
+            <h3>Faculty Profile</h3>
+            <span class="toggle-icon"><i class="fas fa-chevron-right"></i></span>
+          </div>
+          <div class="category-content">
+            <div class="course-cards">
+              <div class="faculty-card">
+                <div class="profile-header">
+                  <div class="profile-image">
+                    <img src="/images/Mahak IELTS.jpg" alt="Ms. Mahak Wadhawa">
+                  </div>
+                  <h4 class="profile-name">Ms. Mahak Wadhawa</h4>
+                  <p class="profile-title">IELTS Trainer, Globetrek Overseas</p>
+                </div>
+                <div class="profile-content">
+                  <p class="profile-bio">
+                    BTech Graduate, Certified IELTS Trainer
+                    4+ years of experience in IELTS Training and Language Development
+                    Helped 500+ students achieve 7+ Band score in past years.
+                  </p>
+                </div>
+              </div>
+              <div class="faculty-card">
+                <div class="profile-header">
+                  <div class="profile-image">
+                    <img src="/images/Suhani IELTS.jpg" alt="Ms. Suhani Gulati">
+                  </div>
+                  <h4 class="profile-name">Ms. Suhani Gulati</h4>
+                  <p class="profile-title">IELTS/PTE Trainer</p>
+                </div>
+                <div class="profile-content">
+                  <p class="profile-bio">
+                    Master's in English, PhD in progress.
+                    Result-driven IELTS and PTE training with a track record of helping students achieve target scores.
+                    Trusted for effective and confidence-building preparation.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="hero" id="home">
+          <div class="hero-content">
+            <h1>Master English & Aptitude Exams with Confidence!</h1>
+            <p>Join thousands of successful students who have achieved their dream scores with our expert-led courses and personalized learning paths.</p>
+            <a href="/pages/online batches.html" class="btn btn-enroll" data-course="ielts"> Start Learning Today</a>
+
+          </div>
+          <div class="hero-image">
+            <img src="/images/Master english.png" alt="Exam preparation image">
+          </div>
+        </section>
+
+        <section id="courses">
+          <h2 class="section-title">Featured Courses</h2>
+          <div class="courses-grid">
+            <div class="course-item">
+              <div class="course-img">
+                <img src="/images/IELTS.png" alt="IELTS Program">
+              </div>
+              <div class="course-info">
+                <h3>IELTS Program</h3>
+                <p>Comprehensive preparation for all IELTS modules with expert instructors and personalized feedback.</p>
+                <div class="course-actions">
+                  <a href="/pages/IELTS EXAM.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+                  <a href="/pages/online batches.html" class="btn-enroll-sm">Choose Your Batches</a>
+                </div>
+              </div>
+            </div>
+            <div class="course-item">
+              <div class="course-img">
+                <img src="/images/PTE.png" alt="PTE Academic Success">
+              </div>
+              <div class="course-info">
+                <h3>PTE Academic Success</h3>
+                <p>Master the computer-based PTE exam with our AI-powered practice tests and detailed analytics.</p>
+                <div class="course-actions">
+                  <a href="/pages/coming soon  page.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+                  <a href="/pages/coming soon  page.html" class="btn-enroll-sm">Choose Your Batches</a>
+                </div>
+              </div>
+            </div>
+            <div class="course-item">
+              <div class="course-img">
+                <img src="/images/GMAT.png" alt="GMAT Quantitative Focus">
+              </div>
+              <div class="course-info">
+                <h3>GMAT Quantitative Focus</h3>
+                <p>Boost your quantitative reasoning skills with targeted practice and strategic problem-solving techniques.</p>
+                <div class="course-actions">
+                  <a href="/pages/coming soon  page.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+                  <a href="/pages/coming soon  page.html" class="btn-enroll-sm">Choose Your Batches</a>
+                </div>
+              </div>
+            </div>
+            <div class="course-item">
+              <div class="course-img">
+                <img src="/images/GRE.png" alt="GRE Comprehensive Prep">
+              </div>
+              <div class="course-info">
+                <h3>GRE Comprehensive Prep</h3>
+                <p>Complete preparation for all GRE sections with extensive practice materials and vocabulary building.</p>
+                <div class="course-actions">
+                  <a href="/pages/coming soon  page.html" class="btn-learn"><i class="fas fa-arrow-right"></i> Learn More</a>
+                  <a href="/pages/coming soon  page.html" class="btn-enroll-sm">Choose Your Batches</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer" style="
+            background-color: white;
+            color: #023e65;
+            padding: 40px 0 20px;
+            border-top: 1px solid #eee;
+          ">
+      <div class="footer-grid" style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              gap: 30px;
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 20px;
+            ">
+        <!-- Company Info Column -->
+        <div class="footer-col">
+          <a href="../index.html" class="logo" style="text-align: center">
+            <img src="../images\GTO.png" alt="Globetrek Overseas" style="height: 80px; margin-bottom: 20px" />
+          </a>
+          <p class="footer-about" style="
+                  text-align:  right center;
+                  line-height: 1.6;
+                  margin-bottom: 25px;
+                  color: #023e65;
+                ">
+            <span style="font-weight: bold;"> We are a leading study abroad consultancy dedicated to helping
+              students achieve their international education dreams.</span>
+          </p>
+          <div class="footer-section">
+            <h3 style="
+                    text-align: right center;
+                    margin-bottom: 15px;
+                    font-size: 1.4rem;
+                    color: #015f18;
+                  ">
+              <span style="font-weight: bold;">Follow Us</span>
+            </h3>
+            <div class="social-links" style="
+                    display: flex;
+                    justify-content:  right center;
+                    gap: 15px;
+                    margin-bottom: 20px;
+                  ">
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/gtoieltspathway?igsh=MXZvMzUwZHAybXhpYg==" class="social-icon" style="
+                      display: inline-block;
+                      width: 40px;
+                      height: 40px;
+                      transition: all 0.5s ease;
+                    " onclick="animateIcon(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" style="width: 100%; height: 100%; object-fit: contain" />
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/company/globetrek-overseas/" class="social-icon" style="
+                      display: inline-block;
+                      width: 40px;
+                      height: 40px;
+                      transition: all 0.5s ease;
+                    " onclick="animateIcon(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 100%; height: 100%; object-fit: contain" />
+              </a>
+
+              <!-- WhatsApp -->
+              <a href="https://wa.me/919311331899" target="_blank" class="social-icon" style="
+                      display: inline-block;
+                      width: 40px;
+                      height: 40px;
+                      transition: all 0.3s ease;
+                    " onclick="animateIcon(this)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 100%; height: 100%; object-fit: contain" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-col">
+          <h3 class="footer-links-title font-bold !text-[#023e65]" style="
+                              font-size: 1.2rem;
+                              margin-bottom: 20px;
+                              position: relative;
+                              padding-bottom: 10px;
+                              color: #333;
+                            ">
+            Quick Links
+            <span style="
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                width: 60px;
+                                height: 3px;
+                                background-color: #02406a;
+                              "></span>
+          </h3>
+          <ul class="footer-links" style="list-style: none; padding: 0">
+            <li style="margin-bottom: 10px">
+              <a href="about-us.html" style="
+                                  color: #01500c;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">About Us</span></a>
+
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="academic&course.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">Our Services</span></a>
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="united states.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">Study Destinations</span></a>
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="success stories.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">Success Stories</span></a>
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="News&Articles.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">News&Article</span></a>
+            </li>
+            <li style="margin-bottom: 10px">
+              <a href="contact us.html" style="
+                                  color: #2D6F41;
+                                  text-decoration: none;
+                                  transition: color 0.3s;
+                                "> <span style="font-weight: bold;">Contact</span></a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info Column -->
+        <div class="footer-col">
+          <h3 class="footer-contact-title font-bold !text-[#023e65]" style="
+                  font-size: 1.2rem;
+                  margin-bottom: 20px;
+                  position: relative;
+                  padding-bottom: 10px;
+                  color: #333;
+                ">
+            Contact Us
+            <span style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 50px;
+                    height: 2px;
+                    background-color: #023e65;
+                  "></span>
+          </h3>
+          <div class="contact-item" style="display: flex; margin-bottom: 15px">
+            <i class="fas fa-map-marker-alt" style="margin-right: 10px; margin-top: 5px; color: #023e65"></i>
+            <p style="margin: 0; line-height: 1.5; color: #023e65">
+              <span style="font-weight: bold;">Tower 4 - 1210 Asshotech business cresterra<br>Sector 135 Noida,<br> Uttar
+                Pradesh 201304</span>
+            </p>
+          </div>
+          <div class="contact-item" style="display: flex; margin-bottom: 15px">
+            <i class="fas fa-phone-alt" style="margin-right: 10px; margin-top: 5px; color: #023e65"></i>
+            <div>
+              <p style="margin: 0 0 5px 0">
+                <a href="tel:+919311331899" style="color: #023e65; text-decoration: none"> <span style="font-weight: bold;">+91 93113 31899</span></a>
+              </p>
+              <p style="margin: 0">
+                <a href="tel:+919211313899" style="color: #023e65; text-decoration: none"> <span style="font-weight: bold;">+91 92113 13899</span></a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item" style="display: flex; margin-bottom: 15px">
+            <i class="fas fa-envelope" style="margin-right: 10px; margin-top: 5px; color: #023e65"></i>
+            <p style="margin: 0">
+              <a href="mailto:Headoffice@globetrekoverseas.com" style="color: #023e65; text-decoration: none"> <span style="font-weight: bold;">Headoffice@globetrekoverseas.com</span></a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom" style="
+              text-align: center;
+              padding-top: 30px;
+              margin-top: 30px;
+              border-top: 1px solid #eee;
+            ">
+        <p style="margin: 0; font-size: 0.9rem; color: #023e65">
+          <span style="font-weight: bold;">&copy;2023 Globetrek Overseas. All Rights Reserved.</span>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // DOM Elements
+      const mobileMenuBtn = document.querySelector('#mobileMenuBtn');
+      const navMenu = document.querySelector('#navMenu');
+      const sidebar = document.querySelector('.sidebar');
+      const categoryBoxes = document.querySelectorAll('.category-box');
+
+      // Toggle mobile menu
+      mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        sidebar.classList.toggle('active');
+        mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+        mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+      });
+
+      // Toggle category boxes
+      categoryBoxes.forEach(box => {
+        box.querySelector('.category-header').addEventListener('click', () => {
+          categoryBoxes.forEach(otherBox => {
+            if (otherBox !== box) otherBox.classList.remove('active');
+          });
+          box.classList.toggle('active');
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+          if (navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            sidebar.classList.remove('active');
+            mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+          }
+        });
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && !sidebar.contains(e.target)) {
+          navMenu.classList.remove('active');
+          sidebar.classList.remove('active');
+          mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+          mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+          navMenu.classList.remove('active');
+          sidebar.classList.remove('active');
+          mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+          mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+        }
+      });
+    </script>
+  </body>
+</html>
