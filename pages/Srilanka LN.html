@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solidarity with Sri Lanka | Globetrek Overseas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #003366;    /* Dark blue */
+            --secondary-blue: #0066cc;   /* Medium blue */
+            --accent-blue: #4da6ff;      /* Light blue */
+            --highlight: #ffcc00;        /* Gold accent */
+            --light-bg: #f0f8ff;         /* Very light blue */
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-border: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles - WHITE VERSION with BLUE TEXT */
+        .header {
+            background-color: var(--white);
+            padding: 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-border);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu > li {
+            margin-left: 25px;
+        }
+        
+        .nav-menu a {
+            color: var(--primary-blue);  /* PRIMARY BLUE TEXT */
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--secondary-blue);  /* Lighter blue on hover */
+        }
+        
+        .nav-menu .active {
+            color: var(--primary-blue);
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .nav-menu .active:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--highlight);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            min-width: 220px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            padding: 10px 0;
+            border: 1px solid var(--gray-border);
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+        }
+        
+        .dropdown-menu a {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            color: var(--primary-blue);  /* PRIMARY BLUE TEXT */
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: var(--light-bg);
+            color: var(--secondary-blue);
+            padding-left: 25px;
+        }
+        
+        .dropdown-menu a i {
+            color: var(--primary-blue);
+            width: 18px;
+        }
+        
+        .dropdown-menu img {
+            width: 20px;
+            height: auto;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-blue); 
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+       
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/images/Sri\ Lanka.png);
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0 100px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+        
+        .flag-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        
+        .flag {
+            width: 300px;
+            height: 150px;
+            background: linear-gradient(to bottom, #FFBE29 33%, #8D1538 33% 66%, #00534E 66%);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flag::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 100%;
+            background-color: #8D1538;
+        }
+        
+        
+        .crisis-overview {
+            background-color: var(--white);
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--highlight);
+        }
+        
+        .crisis-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .crisis-card {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--secondary-blue);
+            transition: transform 0.3s ease;
+        }
+        
+        .crisis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .crisis-card i {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+        
+        .crisis-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+       
+        .support-section {
+            background-color: var(--light-bg);
+            padding: 60px 0;
+        }
+        
+        .support-message {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary-blue);
+        }
+        
+        .quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .quote-author {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--gray-border);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .value-item i {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 15px;
+        }
+        
+        .value-item h3 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+        
+        
+        .about-section {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 60px 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+        
+        .mission-statement {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 25px;
+            border-left: 4px solid var(--highlight);
+        }
+        
+       
+        .footer {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            padding: 50px 20px 20px;
+            border-top: 1px solid var(--gray-border);
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            color: var(--primary-blue); 
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3 span {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--highlight);
+        }
+        
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+            margin-bottom: 15px;
+        }
+        
+        .footer-about {
+            color: var(--primary-blue);  
+            opacity: 0.8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: var(--light-bg);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-3px);
+        }
+        
+        .social-icon img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .social-icon:hover img {
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--primary-blue);  
+            opacity: 0.8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-blue);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: var(--primary-blue); 
+            opacity: 0.8;
+        }
+        
+        .contact-item i {
+            color: var(--primary-blue);  
+            opacity: 0.8;
+            margin-right: 10px;
+            margin-top: 3px;
+            width: 20px;
+        }
+        
+        .contact-item a {
+            color: var(--primary-blue);  
+            opacity: 0.8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item a:hover {
+            color: var(--secondary-blue);
+            opacity: 1;
+        }
+        
+        .contact-item p {
+            color: var(--primary-blue);  
+            opacity: 0.8;
+        }
+        
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-border);
+            text-align: center;
+            color: var(--primary-blue);  
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid var(--gray-border);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu > li {
+                margin: 0 0 15px 0;
+                width: 100%;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background-color: var(--light-bg);
+                margin-top: 10px;
+                margin-left: 15px;
+                display: none;
+                border: none;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .support-message {
+                padding: 25px;
+            }
+            
+            .quote {
+                font-size: 1.2rem;
+            }
+            
+            .flag {
+                width: 250px;
+                height: 125px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .flag {
+                width: 200px;
+                height: 100px;
+            }
+            
+            .crisis-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-container {
+                padding: 10px 15px;
+            }
+            
+            .hero-section {
+                padding: 60px 0 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../images/GTO.png" alt="Globetrek Overseas">
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="about-us.html">About Us</a></li>
+
+                <!-- Courses Dropdown -->
+                <li class="dropdown" id="coursesDropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle">Courses <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="IELTS EXAM.html"><i class="fas fa-book"></i>IELTS</a>
+                        </li>
+                        <li>
+                            <a href="coming soon  page.html"><i class="fas fa-book"></i>PTE</a>
+                        </li>
+                        <li>
+                            <a href="coming soon  page.html"><i class="fas fa-book"></i>GMAT</a>
+                        </li>
+                        <li>
+                            <a href="coming soon  page.html"><i class="fas fa-book"></i>GRE</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Our Services Dropdown -->
+                <li class="dropdown" id="servicesDropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle"> Our Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="academic&course.html"><i class="fas fa-user-graduate"></i>Academic & Course Counseling</a>
+                        </li>
+                        <li>
+                            <a href="university selection.html"><i class="fas fa-university"></i>University Selection & Applications</a>
+                        </li>
+                        <li>
+                            <a href="visa assistance.html"><i class="fas fa-passport"></i>Visa Assistance</a>
+                        </li>
+                        <li>
+                            <a href="scholarships.html"><i class="fas fa-hand-holding-usd"></i>Scholarships & Funding Guidance</a>
+                        </li>
+                        <li>
+                            <a href="pre departure.html"><i class="fas fa-plane-departure"></i> Pre-Departure & Post-Arrival Support</a>
+                        </li>
+                        <li>
+                            <a href="channel partner.html"><i class="fas fa-handshake"></i> Channel Partner Support</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <!-- Study Destinations Dropdown -->
+                <li class="dropdown" id="destinationsDropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle">Study Destinations<i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="united states.html">
+                                <img src="../images/usa-flag.png" alt="USA"> United States
+                            </a>
+                        </li>
+                        <li>
+                            <a href="uk.html">
+                                <img src="../images/uk-flag.png" alt="UK"> United Kingdom
+                            </a>
+                        </li>
+                        <li>
+                            <a href="australia.html">
+                                <img src="../images/au-flag.png" alt="Australia"> Australia
+                            </a>
+                        </li>
+                        <li>
+                            <a href="switzerland.html">
+                                <img src="../images/sw-flag.png" alt="Switzerland"> Switzerland
+                            </a>
+                        </li>
+                        <li>
+                            <a href="germany.html">
+                                <img src="../images/ge-flag.png" alt="Germany"> Germany
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li><a href="success stories.html">Success Stories</a></li>
+                <li><a href="N&A.html" class="active">News&Articles</a></li>
+                <li><a href="contact us.html">Contact</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Prayers for Sri Lanka</h1>
+            <p class="hero-subtitle">Globetrek Overseas stands in solidarity with the people of Sri Lanka during this devastating flood crisis. We extend our heartfelt prayers and support to all affected communities.</p>
+            
+            <div class="flag-container">
+                <div class="flag"></div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="crisis-overview">
+        <div class="container">
+            <h2 class="section-title">Severe Floods Bring Widespread Devastation</h2>
+            <p style="text-align: center; max-width: 900px; margin: 0 auto 40px; font-size: 1.1rem; color: var(--text-light);">
+                Sri Lanka is currently facing one of its most challenging moments as continuous heavy rainfall has triggered severe flooding across multiple regions. Entire communities have been displaced, homes destroyed, and thousands of families are struggling to cope with the sudden impact.
+            </p>
+            
+            <div class="crisis-content">
+                <div class="crisis-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Displaced Communities</h3>
+                    <p>Thousands of families have been forced to evacuate their homes as floodwaters inundate residential areas. Emergency shelters are at capacity as rescue operations continue around the clock.</p>
+                </div>
+                
+                <div class="crisis-card">
+                    <i class="fas fa-handshake-angle"></i>
+                    <h3>Rescue Operations</h3>
+                    <p>Military personnel, emergency response units, and volunteers are working tirelessly to evacuate residents trapped in submerged areas. Access to many regions remains challenging due to damaged infrastructure.</p>
+                </div>
+                
+                <div class="crisis-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Critical Services Affected</h3>
+                    <p>Essential services including electricity, transportation, and communication networks have been severely disrupted, hampering relief efforts and isolating affected communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="support-section">
+        <div class="container">
+            <h2 class="section-title">Our Message of Support</h2>
+            
+            <div class="support-message">
+                <p class="quote">"Globetrek Overseas expresses heartfelt solidarity with all families affected by the devastating floods. We stand with you in this difficult time."</p>
+                <p class="quote-author">— Globetrek Overseas Leadership</p>
+                
+                <p style="margin-top: 25px; color: var(--text-light);">We recognize the emotional, physical, and economic hardship that these floods have brought upon countless individuals. Our thoughts are with every family, rescue worker, volunteer, and community leader working tirelessly to save lives and provide relief.</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-item">
+                    <i class="fas fa-heart"></i>
+                    <h3>Compassion</h3>
+                    <p>Extending empathy and understanding to those affected by the crisis</p>
+                </div>
+                
+                <div class="value-item">
+                    <i class="fas fa-people-group"></i>
+                    <h3>Global Unity</h3>
+                    <p>Standing together as a global community in times of need</p>
+                </div>
+                
+                <div class="value-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Solidarity</h3>
+                    <p>Showing unwavering support for the people of Sri Lanka</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Globetrek Overseas</h2>
+                    <p>Globetrek Overseas is committed not only to supporting students in their international education journeys but also to showing solidarity with global communities in times of crisis. Humanity and empathy are at the core of our values.</p>
+                    
+                    <div class="mission-statement">
+                        <p><i class="fas fa-star" style="color: var(--highlight); margin-right: 10px;"></i> We believe in the power of global citizenship and the responsibility we all share to support one another during difficult times, regardless of borders or backgrounds.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--highlight); margin-bottom: 15px;">Our Commitment</h3>
+                    <ul style="list-style-position: inside; margin-top: 15px; color: #e0e0e0;">
+                        <li style="margin-bottom: 10px; padding-left: 10px;">Supporting international education and cultural exchange</li>
+                        <li style="margin-bottom: 10px; padding-left: 10px;">Promoting global solidarity in times of crisis</li>
+                        <li style="margin-bottom: 10px; padding-left: 10px;">Fostering empathy and humanitarian values</li>
+                        <li style="margin-bottom: 10px; padding-left: 10px;">Building bridges between communities worldwide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <!-- Company Info Column -->
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="../images/GTO.png" alt="Globetrek Overseas">
+                </div>
+                <p class="footer-about">
+                    We are a leading study abroad consultancy dedicated to helping students achieve their international education dreams.
+                </p>
+                <div class="footer-section">
+                    <h3>Follow Us<span></span></h3>
+                    <div class="social-links">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/gtoieltspathway?igsh=MXZvMzUwZHAybXhpYg==" class="social-icon" onclick="animateIcon(this)">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" />
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/company/globetrek-overseas/" class="social-icon" onclick="animateIcon(this)">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" />
+                        </a>
+
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/919311331899" target="_blank" class="social-icon" onclick="animateIcon(this)">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div class="footer-col">
+                <h3 class="footer-links-title">
+                    Quick Links
+                    <span></span>
+                </h3>
+                <ul class="footer-links">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="academic&course.html">Our Services</a></li>
+                    <li><a href="united states.html">Study Destinations</a></li>
+                    <li><a href="success stories.html">Success Stories</a></li>
+                    <li><a href="N&A.html">News&Articles</a></li>
+                    <li><a href="contact us.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info Column -->
+            <div class="footer-col">
+                <h3 class="footer-contact-title">
+                    Contact Us
+                    <span></span>
+                </h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Tower 4 - 1210 Asshotech business cresterra<br>Sector 135 Noida,<br> Uttar Pradesh 201304</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <p><a href="tel:+919311331899">+91 93113 31899</a></p>
+                        <p><a href="tel:+919211313899">+91 92113 13899</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p><a href="mailto:Headoffice@globetrekoverseas.com">Headoffice@globetrekoverseas.com</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy;2023 Globetrek Overseas. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            // Toggle mobile menu
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Handle dropdowns on mobile
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 992) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                        
+                        // Close other dropdowns
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Simple animation for crisis cards on scroll
+            const crisisCards = document.querySelectorAll('.crisis-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            crisisCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Add current date to footer
+            const date = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const currentDate = date.toLocaleDateString('en-US', options);
+            
+            const dateElement = document.createElement('p');
+            dateElement.textContent = `Page last updated: ${currentDate}`;
+            dateElement.style.marginTop = '10px';
+            dateElement.style.fontSize = '0.8rem';
+            dateElement.style.color = 'var(--primary-blue)';
+            dateElement.style.opacity = '0.7';
+            document.querySelector('.footer-bottom').appendChild(dateElement);
+            
+            // Social icon animation function
+            window.animateIcon = function(element) {
+                element.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    element.style.transform = 'scale(1)';
+                }, 200);
+            };
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992 && 
+                    !navMenu.contains(e.target) && 
+                    !mobileMenuBtn.contains(e.target) &&
+                    navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Highlight active link
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage || (currentPage === '' && linkPage === '../index.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
