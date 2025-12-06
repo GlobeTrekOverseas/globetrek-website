@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Articles | GlobeTrek Overseas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #023e65;
+            --secondary: #e63946;
+            --accent: #f1faee;
+            --light: #f8f9fa;
+            --dark: #1d3557;
+            --text: #333;
+            --text-light: #6c757d;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        
+        .header {
+            background-color: white;
+            padding: 0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 90px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-menu a.active {
+            color: var(--secondary);
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+       
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 250px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 15px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            list-style: none;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            padding: 12px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text);
+            font-weight: 500;
+            border-left: 4px solid transparent;
+            font-size: 15px;
+        }
+
+        .dropdown-menu a:hover {
+            background: linear-gradient(90deg, rgba(2, 62, 101, 0.05) 0%, rgba(230, 57, 70, 0.05) 100%);
+            color: var(--secondary);
+            border-left-color: var(--secondary);
+        }
+
+        .dropdown-menu img.w-5 {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+            margin: 10px 0;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 5px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        
+        .header-image-section {
+            width: 100%;
+            height: 500px;
+            margin-top: 90px; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85);
+            animation: zoomInOut 20s infinite alternate;
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        .header-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .header-image-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .header-image-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-image-content p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+       
+        .page-content {
+            padding: 80px 0;
+            flex: 1;
+        }
+
+       
+        .featured-article {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        .featured-article:hover {
+            transform: translateY(-10px);
+        }
+
+        .featured-image {
+            height: 100%;
+            min-height: 450px;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-article:hover .featured-image img {
+            transform: scale(1.05);
+        }
+
+        .featured-content {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary) 0%, #c1121f 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            align-self: flex-start;
+        }
+
+        .featured-title {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            line-height: 1.3;
+            color: var(--dark);
+        }
+
+        .featured-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .featured-title a:hover {
+            color: var(--secondary);
+        }
+
+        .featured-excerpt {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+       
+        .categories-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: 14px 28px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .category-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(2, 62, 101, 0.2);
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(2, 62, 101, 0.2);
+        }
+
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-category {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            align-self: flex-start;
+            text-transform: uppercase;
+        }
+
+        .news-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .news-title a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .news-title a:hover {
+            color: var(--secondary);
+        }
+
+        .news-excerpt {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.7;
+            flex: 2;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+            margin-top: auto;
+        }
+
+        .news-meta i {
+            margin-right: 8px;
+        }
+
+        /* Latest News Section */
+        .latest-news-section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .view-all-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(2, 62, 101, 0.3);
+        }
+
+        /* Latest News Grid - 3x2 layout */
+        .latest-news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 1200px) {
+            .latest-news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .latest-news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .latest-news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .latest-news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .latest-news-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .latest-news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .latest-news-card:hover .latest-news-image img {
+            transform: scale(1.1);
+        }
+
+        .latest-news-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #c1121f 100%);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .latest-news-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .latest-news-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .latest-news-title a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .latest-news-title a:hover {
+            color: var(--secondary);
+        }
+
+        .latest-news-excerpt {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            flex: 2;
+        }
+
+        .latest-news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            margin-top: auto;
+        }
+
+       
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 70px 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+        }
+
+        .newsletter-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-section p {
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 650px;
+            margin: 0 auto 35px;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 550px;
+            margin: 0 auto;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            outline: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .newsletter-form input:focus {
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .newsletter-form button {
+            background: linear-gradient(135deg, var(--secondary) 0%, #c1121f 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.3);
+            font-size: 1.05rem;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.4);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 80px;
+        }
+
+        .page-btn {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-size: 1rem;
+        }
+
+        .page-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(2, 62, 101, 0.2);
+            border-color: var(--primary);
+        }
+
+        .page-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(2, 62, 101, 0.2);
+            border-color: var(--primary);
+        }
+
+       
+        .footer {
+            background-color: white;
+            color: #023e65;
+            padding: 40px 0 20px;
+            border-top: 1px solid #eee;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col {
+            padding: 0 15px;
+        }
+
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 80px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .footer-logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-about {
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #023e65;
+            font-weight: bold;
+        }
+
+        .footer-section h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            color: #015f18;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            transition: all 0.5s ease;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid transparent;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .social-icon:hover img {
+            filter: brightness(0) invert(1);
+        }
+
+        .social-icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            transition: filter 0.3s;
+        }
+
+        .footer-links-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .footer-links-title span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #02406a;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #01500c;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: bold;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-contact-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .footer-contact-title span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #023e65;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-item i {
+            color: #023e65;
+            margin-top: 5px;
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+
+        .contact-item p,
+        .contact-item a {
+            color: #023e65;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #023e65;
+            font-weight: bold;
+        }
+
+        
+        @media (max-width: 1200px) {
+            .container, .header-container {
+                max-width: 100%;
+            }
+            
+            .header-image-content h1 {
+                font-size: 3rem;
+            }
+            
+            .latest-news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                gap: 25px;
+            }
+            
+            .featured-article {
+                gap: 40px;
+            }
+            
+            .featured-title {
+                font-size: 2.2rem;
+            }
+            
+            .header-image-section {
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu {
+                gap: 20px;
+            }
+            
+            .nav-menu a {
+                font-size: 15px;
+            }
+            
+            .featured-content {
+                padding: 40px;
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 30px;
+            }
+            
+            .header-image-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .header-image-content p {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                background: white;
+                width: 100%;
+                height: calc(100vh - 90px);
+                flex-direction: column;
+                padding: 40px 20px;
+                transition: left 0.4s ease;
+                overflow-y: auto;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0 0 20px 0;
+                width: 100%;
+            }
+
+            .nav-menu a {
+                color: var(--text);
+                font-size: 1.2rem;
+                padding: 15px 20px;
+                border-radius: 10px;
+                width: 100%;
+            }
+
+            .nav-menu a:hover, .nav-menu a.active {
+                background: linear-gradient(90deg, rgba(2, 62, 101, 0.1) 0%, rgba(230, 57, 70, 0.1) 100%);
+            }
+
+            .nav-menu a.active::after {
+                width: 5px;
+                height: 100%;
+                left: 0;
+                top: 0;
+                bottom: 0;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: rgba(2, 62, 101, 0.05);
+                margin: 15px 0;
+                display: none;
+                min-width: auto;
+                border-radius: 10px;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                min-height: 350px;
+                height: 350px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+            
+            .header-image-section {
+                height: 400px;
+            }
+            
+            .header-image-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                height: 80px;
+                padding: 0 15px;
+            }
+            
+            .nav-menu {
+                top: 80px;
+                height: calc(100vh - 80px);
+            }
+            
+            .header-image-section {
+                height: 350px;
+                margin-top: 80px;
+            }
+            
+            .header-image-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header-image-content p {
+                font-size: 1.2rem;
+            }
+            
+            .page-content {
+                padding: 60px 0;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-article {
+                margin-bottom: 60px;
+            }
+
+            .featured-content {
+                padding: 30px;
+            }
+
+            .featured-title {
+                font-size: 1.8rem;
+            }
+            
+            .featured-excerpt {
+                font-size: 1.1rem;
+            }
+
+            .categories-filter {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 20px;
+                margin-bottom: 40px;
+                gap: 12px;
+            }
+            
+            .category-btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+
+            .newsletter-section {
+                padding: 50px 30px;
+            }
+
+            .newsletter-section h2 {
+                font-size: 2rem;
+            }
+            
+            .newsletter-section p {
+                font-size: 1.1rem;
+            }
+            
+            .footer-grid {
+                gap: 40px;
+            }
+            
+            .footer {
+                padding: 50px 0 25px;
+            }
+            
+            .latest-news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-container {
+                height: 70px;
+                padding: 0 10px;
+            }
+            
+            .logo img {
+                height: 55px;
+            }
+            
+            .mobile-menu-btn {
+                font-size: 24px;
+            }
+            
+            .nav-menu {
+                top: 70px;
+                height: calc(100vh - 70px);
+            }
+            
+            .header-image-section {
+                height: 300px;
+                margin-top: 70px;
+            }
+            
+            .header-image-content h1 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+            
+            .header-image-content p {
+                font-size: 1.1rem;
+            }
+            
+            .page-content {
+                padding: 40px 0;
+            }
+
+            .featured-article {
+                border-radius: 15px;
+                margin-bottom: 40px;
+            }
+            
+            .featured-image {
+                min-height: 250px;
+                height: 250px;
+            }
+            
+            .featured-content {
+                padding: 25px;
+            }
+            
+            .featured-title {
+                font-size: 1.6rem;
+                margin-bottom: 15px;
+            }
+            
+            .featured-excerpt {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            
+            .featured-badge {
+                padding: 8px 20px;
+                font-size: 0.8rem;
+            }
+
+            .news-card {
+                border-radius: 12px;
+            }
+            
+            .news-content {
+                padding: 25px;
+            }
+            
+            .news-title {
+                font-size: 1.3rem;
+            }
+            
+            .news-excerpt {
+                font-size: 0.95rem;
+            }
+
+            .newsletter-section {
+                padding: 40px 20px;
+                margin-bottom: 60px;
+                border-radius: 15px;
+            }
+            
+            .newsletter-section h2 {
+                font-size: 1.7rem;
+            }
+            
+            .newsletter-section p {
+                font-size: 1rem;
+            }
+            
+            .newsletter-form input, 
+            .newsletter-form button {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .pagination {
+                gap: 10px;
+                margin-bottom: 60px;
+            }
+            
+            .page-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 0.9rem;
+            }
+            
+            .footer {
+                padding: 40px 0 20px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-col {
+                padding: 0 10px;
+                text-align: center;
+            }
+            
+            .footer-links-title span,
+            .footer-contact-title span {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-links a:hover {
+                transform: translateX(5px);
+            }
+            
+            .contact-item {
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-item i {
+                margin: 0 auto;
+            }
+            
+            .footer-about {
+                font-size: 1rem;
+            }
+            
+            .social-links {
+                gap: 10px;
+            }
+            
+            .social-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .social-icon img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .header-image-section {
+                height: 250px;
+            }
+            
+            .header-image-content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .header-image-content p {
+                font-size: 1rem;
+            }
+            
+            .categories-filter {
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .featured-title {
+                font-size: 1.4rem;
+            }
+            
+            .news-title {
+                font-size: 1.2rem;
+            }
+            
+            .footer-links-title,
+            .footer-contact-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .featured-article,
+        .news-card,
+        .latest-news-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../images/GTO.png" alt="Globetrek Overseas">
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="about-us.html">About Us</a></li>
+
+                <!-- Courses Dropdown -->
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle">Courses <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="IELTS EXAM.html"><i class="fas fa-book"></i>IELTS</a>
+                        </li>
+                        <li>
+                            <a href="coming soon  page.html"><i class="fas fa-book"></i>PTE</a>
+                        </li>
+                        <li>
+                            <a href="coming soon  page.html"><i class="fas fa-book"></i>GMAT</a>
+                        </li>
+                        <li>
+                            <a href="coming soon  page.html"><i class="fas fa-book"></i>GRE</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Our Services Dropdown -->
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle"> Our Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="academic&course.html"><i class="fas fa-user-graduate"></i>Academic & Course Counseling</a>
+                        </li>
+                        <li>
+                            <a href="university selection.html"><i class="fas fa-university"></i>University Selection & Applications</a>
+                        </li>
+                        <li>
+                            <a href="visa assistance.html"><i class="fas fa-passport"></i>Visa Assistance</a>
+                        </li>
+                        <li>
+                            <a href="scholarships.html"><i class="fas fa-hand-holding-usd"></i>Scholarships & Funding Guidance</a>
+                        </li>
+                        <li>
+                            <a href="pre departure.html"><i class="fas fa-plane-departure"></i> Pre-Departure & Post-Arrival Support</a>
+                        </li>
+                        <li>
+                            <a href="channel partner.html"><i class="fas fa-handshake"></i> Channel Partner Support</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <!-- Study Destinations Dropdown -->
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle">Study Destinations<i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="united states.html">
+                                <img src="../images/usa-flag.png" alt="USA" class="w-5 h-5"> United States
+                            </a>
+                        </li>
+                        <li>
+                            <a href="uk.html">
+                                <img src="../images/uk-flag.png" alt="UK" class="w-5 h-5"> United Kingdom
+                            </a>
+                        </li>
+                        <li>
+                            <a href="australia.html">
+                                <img src="../images/au-flag.png" alt="Australia" class="w-5 h-5"> Australia
+                            </a>
+                        </li>
+                        <li>
+                            <a href="switzerland.html">
+                                <img src="../images/sw-flag.png" alt="Switzerland" class="w-5 h-5"> Switzerland
+                            </a>
+                        </li>
+                        <li>
+                            <a href="germany.html">
+                                <img src="../images/ge-flag.png" alt="Germany" class="w-5 h-5"> Germany
+                            </a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                    </ul>
+                </li>
+                
+                <li><a href="success stories.html">Success Stories</a></li>
+                <li><a href="N&A.html" class="active">News&Articles</a></li>
+                <li><a href="contact us.html">Contact</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Header Image Section -->
+    <section class="header-image-section">
+        <img src="../images/news & article head.png" alt="Study Abroad News" class="header-image">
+        <div class="header-image-overlay">
+            <div class="header-image-content">
+                <h1>News & Articles</h1>
+                <p>Stay updated with the latest study abroad news, visa updates, exam tips, and inspiring success stories from around the world</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <!-- Featured Article -->
+            <div class="featured-article">
+                <div class="featured-image">
+                    <img src="../images/uk visa guide.png" alt="UK Student Visa Guide">
+                </div>
+                <div class="featured-content">
+                    <span class="featured-badge">Featured Article</span>
+                    <h2 class="featured-title">
+                        <a href="UK Visa student guide.html">Step-by-Step Guide: How to Apply for a Student Visa to the UK (2025 Edition)</a>
+                    </h2>
+                    <p class="featured-excerpt">Everything you need to know about the UK student visa process for 2025. Complete breakdown of eligibility, documents, and application steps to ensure a smooth visa application experience.</p>
+                    <div class="news-meta">
+                        <span><i class="far fa-calendar"></i> 28 August, 2025</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                        <span><i class="fas fa-tag"></i> UK Visa</span>
+                    </div>
+                    <a href="UK Visa student guide.html" class="category-btn active" style="margin-top: 25px; display: inline-block; text-decoration: none; text-align: center;">Read Full Article</a>
+                </div>
+            </div>
+
+            <!-- Categories Filter -->
+            <div class="categories-filter">
+                <button class="category-btn active" data-category="all">All Articles</button>
+                <button class="category-btn" data-category="visa">Visa Guides</button>
+                <button class="category-btn" data-category="exams">Exam Tips</button>
+                <button class="category-btn" data-category="updates">Latest Updates</button>
+            </div>
+
+            <!-- LATEST NEWS SECTION -->
+            <section class="latest-news-section">
+                <div class="section-header">
+                    <h2 class="section-title">Latest News & Updates</h2>
+                </div>
+
+                <!-- Latest News Grid - 3x2 Layout -->
+                <div class="latest-news-grid" id="latestNewsGrid">
+                    <!-- Article 1 -->
+                    <article class="latest-news-card" data-category="exams">
+                        <div class="latest-news-image">
+                            <img src="../images/ielts error.png" alt="IELTS Mistakes">
+                            <span class="latest-news-badge">NEW</span>
+                        </div>
+                        <div class="latest-news-content">
+                            <h3 class="latest-news-title">
+                                <a href="IELTS mistake.html">Top 12 Mistakes That Reduce Your IELTS Score – Avoid These!</a>
+                            </h3>
+                            <p class="latest-news-excerpt">Discover the most common IELTS mistakes students make and learn how to avoid them to achieve your target band score.</p>
+                            <div class="latest-news-meta">
+                                <span><i class="far fa-calendar"></i> 3 Dec, 2025</span>
+                                <span><i class="far fa-clock"></i> 8 min read</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="latest-news-card" data-category="visa">
+                        <div class="latest-news-image">
+                            <img src="../images/uk visa guide.png" alt="UK Visa 2025">
+                            <span class="latest-news-badge">GUIDE</span>
+                        </div>
+                        <div class="latest-news-content">
+                            <h3 class="latest-news-title">
+                                <a href="UK Visa student guide.html">UK Student Visa 2025: Complete Step-by-Step Application Guide</a>
+                            </h3>
+                            <p class="latest-news-excerpt">Everything you need to know about UK student visa requirements, documents, and application process for 2025.</p>
+                            <div class="latest-news-meta">
+                                <span><i class="far fa-calendar"></i> 28 Aug, 2025</span>
+                                <span><i class="far fa-clock"></i> 10 min read</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="latest-news-card" data-category="updates">
+                        <div class="latest-news-image">
+                            <img src="/images/Sri Lanka.png" alt="SriLanka Flood">
+                            <span class="latest-news-badge">UPDATE</span>
+                        </div>
+                        <div class="latest-news-content">
+                            <h3 class="latest-news-title">
+                                <a href="/pages/Srilanka LN.html">SriLanka Flood crisis 2025 (Rising Water , Rising Concerns) </a>
+                            </h3>
+                            <p class="latest-news-excerpt">The recent floods in Sri Lanka have left behind more than just submerged homes—they’ve shaken thousands of families overnight.</p>
+                            <div class="latest-news-meta">
+                                <span><i class="far fa-calendar"></i> 4 Dec 2025</span>
+                                <span><i class="far fa-clock"></i> 6 min read</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Newsletter Section -->
+            <section class="newsletter-section">
+                <h2>Stay Updated with Study Abroad News</h2>
+                <p>Subscribe to our newsletter and get weekly updates on visa changes, scholarship opportunities, and exam tips directly in your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe Now</button>
+                </form>
+            </section>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="page-btn active">1</a>
+                <a href="#" class="page-btn">2</a>
+                <a href="#" class="page-btn">3</a>
+                <a href="#" class="page-btn">4</a>
+                <a href="#" class="page-btn"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <!-- Company Info Column -->
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="../images/GTO.png" alt="Globetrek Overseas">
+                </div>
+                <p class="footer-about">
+                    We are a leading study abroad consultancy dedicated to helping students achieve their international education dreams.
+                </p>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/gtoieltspathway?igsh=MXZvMzUwZHAybXhpYg==" class="social-icon" onclick="animateIcon(this)">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" />
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/company/globetrek-overseas/" class="social-icon" onclick="animateIcon(this)">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" />
+                        </a>
+
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/919311331899" target="_blank" class="social-icon" onclick="animateIcon(this)">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div class="footer-col">
+                <h3 class="footer-links-title">
+                    Quick Links
+                    <span></span>
+                </h3>
+                <ul class="footer-links">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="academic&course.html">Our Services</a></li>
+                    <li><a href="united states.html">Study Destinations</a></li>
+                    <li><a href="success stories.html">Success Stories</a></li>
+                    <li><a href="N&A.html">News&Article</a></li>
+                    <li><a href="contact us.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info Column -->
+            <div class="footer-col">
+                <h3 class="footer-contact-title">
+                    Contact Us
+                    <span></span>
+                </h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Tower 4 - 1210 Asshotech business cresterra<br>Sector 135 Noida,<br> Uttar Pradesh 201304</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <p><a href="tel:+919311331899">+91 93113 31899</a></p>
+                        <p><a href="tel:+919211313899">+91 92113 13899</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p><a href="mailto:Headoffice@globetrekoverseas.com">Headoffice@globetrekoverseas.com</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy;2023 Globetrek Overseas. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', function () {
+            navMenu.classList.toggle('active');
+            // Change icon
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && window.innerWidth <= 900) {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            }
+        });
+
+        // Setup dropdowns for mobile
+        function setupMobileDropdowns() {
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function (e) {
+                    if (window.innerWidth <= 900) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const dropdown = this.parentElement;
+                        
+                        // Close other dropdowns
+                        document.querySelectorAll('.dropdown').forEach(other => {
+                            if (other !== dropdown && other.classList.contains('active')) {
+                                other.classList.remove('active');
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+        }
+
+        // Category filtering for both grids
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const newsCards = document.querySelectorAll('.news-card');
+        const latestNewsCards = document.querySelectorAll('.latest-news-card');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                const category = this.dataset.category;
+
+                // Show/hide cards in both grids based on category
+                const allCards = [...newsCards, ...latestNewsCards];
+                allCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('input[type="email"]');
+                const email = emailInput.value.trim();
+                
+                if (email && validateEmail(email)) {
+                    // Show success message
+                    alert(`Thank you for subscribing with email: ${email}. You'll receive our weekly updates soon!`);
+                    emailInput.value = '';
+                    
+                    // Add visual feedback
+                    const button = this.querySelector('button');
+                    const originalText = button.textContent;
+                    button.textContent = 'Subscribed!';
+                    button.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = 'linear-gradient(135deg, var(--secondary) 0%, #c1121f 100%)';
+                    }, 2000);
+                } else {
+                    alert('Please enter a valid email address.');
+                    emailInput.focus();
+                }
+            });
+        }
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Social icon animation
+        function animateIcon(element) {
+            element.style.transform = 'translateY(-5px) scale(1.1)';
+            setTimeout(() => {
+                element.style.transform = 'translateY(0) scale(1)';
+            }, 300);
+        }
+
+        // Update current year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup mobile dropdowns
+            setupMobileDropdowns();
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add animation to cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards
+            document.querySelectorAll('.news-card, .latest-news-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Close mobile menu on resize to desktop
+                if (window.innerWidth > 900) {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                    
+                    // Reset dropdowns on desktop
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            }, 250);
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.15)';
+                header.style.padding = '0';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '0';
+            }
+        });
+    </script>
+</body>
+</html>
